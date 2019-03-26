@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26-mar-2019, 19.19.52
+    Author     : Sara
+*/
+
+body{
+    background-color: #F1EFE8;
+}
+#text{
+    color: #7D0B09;
+    font-family: "Comic Sans", Helvetica, fantasy;
+}
+
+h1 {
+    color: black;
+}
