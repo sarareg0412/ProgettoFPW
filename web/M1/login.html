@@ -7,11 +7,33 @@ and open the template in the editor.
 <html>
     <head>
         <title>Login</title>
+        <!-- Inserimento dei metadati della pagina-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen">            
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+        <meta name="author" content="Sara Regali">
+        <meta name="keywords" content="FPW, Milestone1, HTML, CSS, Java">
+        <meta name="description" content="Pagina di Login prima Milestone">
     </head>
+    
     <body>
-        <div>TODO write content</div>
+        <header> 
+            <h1>Free Peer revieW</h1> 
+        </header>
+        <main>
+            <form action="index.html" method="post">
+                
+                <label for="id_username">Username: </label>
+                <input type="text" name="userName" id="id_username" value="username"/>
+                
+                <br/> 
+                
+                <label for="id_password">Password: </label>
+                <input type="password" name="password" id="id_password" value="oscurato"/>
+                <br/>
+                <a href="./articoli.html"><input type="submit" value="Login" /></a>
+                <a href="valutazione.html">Vai alle valutazioni</a>
+            </form>
+        </main>
     </body>
 </html>
