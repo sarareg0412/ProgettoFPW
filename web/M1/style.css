@@ -25,13 +25,17 @@ header > h1{
     font-size: 30px;
 }
 /*Classe per il form contenuto nella pagina di login*/
+/*padding-left: 45px;
+   
+    */
 .inserimentoDati{
+    margin: 25%; 
+    margin-top: 50px; 
+    padding-top: 30px;
+    padding-left: 50px;
+    text-align: inherit;
     border-style: double;
     border-color: #FFC300;
-    padding-left: 45px;
-    padding-top: 30px;
-    margin: 25%; 
-    margin-top: 50px;
     width: 300px;
     height: 200px;
     background-color: wheat;
