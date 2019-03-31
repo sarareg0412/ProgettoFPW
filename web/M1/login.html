@@ -24,24 +24,27 @@ and open the template in the editor.
             </div>
         </header>
         <main>
-            <article class="inserimentoDati">
+            <section id="login">
+                
                 <form action="articoli.html" method="post">
-
                     <label for="id_username">Username: </label>
-                    <input type="text" name="userName" id="id_username" value="username"/>
-
+                    <input type="text" name="userName" id="id_username" value="Inserisci username"/>
                     <br/> 
 
                     <label for="id_password">Password: </label>
                     <input type="password" name="password" id="id_password" value="oscurato"/>
+                    
                     <br/>
-                    <input type="button" value="Login">
+                    <button type="submit">Loggati</button>
                     <br/>
-                    <p>Vai alla pagina di: <a href="valutazione.html">valutazioni</a>
-                    </p>
-                    </form> 
-            </article>
-
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember" />Ricordami
+                    </label>
+                   
+                    <p class="val">Vai alla pagina di <a href="valutazione.html">valutazioni</a></p>
+                   
+                    
+            </section>
         </main>
     </body>
 </html>
