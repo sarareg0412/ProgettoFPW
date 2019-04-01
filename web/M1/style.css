@@ -23,7 +23,8 @@ h1.titolo{
     font-size: 18px;
     text-align: center;
 }
-/*Classe per il form contenuto nella pagina di login*/
+
+/*id per il form contenuto nella pagina di login*/
 #sfondo_header{
     background-color: #24415E;
     height: 60px;
@@ -37,11 +38,11 @@ h1.titolo{
     width: 120px;
 }
 #login{    
-    margin-top: 50px; 
-    padding: 20px;
+    padding: 25px;
     width: 330px;
-    height: 250px;  
-    margin: 0px auto; /* Centra il box nella pagina, adattandolo*/
+    height: 250px;   
+    margin: auto;/* Centra il box nella pagina, adattandolo*/
+    margin-top: 10px;
     font-size: 14px;
 }
 
@@ -52,7 +53,7 @@ h1.titolo{
     margin-bottom: 5px;
 }
 input:focus {
-    background-color: #24415E;
+    background-color: #906C37;
     color: white;
     border: none;
 }
@@ -60,7 +61,7 @@ button{
     background-color: #906C37;
     border: none; 
     width: 100%;
-    padding: 8px 145px;
+    padding: 8px;
     margin-top: 10px;
     margin-bottom: 5px;
     color: #fff;
@@ -79,11 +80,15 @@ button:hover{
 a:visited{
     color: #906C37;
 }
-a:link{
+a:hover{
     color: #906C37;
+}
+a:link{
+    text-decoration: none;
 }
 a:active{
     color: #906C37;
+
 }
 
 #descrizioni{
