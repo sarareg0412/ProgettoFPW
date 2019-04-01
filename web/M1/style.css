@@ -8,6 +8,11 @@ and open the template in the editor.
     Author     : Sara
 */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+*{
+    box-sizing: border-box;
+}
+
 body{
     margin: 0px;
     font-family: 'Open Sans', Helvetica, sans-serif;
@@ -19,19 +24,19 @@ h1.titolo{
     text-align: center;
 }
 /*Classe per il form contenuto nella pagina di login*/
-header#sfondo_header{
+#sfondo_header{
     background-color: #24415E;
     height: 60px;
     width: 100%;
     margin-top: 0px;
     padding-top: 10px;
 }
-header#sfondo_header > div#titolo{
+#sfondo_header > #titolo{
     background-color: transparent;
     height: 75px;
     width: 120px;
 }
-section#login{    
+#login{    
     margin-top: 50px; 
     padding: 20px;
     width: 330px;
@@ -46,29 +51,42 @@ section#login{
     margin-top: 5px;
     margin-bottom: 5px;
 }
+input:focus {
+    background-color: #24415E;
+    color: white;
+    border: none;
+}
 button{
     background-color: #906C37;
     border: none; 
+    width: 100%;
     padding: 8px 145px;
-    margin: 10px 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
     color: #fff;
     cursor: pointer;
+}
+
+button:hover{
+    color: #24415E;
 }
 .val{
     margin-top: 1px;
     float: right;
 }
 /*puntatore sopra il link*/
-a:hover{
-   font-style: italic; 
+
+a:visited{
+    color: #906C37;
 }
-/*link cliccato*/
+a:link{
+    color: #906C37;
+}
 a:active{
-    color: #E84A0D;
-    font-weight: bold;
+    color: #906C37;
 }
 
-section#descrizioni{
+#descrizioni{
     padding-top: 0px;
     text-align: center;
 }
