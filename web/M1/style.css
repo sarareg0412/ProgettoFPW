@@ -57,7 +57,6 @@ button{
 .val{
     margin-top: 1px;
     float: right;
-    
 }
 /*puntatore sopra il link*/
 a:hover{
@@ -67,4 +66,9 @@ a:hover{
 a:active{
     color: #E84A0D;
     font-weight: bold;
+}
+
+section#descrizioni{
+    padding-top: 0px;
+    text-align: center;
 }
