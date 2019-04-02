@@ -27,15 +27,16 @@ h1.titolo{
 /*id per il form contenuto nella pagina di login*/
 #sfondo_header{
     background-color: #24415E;
-    height: 60px;
+    height: 70px;
     width: 100%;
     margin-top: 0px;
     padding-top: 10px;
 }
 #sfondo_header > #titolo{
     background-color: transparent;
-    height: 75px;
+    height: 60px;
     width: 120px;
+    position: absolute;
 }
 #login{    
     padding: 25px;
@@ -93,9 +94,59 @@ a:active{
 }
 /* PAGINA VALUTAZIONE */
 /* Sezione contenente titolo, autori ecc */
-#descrizioni{
+aside#barra_laterale{
+    background-color: #DDDDDD;
+    height: 748px;
+    width: 200px;
+    margin-right: 20px;
+    float: left;
 }
 
+nav#sfondo_menu{
+    width: 100%;
+    height: 70px;    
+    position: relative;
+
+}
+nav#sfondo_menu > ul#menu_pagine{
+    width: 800px;
+    height: 70px;
+    padding: 13px;   
+    list-style-type: none;
+    margin: 0px auto;    
+    overflow: hidden;    
+
+}
+
+nav#sfondo_menu > ul#menu_pagine > li {
+    float: left;
+    font-size: 18px;
+}
+
+nav#sfondo_menu > ul#menu_pagine > li > a {
+    padding: 75px;    
+    color: white;
+    height: 60px;
+    padding: 100px 85px;
+}
+
+nav#sfondo_menu > ul#menu_pagine > li > a:hover{
+    background-color: white;
+    color: #24415E;
+}
+section#resto{
+    background-color: #EEEEEE;
+    height: 748px;
+}
+section#sfondo_descrizioni{
+    
+}
+
+#immagine{
+    width: 100%;
+    height: 350px;
+    padding: 10px;
+}
 /* Paragrafo con la recensione del film */
 #contenuto{
     padding: 12px;
@@ -104,13 +155,11 @@ a:active{
 }
 
 p#nome {
-    position: absolute;
 }
 
 #scelta_voto {
     background-color: bisque;
     float: right; 
-    display: inline;
 }
 
 #descrizioni{

@@ -17,49 +17,65 @@ and open the template in the editor.
     
     </head>
     <body>
-       <header id="sfondo_header">
+        <header id="sfondo_header">
             <div id="titolo">
                 <h1 class="titolo">Login project</h1>
             </div>
+            <nav id="sfondo_menu">
+                <ul id="menu_pagine">
+                    <li><a href="articoli.html">Articoli</a></li>
+                    <li><a href="valutazioni.html">Valutazioni</a></li>
+                    <li><a href="registrazioni.html">Registrazioni</a></li>
+                </ul>
+            </nav>
         </header>
         <main>
-            <section id="descrizioni">
-                <h1>Ella e John - The Leisure Seeker, un film di Paolo Virzì</h1>
-                <h2>Sara Regali</h2>
-                <h3>Categoria: HTML, CSS</h3> 
-                <h3>Data: 31 Marzo 2018</h3>
-            </section>
-            <img title="Foto aticolo" alt="Ella e John" src='images/foto.jpg'>
-
-            <section id="contenuto">
-                <p>
-                    Virzì abbandona la provincia livornese, con le sue macchiette e le sue contraddizioni, arrivando in quella americana, riprendendo il libro “The Leisure Seeker“. 
-                    Con Ella e John, Virzì mantiene il suo stile ma cambia il contenuto, raccontando una storia d’amore infinito, fatto di rivelazioni, di una coppia sull’orlo del tramonto. 
-                    Un viaggio per riscoprirsi, per ardere prima dell’incombente fine che caratterizza la vita umana. 
-                    Un vecchio camper che diventa lo strumento attraverso il quale si concretizza la fuga da una provincia americana che vuole far tornare grande l’America ma che al contempo è troppo piccola per Ella e John. 
-                    Fuggire dal becero e dilagante trumpismo verso uno dei tanti emblemi della cultura. E farlo insieme, tenendosi per mano, aiutandosi nel momento del bisogno.
-                </p>
-            </section>
+            <aside id="barra_laterale">
+                <h1>ciaosara..?</h1>
+                <button type="submit">Hello</button>
+            </aside>
             
-            <section id="valutazione">
-                
-                <form action="articoli.html" method="post">
-                    <p id="nome">Valutazione: </p>
-                    <div id="scelta_voto">
-                        <label for="voto1">1:  </label> 
-                        <label for="voto2">2:  </label>
-                        <label for="voto3">3:  </label>
-                        <label for="voto4">4:</label>
-                        <label for="voto5">5:</label>
+            <section id="resto">
+                <section id="sfondo_descrizioni">
+                    <h1>Ella e John - The Leisure Seeker, un film di Paolo Virzì</h1>
+                    <h2>Sara Regali</h2>
+                    <h3>Categoria: HTML, CSS</h3> 
+                    <h3>Data: 31 Marzo 2018</h3>
+                </section>
+
+                <section id="immagine">
+                    <img title="Foto aticolo" alt="Ella e John" src='images/foto.jpg'>
+                </section>
+                <section id="contenuto">
+                    <p>
+                        Virzì abbandona la provincia livornese, con le sue macchiette e le sue contraddizioni, arrivando in quella americana, riprendendo il libro “The Leisure Seeker“. 
+                        Con Ella e John, Virzì mantiene il suo stile ma cambia il contenuto, raccontando una storia d’amore infinito, fatto di rivelazioni, di una coppia sull’orlo del tramonto. 
+                        Un viaggio per riscoprirsi, per ardere prima dell’incombente fine che caratterizza la vita umana. 
+                        Un vecchio camper che diventa lo strumento attraverso il quale si concretizza la fuga da una provincia americana che vuole far tornare grande l’America ma che al contempo è troppo piccola per Ella e John. 
+                        Fuggire dal becero e dilagante trumpismo verso uno dei tanti emblemi della cultura. E farlo insieme, tenendosi per mano, aiutandosi nel momento del bisogno.
+                    </p>
+                </section>
+
+                <section id="valutazione">
+
+                    <form action="articoli.html" method="post">
+                        <p id="nome">Valutazione: </p>
+                        <div id="scelta_voto">
+                            <label for="voto1">1:  </label> 
+                            <label for="voto2">2:  </label>
+                            <label for="voto3">3:  </label>
+                            <label for="voto4">4:</label>
+                            <label for="voto5">5:</label>
+                            <br/>
+
+                            <input type="range" name="points" min="1" max="5" step="1">
+
+                        </div>
                         <br/>
-
-                        <input type="range" name="points" min="1" max="5" step="1">
-
-                    </div>
-                    <br/>
-                    <button type="submit">Login</button>
-                </form>
-            </section>
+                        <button type="submit">Login</button>
+                    </form>
+                </section>
+            </section>    
         </main>
     </body>
 </html>
