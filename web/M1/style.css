@@ -18,11 +18,6 @@ body{
     font-family: 'Open Sans', Helvetica, sans-serif;
 }
 
-h1.titolo{
-    color: #fff;  
-    font-size: 18px;
-    text-align: center;
-}
 
 /*id per il form contenuto nella pagina di login*/
 #sfondo_header{
@@ -30,14 +25,22 @@ h1.titolo{
     height: 70px;
     width: 100%;
     margin-top: 0px;
-    padding-top: 10px;
+    padding-top: 0px;
 }
 #sfondo_header > #titolo{
-    background-color: transparent;
-    height: 60px;
-    width: 120px;
+    background-color: #24415E;
+    height: 70px;
+    width: 190px;
+    margin-top: 0px;
     position: absolute;
 }
+
+h1.titolo{
+    color: #fff;  
+    font-size: 18px;
+    text-align: center;
+}
+
 #login{    
     padding: 25px;
     width: 400px;
@@ -94,51 +97,53 @@ a:active{
 }
 /* PAGINA VALUTAZIONE */
 /* Sezione contenente titolo, autori ecc */
-aside#barra_laterale{
-    background-color: #DDDDDD;
-    height: 748px;
-    width: 200px;
-    margin-right: 20px;
-    float: left;
-}
+
 
 nav#sfondo_menu{
     width: 100%;
-    height: 70px;    
-    position: relative;
-
+    height: 70px;
 }
 nav#sfondo_menu > ul#menu_pagine{
-    width: 800px;
-    height: 70px;
-    padding: 13px;   
+    height: 70px;  
     list-style-type: none;
-    margin: 0px auto;    
+    padding-top: 15px; 
+    margin: 0px;    
     overflow: hidden;    
-
 }
 
 nav#sfondo_menu > ul#menu_pagine > li {
+    margin-left: 80px;
     float: left;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 nav#sfondo_menu > ul#menu_pagine > li > a {
-    padding: 75px;    
     color: white;
-    height: 60px;
-    padding: 100px 85px;
+    height: 70px;
+    padding: 80px;
 }
 
 nav#sfondo_menu > ul#menu_pagine > li > a:hover{
     background-color: white;
     color: #24415E;
 }
+
+aside#barra_laterale{
+    background-color: #DDDDDD;
+    height: 748px;
+    width: 190px;
+    margin-right: 20px;
+    float: left;
+}
+
 section#resto{
     background-color: #EEEEEE;
     height: 748px;
+    margin: 0px;
+    padding-top: 0px;
 }
-section#sfondo_descrizioni{
+section#sfondo_descrizioni > h1{
+    margin-top: 0px;
     
 }
 
@@ -163,6 +168,6 @@ p#nome {
 }
 
 #descrizioni{
-    padding-top: 0px;
+    margin: 0px;
     text-align: center;
 }
