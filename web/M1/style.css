@@ -100,8 +100,9 @@ a:active{
 
 
 nav#sfondo_menu{
-    width: 100%;
     height: 70px;
+    position: relative;
+    left:190px;
 }
 nav#sfondo_menu > ul#menu_pagine{
     height: 70px;  
@@ -120,7 +121,6 @@ nav#sfondo_menu > ul#menu_pagine > li {
 nav#sfondo_menu > ul#menu_pagine > li > a {
     color: white;
     height: 70px;
-    padding: 80px;
 }
 
 nav#sfondo_menu > ul#menu_pagine > li > a:hover{
@@ -139,7 +139,7 @@ aside#barra_laterale{
 }
 
 section#resto{
-    background-color: #EEEEEE;
+    background-color: white;
     height: 748px;
     margin: 0px;
     padding-top: 10px;  /*Stacca le scritte dalla parte superiore*/
