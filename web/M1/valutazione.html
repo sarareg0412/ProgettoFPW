@@ -17,12 +17,12 @@ and open the template in the editor.
 
     </head>
     <body>
-        <header id="sfondo_header">
-            <div id="titolo" class="col-3">
-                <h1 class="titolo">Login project</h1>
+        <header id="sfondo_header" class="col-10">
+            <div id="titolo" class="col-2">
+                <h1 class="titolo">Free Peer revieW</h1>
             </div>
             <nav id="sfondo_menu">
-                <ul id="menu_pagine" class="col-9">
+                <ul id="menu_pagine" class="col-8">
                     <li><a href="articoli.html">Articoli</a></li>
                     <li><a href="">Valutazioni</a></li>
                     <li><a href="registrazione.html">Registrazioni</a></li>
@@ -30,44 +30,62 @@ and open the template in the editor.
             </nav>
         </header>
         <main>
-            <aside id="barra_laterale" class="col-3">
+            <aside id="barra_laterale" class="col-2">
                 <h1>Ciao Sara</h1>
-                <button type="submit">Hello</button>
+                <form action="../index.html" method="post">
+                    <button type="submit">Logout</button>
+                </form>
             </aside>
             
-            <section id="resto">
+            <section id="resto" class="col-8">
                 <section id="sfondo_descrizioni">
                     <h1>The SQL injection</h1>
-                    <h2>Sara Regali</h2>
-                    <h3>Categoria: HTML, CSS</h3> 
-                    <h3>Data: 31 Marzo 2018</h3>
+                    <section id="sottotitoli" class="col-10">
+                        <h2 class="col-3">Autori: Vari</h2>
+                        <h2 class="col-3">Categoria: HTML, CSS</h3> 
+                        <h3 class="col-4">Data: 31 Marzo 2018</h3>
+                    </section>
+                    
                 </section>
 
                 <section id="immagine">
-                    <img title="Foto aticolo" alt="La sql injection" src='images/pic.jpg'>
+                    <img  title="Foto aticolo" alt="La sql injection" src='images/sql.jpg'>
                 </section>
                 <section id="contenuto">
                     <p>
-                      SQL injection è una tecnica di code injection, usata per attaccare applicazioni di gestione dati, con la quale vengono inserite delle stringhe di codice SQL malevole all'interno di campi di input in modo che queste ultime vengano poi eseguite (ad esempio per fare inviare il contenuto del database all'attaccante).  
+                      SQL injection è una tecnica di code injection, usata per attaccare applicazioni di gestione dati, 
+                      con la quale vengono inserite delle stringhe di codice SQL malevole all'interno di campi di input 
+                      in modo che queste ultime vengano poi eseguite (ad esempio per fare inviare il contenuto del database all'attaccante).  
+                      SQL è un linguaggio per interrogare e gestire basi di dati mediante l'utilizzo di costrutti di programmazione denominati query. 
+                      Con SQL si leggono, modificano, cancellano dati e si esercitano funzioni gestionali ed amministrative sul sistema dei database. 
                     </p>
                 </section>
-
+                
                 <section id="valutazione">
-
+                    <h2>Le tue valutazioni:</h2>
                     <form action="articoli.html" method="post">
-                        <p id="nome">Valutazione: </p>
-                        <div id="scelta_voto">
-                            <label for="voto1">1:  </label> 
-                            <label for="voto2">2:  </label>
-                            <label for="voto3">3:  </label>
-                            <label for="voto4">4:</label>
-                            <label for="voto5">5:</label>
-                            <br/>
-
-                            <input type="range" name="points" min="1" max="5" step="1">
-
+                        <p id="valuta" class="col-4">La tua valutazione: </p>
+                        <div id="scelta_voto" class="col-6">
+                            <label for="1">1</label>
+                            <input type="radio" name="voto" id="voto-1" value="1">
+                            <label for="2">2</label>
+                            <input type="radio" name="voto" id="voto-2" value="2">
+                            <label for="3">3</label>
+                            <input type="radio" name="voto" id="voto-3" value="3">
+                             <label for="4">4</label>
+                            <input type="radio" name="voto" id="voto-4" value="4">
+                             <label for="5">5</label>
+                            <input type="radio" name="voto" id="voto-5" value="5">
                         </div>
-                        
+                    </form>
+                    <form action="demo_form.asp" method="get" class="col-10">
+                        <label for="lungo">Se sei un autore inserisci un commento:</label>
+                        <textarea name="lungo" id="lungo"></textarea>
+                        <label for="lungo">Se sei un organizzatore inserisci un commento:</label>
+                        <textarea name="lungo" id="lungo"></textarea>
+                    </form>
+                    <form action="../index.html" method="post">
+                        <button type="submit">Invia</button>
                     </form>
                 </section>
             </section>    

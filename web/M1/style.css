@@ -17,13 +17,29 @@ body{
     margin: 0px;
     font-family: 'Open Sans', Helvetica, sans-serif;
 }
+[class*="col-"] {
+    float: left;
+}
 
+.col-1 {width: 10%;}
+.col-2 {width: 20%;}
+.col-3 {width: 30%;}
+.col-4 {width: 40%;}
+.col-5 {width: 50%;}
+.col-6 {width: 60%;}
+.col-7 {width: 70%;}
+.col-8 {width: 80%;}
+.col-9 {width: 90%;}
+.col-10 {width: 100%;}
 
+h1, h2, h3, h4{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 /*id per il form contenuto nella pagina di login*/
 #sfondo_header{
     background-color: #24415E;
     height: 70px;
-    width: 100%;
     margin-top: 0px;
     padding-top: 0px;
 }
@@ -39,7 +55,7 @@ body{
 h1.titolo{
     color: #fff;  
     font-size: 18px;
-    text-align: center;
+    padding: 10px;
 }
 
 #login{    
@@ -105,7 +121,6 @@ nav#sfondo_menu{
 }
 nav#sfondo_menu > ul#menu_pagine{
     height: 70px;     
-    width: 80%;
     margin: 0px;    
     padding: 10px;    
     padding-top: 15px; 
@@ -123,7 +138,7 @@ nav#sfondo_menu > ul#menu_pagine > li {
 nav#sfondo_menu > ul#menu_pagine > li > a {
     color: white;
     height: 70px;
-    padding: 20px;
+    padding: 35px;
 }
 
 nav#sfondo_menu > ul#menu_pagine > li > a:hover{
@@ -134,8 +149,6 @@ nav#sfondo_menu > ul#menu_pagine > li > a:hover{
 aside#barra_laterale{
     background-color: #DDDDDD;
     height: 890px;
-    width: 20%;
-    margin-right: 20px;
     padding-left: 10px;
     padding-right: 10px;
     float: left;
@@ -143,36 +156,60 @@ aside#barra_laterale{
 
 section#resto{
     background-color: white;
-    height: 748px;
-    margin: 0px;
-    padding-top: 10px;  /*Stacca le scritte dalla parte superiore*/
-}
-section#sfondo_descrizioni > h1{
+    padding: 10px;  /*Stacca le scritte dalla parte superiore*/
     margin-top: 0px;
+    float: right;
+}
+section#sfondo_descrizioni {
+    text-align:center;
+}
+
+section#sfondo_descrizioni > h1{
+    font-size: 45px;
+}
+
+section#sfondo_descrizioni > h2 {
+    font-size: 18px;
     
 }
-
-#immagine{
-    width: 100%;
-    height: 350px;
-    padding: 10px;
-}
-/* Paragrafo con la recensione del film */
-#contenuto{
-    padding: 12px;
-    font-size: 13px;
-    text-align: justify; 
-}
-
-p#nome {
-}
-
-#scelta_voto {
-    background-color: bisque;
-    float: right; 
-}
-
 #descrizioni{
     margin: 0px;
     text-align: center;
+}
+
+#immagine{
+    margin-top: 10px;
+    padding: 10px;
+}
+/* Paragrafo con la descrizione */
+section#contenuto{
+    margin: 0px;
+    padding: 12px;
+    font-size: 14px;
+    float: right;
+    text-align: justify; 
+}
+/* Form per l'inserimento dati '*/
+section#valutazione {
+    margin: 0px;
+    padding: 10px;
+    background-color: wheat;
+}
+section#valutazione > h2 {
+    margin: 0px;
+}
+p#valuta{
+    text-align: right;
+}
+
+textarea {
+    width: 100%;
+    height: 50px;
+}
+.col-10 label::after{
+    content: '\A';
+    white-space: pre;
+}
+#scelta_voto {
+    padding: 17px;
 }
