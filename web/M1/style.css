@@ -35,6 +35,7 @@ body{
 h1, h2, h3, h4{
     margin-top: 10px;
     margin-bottom: 10px;
+    color: #24415E;
 }
 /*id per il form contenuto nella pagina di login*/
 #sfondo_header{
@@ -146,58 +147,56 @@ nav#sfondo_menu > ul#menu_pagine > li > a:hover{
     color: #24415E;
 }
 
+/* Barra laterale*/
 aside#barra_laterale{
-    background-color: #DDDDDD;
-    height: 890px;
+    background-color: #F6DDCC;
+    height: 845px;
     padding-left: 10px;
     padding-right: 10px;
     float: left;
 }
-
+aside > section#sottobox {
+    padding-left: 10px;
+}
+/* Sezioni centrali*/
 section#resto{
     background-color: white;
     padding: 10px;  /*Stacca le scritte dalla parte superiore*/
-    margin-top: 0px;
+    margin: 0px;
     float: right;
 }
+/* Sezione dei titoli e sottotitoli*/
 section#sfondo_descrizioni {
     text-align:center;
 }
 
 section#sfondo_descrizioni > h1{
     font-size: 45px;
+    color: #24415E;
 }
 
-section#sfondo_descrizioni > h2 {
-    font-size: 18px;
+section#sfondo_descrizioni > section#sottotitoli {
+    font-size: 16px;
     
-}
-#descrizioni{
-    margin: 0px;
-    text-align: center;
 }
 
 #immagine{
-    margin-top: 10px;
     padding: 10px;
 }
 /* Paragrafo con la descrizione */
 section#contenuto{
-    margin: 0px;
     padding: 12px;
     font-size: 14px;
-    float: right;
     text-align: justify; 
 }
 /* Form per l'inserimento dati '*/
 section#valutazione {
-    margin: 0px;
     padding: 10px;
-    background-color: wheat;
 }
 section#valutazione > h2 {
     margin: 0px;
 }
+/* Paragrafo per inserire il voto*/
 p#valuta{
     text-align: right;
 }
@@ -213,3 +212,4 @@ textarea {
 #scelta_voto {
     padding: 17px;
 }
+
