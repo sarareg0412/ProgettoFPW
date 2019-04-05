@@ -169,7 +169,7 @@ section#sottobox > ul{
     margin-top: 0px;
 }
 /* Sezioni centrali*/
-section#resto{
+section#resto_pagina{
     background-color: white;
     padding: 10px;  /*Stacca le scritte dalla parte superiore*/
     margin: 0px;
@@ -223,3 +223,22 @@ textarea {
     padding: 17px;
 }
 
+/* ARTICOLI */
+section#tabella{
+    padding-top: 20px;
+    float: right;
+}
+
+table {
+    font-size: 20px;
+    border-style: outset;
+    float: left;
+}
+/* Indica le varie righe */
+tr{
+    text-align: center;
+}
+/* Indica ogni cella */
+td, th{
+    padding: 10px;
+}
