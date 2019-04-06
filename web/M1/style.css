@@ -15,7 +15,8 @@ and open the template in the editor.
 
 body{
     margin: 0px;
-    font-family: 'Open Sans', Helvetica, sans-serif;
+    background-image: url(./images/pattern.jpg);
+    font-family: "Open Sans", Helvetica, sans-serif
 }
 [class*="col-"] {
     float: left; /* Di default tutti gli elementi sono addossati a destra*/
@@ -170,10 +171,9 @@ section#sottobox > ul{
 }
 /* Sezioni centrali*/
 section#resto_pagina{
-    background-color: white;
     padding: 10px;  /*Stacca le scritte dalla parte superiore*/
     margin: 0px;
-    float: right;
+    float: right;     
 }
 /* Sezione dei titoli e sottotitoli*/
 section#sfondo_descrizioni {
@@ -226,13 +226,14 @@ textarea {
 /* ARTICOLI */
 section#tabella{
     padding-top: 20px;
-    float: right;
+    padding-left: 20%;
 }
 
 table {
     font-size: 20px;
     border-style: outset;
     float: left;
+    
 }
 /* Indica le varie righe */
 tr{
@@ -241,4 +242,17 @@ tr{
 /* Indica ogni cella */
 td, th{
     padding: 10px;
+}
+
+#prima_riga {
+    background-color: #24415E;
+    color: white;
+}
+
+#righe_pari {
+    background-color: #EEEEEE;
+}
+
+.fas, .far::hover{
+    opacity: 0.5;
 }
