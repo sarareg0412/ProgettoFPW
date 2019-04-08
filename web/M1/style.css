@@ -191,7 +191,7 @@ section#sfondo_descrizioni > h1{
 
 section#sfondo_descrizioni > section#sottotitoli {
     font-size: 16px;
-    
+
 }
 
 #immagine{
@@ -263,39 +263,54 @@ td, th{
 
 /* SCRIVI UN ARTICOLO */
 
-section#inserisci_titolo{
-    height: 30px;
-}
-
-
+/* Colonne di sinistra (Titolo, Autori ecc) */
 label.col-3 {
-    padding-right: 10%;
     margin: 0px;    
+    padding-right: 30px;
     text-align: right;
     font-size: 20px;
 }
 
-input#corto {
-    width: 50%;
-    height: 28px;
-    margin: 0px;
-    padding-bottom: 0px;
+#inserisci_categoria, #inserisci_autori, #inserisci_titolo, #inserisci_testo {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+section#inserisci_titolo{
+    height: 30px;
 }
 
+/* Colonne a destra (Inserisci titolo ecc)*/
+/* Scelta del nome */
+section#nomi, #categorie{
+    padding-left: 15px;   
+    
+}
+
+input#corto, textarea.col-7 {
+    width: 50%;
+    height: 28px;
+    margin-left: 15px;
+}
+
+textarea.col-7 {
+    height: 75px;
+}
 section#inserisci_autori {
-    margin-top: 10px;
     height: 100px;
 }
 
 section#nomi > p {
-    margin-top: 5px; 
+    margin-top: 2px;     
     margin-bottom: 10px;
+}
+section#inserisci_categoria {
+    height: 65px;
 }
 
-section#scelta_categoria {
-    height: 65px;
-    margin-bottom: 10px;
-}
-#categorie > input {
+section#categorie > input {
     margin: 10px;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
 }
