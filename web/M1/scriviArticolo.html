@@ -31,7 +31,7 @@ and open the template in the editor.
         </header>
         <main>
             <aside id="barra_laterale" class="col-2">
-                
+
                 <h1>Ciao, Sara! </h1>
                 <form action="../index.html" method="post">
                     <button type="submit">Logout</button>
@@ -39,7 +39,7 @@ and open the template in the editor.
                 <section id="sottobox">
                     <h1>I miei articoli: </h1>
                     <ul>
-                         <li><a href="">Le classi in Java</a></li>
+                        <li><a href="">Le classi in Java</a></li>
                         <li><a href="">Progammazione Server-Side</a></li>
                         <li><a href="">Utilizzi di Javascript</a></li>
                     </ul>
@@ -52,12 +52,12 @@ and open the template in the editor.
                         <li><a href="">La SQL Injection</a></li>
                     </ul>
                 </section>
-                
+
             </aside>
-            
+
             <section id="resto_pagina" class="col-8">
                 <section id="sfondo_descrizioni">
-                        <h1>Scrivi un Articolo</h1>
+                    <h1>Scrivi un Articolo</h1>
                 </section>
                 <section id="inserisci_titolo">
                     <form action="demo_form.asp" method="get">
@@ -65,13 +65,39 @@ and open the template in the editor.
                         <input class="col-7" type="text" name="corto" id="corto" value="Inserisci il titolo" />
                     </form>
                 </section>
-                
-                <section id="inserisci_data">
+
+                <section id="inserisci_autori">
                     <form action="demo_form.asp" method="get">
-                        <label class="col-3" for="corto">Data:</label>
-                        <input class="col-7" type="text" name="corto" id="corto" value="Inserisci data" />
+                        <label class="col-3" for="corto">Autori:</label>
+                        <section  id="nomi" class="col-7">
+                            <p >Sara Regali</p>
+                            <p>Mario Rossi</p>
+                            <select name="nome">
+                                <option value="nome1">Anna Rossi</option>
+                                <option value="nome2">Marco Neri</option>
+                                <option value="nome3">Marta Verdi</option>
+                            </select>
+                        </section>
                     </form>
                 </section>
+
+                <section id="scelta_categoria" >
+                    <label class="col-3" for="corto">Categoria:</label>
+                    <section id="categorie" class="col-7" >
+                        <input type="checkbox" name="category" value="cat1">CSS
+                        <input type="checkbox" name="category" value="cat2">HTML
+                        <input type="checkbox" name="category" value="cat3">JSP
+                        </br>
+                        <input type="checkbox" name="category" value="cat4">AJAX
+                        <input type="checkbox" name="category" value="cat5">JavaScript
+                        <input type="checkbox" name="category" value="cat6">Servlet
+                    </section>
+                </section>
+
+                <form action="demo_form.asp" method="get" class="col-10">
+                    <label for="lungo" class="col-3">Testo:</label>
+                    <textarea class="col-7" name="lungo" id="lungo"></textarea>
+                </form>
             </section>
         </main>    
     </body>

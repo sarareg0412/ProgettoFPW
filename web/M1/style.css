@@ -170,10 +170,14 @@ section#sottobox > ul{
     margin-top: 0px;
 }
 /* Sezioni centrali*/
+main::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 section#resto_pagina{
     padding: 10px;  /*Stacca le scritte dalla parte superiore*/
     margin: 0px;
-    float: right;     
 }
 /* Sezione dei titoli e sottotitoli*/
 section#sfondo_descrizioni {
@@ -193,6 +197,7 @@ section#sfondo_descrizioni > section#sottotitoli {
 #immagine{
     padding: 10px;
 }
+
 /* Paragrafo con la descrizione */
 section#contenuto{
     padding: 12px;
@@ -207,10 +212,10 @@ section#valutazione > h2 {
     margin: 0px;
 }
 /* Paragrafo per inserire il voto*/
-form .col-4 {
+
+p#valuta.col-4 {
     text-align: right;
 }
-
 textarea {
     width: 100%;
     height: 50px;
@@ -258,7 +263,39 @@ td, th{
 
 /* SCRIVI UN ARTICOLO */
 
-section#resto_pagina .col-3 {
-    text-align: right;
+section#inserisci_titolo{
+    height: 30px;
+}
+
+
+label.col-3 {
     padding-right: 10%;
+    margin: 0px;    
+    text-align: right;
+    font-size: 20px;
+}
+
+input#corto {
+    width: 50%;
+    height: 28px;
+    margin: 0px;
+    padding-bottom: 0px;
+}
+
+section#inserisci_autori {
+    margin-top: 10px;
+    height: 100px;
+}
+
+section#nomi > p {
+    margin-top: 5px; 
+    margin-bottom: 10px;
+}
+
+section#scelta_categoria {
+    height: 65px;
+    margin-bottom: 10px;
+}
+#categorie > input {
+    margin: 10px;
 }
