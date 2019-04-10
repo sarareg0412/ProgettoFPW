@@ -78,9 +78,8 @@ h1.titolo{
     margin-bottom: 5px;
 }
 input:focus {
-    background-color: #906C37;
+    background-color: #EEEEEE;
     border: none;
-    opacity: 0.5;
 }
 button{
     background-color: #906C37;
@@ -271,11 +270,11 @@ label.col-3 {
     font-size: 20px;
 }
 
-#inserisci_categoria, #inserisci_autori, #inserisci_titolo, #inserisci_testo {
+#inserisci_categoria, #inserisci_immagine, #inserisci_autori, #inserisci_titolo, #inserisci_testo, #inserisci_data {
     margin-top: 0px;
     margin-bottom: 10px;
 }
-section#inserisci_titolo{
+section#inserisci_titolo, section#inserisci_data, #inserisci_immagine{
     height: 30px;
 }
 
@@ -286,17 +285,17 @@ section#nomi, #categorie{
     
 }
 
-input#corto, textarea.col-7 {
+input#corto, textarea.col-7, input#start, input#foto_scelta, form#salva {
     width: 50%;
     height: 28px;
     margin-left: 15px;
 }
 
 textarea.col-7 {
-    height: 75px;
+    height: 250px;
 }
 section#inserisci_autori {
-    height: 100px;
+    height: 90px;
 }
 
 section#nomi > p {
@@ -310,7 +309,9 @@ section#inserisci_categoria {
 section#categorie > input {
     margin: 10px;
 }
-
-input[type="checkbox"] {
+section#nascosta {
+    visibility: hidden;
+}
+input[type="checkbox"], input#foto_scelta {
     cursor: pointer;
 }
