@@ -190,7 +190,6 @@ section#sfondo_descrizioni > h1{
 
 section#sfondo_descrizioni > section#sottotitoli {
     font-size: 16px;
-
 }
 
 #immagine{
@@ -314,4 +313,13 @@ section#nascosta {
 }
 input[type="checkbox"], input#foto_scelta {
     cursor: pointer;
+}
+
+/* PROFILO */
+section#immagine_profilo {
+    display: inline;
+}
+
+h1.col-3{
+    margin-top: 30px;
 }
