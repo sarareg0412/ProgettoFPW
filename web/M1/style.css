@@ -269,11 +269,10 @@ label.col-3 {
     font-size: 20px;
 }
 
-#inserisci_categoria, #inserisci_immagine, #inserisci_autori, #inserisci_titolo, #inserisci_testo, #inserisci_data {
-    margin-top: 0px;
+#inserisci_categoria, #inserisci_immagine, #inserisci_autori, #inserisci_titolo, #inserisci_testo, #inserisci_email, #inserisci_data {
     margin-bottom: 10px;
 }
-section#inserisci_titolo, section#inserisci_data, #inserisci_immagine{
+section#inserisci_titolo, #inserisci_email, section#inserisci_data, #inserisci_immagine{
     height: 30px;
 }
 
@@ -284,7 +283,7 @@ section#nomi, #categorie{
     
 }
 
-input#corto, textarea.col-7, input#start, input#foto_scelta, form#salva {
+input#corto, textarea.col-7, input#start, input#foto_scelta, form#salva, input#email {
     width: 50%;
     height: 28px;
     margin-left: 15px;
@@ -316,6 +315,11 @@ input[type="checkbox"], input#foto_scelta {
 }
 
 /* PROFILO */
+
+.profilo { /* Classe per titolo e immagine */
+    height: 130px;
+    margin-bottom: 10px;
+}
 section#immagine_profilo {
     display: inline;
 }
