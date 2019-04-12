@@ -152,7 +152,6 @@ nav#sfondo_menu > ul#menu_pagine > li > a:hover{
 /* Barra laterale*/
 aside#barra_laterale{
     background-color: #F6DDCC;
-    height: 845px;
     padding-left: 10px;
     padding-right: 10px;
     float: left;
@@ -269,10 +268,10 @@ label.col-3 {
     font-size: 20px;
 }
 
-#inserisci_categoria, #inserisci_immagine, #inserisci_autori, #inserisci_titolo, #inserisci_testo, #inserisci_email, #inserisci_data {
+#inserisci_categoria, #inserisci_password, #inserisci_immagine, #inserisci_autori, #inserisci_titolo, #inserisci_testo, #inserisci_email, #inserisci_data {
     margin-bottom: 10px;
 }
-section#inserisci_titolo, #inserisci_email, section#inserisci_data, #inserisci_immagine{
+section#inserisci_titolo, #inserisci_password, #inserisci_email, section#inserisci_data, #inserisci_immagine{
     height: 30px;
 }
 
@@ -283,7 +282,7 @@ section#nomi, #categorie{
     
 }
 
-input#corto, textarea.col-7, input#start, input#foto_scelta, form#salva, input#email {
+input#corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, form#salva, input#email {
     width: 50%;
     height: 28px;
     margin-left: 15px;
@@ -324,6 +323,9 @@ section#immagine_profilo {
     display: inline;
 }
 
+input#foto_scelta {
+    padding-top: 5px;
+}
 h1.col-3{
     margin-top: 30px;
 }
