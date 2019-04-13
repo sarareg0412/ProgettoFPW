@@ -125,23 +125,22 @@ nav#sfondo_menu{
 nav#sfondo_menu > ul#menu_pagine{
     height: 70px;     
     margin: 0px;    
-    padding: 10px;    
-    padding-top: 15px; 
+    padding-left: 0px;
     float: right;
     list-style-type: none;
     overflow: hidden;    
 }
 
 nav#sfondo_menu > ul#menu_pagine > li {
-    margin-left: 80px;
-    float: left;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 nav#sfondo_menu > ul#menu_pagine > li > a {
     color: white;
     height: 70px;
-    padding: 35px;
+    margin-top: 0px;
+    padding: 20px;
+    padding-left: 10%;
 }
 
 nav#sfondo_menu > ul#menu_pagine > li > a:hover{
@@ -151,10 +150,10 @@ nav#sfondo_menu > ul#menu_pagine > li > a:hover{
 
 /* Barra laterale*/
 aside#barra_laterale{
+    height: 843px;
     background-color: #F6DDCC;
     padding-left: 10px;
     padding-right: 10px;
-    float: left;
 }
 aside > h1 {
     padding-left: 10px;
@@ -172,9 +171,11 @@ main::after {
     content: "";
     clear: both;
     display: table;
+    
 }
 section#resto_pagina{
     padding: 10px;  /*Stacca le scritte dalla parte superiore*/
+    padding-bottom: 0px;
     margin: 0px;
 }
 /* Sezione dei titoli e sottotitoli*/
@@ -282,10 +283,14 @@ section#nomi, #categorie{
     
 }
 
-input#corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, form#salva, input#email {
+section#cancel, input#corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, form#salva, input#email {
     width: 50%;
     height: 28px;
     margin-left: 15px;
+    margin-bottom: 10px; 
+}
+form#salva {
+    height: 50px;
 }
 
 textarea.col-7 {
@@ -328,4 +333,9 @@ input#foto_scelta {
 }
 h1.col-3{
     margin-top: 30px;
+    margin-left: 5%;
+}
+
+section#cancel {
+    text-align: right;
 }
