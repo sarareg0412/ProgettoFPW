@@ -51,7 +51,6 @@ h1, h2, h3, h4{ /* Regole generali per i titoli */
     background-color: #24415E;
     height: 70px;
     width: 20%;
-    float: left;
     margin-top: 0px;
     position: absolute;
 }
@@ -60,6 +59,7 @@ h1.titolo{
     color: #fff;  
     font-size: 18px;
     padding: 10px;
+    margin-top: 0px;
 }
 
 #login{    
@@ -67,7 +67,7 @@ h1.titolo{
     width: 400px;
     height: 300px;   
     margin: auto;/* Centra il box nella pagina, adattandolo*/
-    margin-top: 60px;
+    margin-top: 30px;
     font-size: 15px;
 }
 
@@ -254,11 +254,14 @@ td, th{
 #righe_pari {
     background-color: #EEEEEE;
 }
-
+/* Classe per le icone nella tabella */
 .fas, .far::hover{
     opacity: 0.5;
 }
-
+.fas::after{
+    content: "";
+    clear: both;
+}
 /* SCRIVI UN ARTICOLO */
 
 /* Colonne di sinistra (Titolo, Autori ecc) */
