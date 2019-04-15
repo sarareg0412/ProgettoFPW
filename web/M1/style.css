@@ -7,6 +7,8 @@ and open the template in the editor.
     Created on : 26-mar-2019, 19.19.52
     Author     : Sara
 */
+
+/* Importo il font */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 *{
@@ -18,6 +20,7 @@ body{
     background-image: url(./images/pattern.jpg);
     font-family: "Open Sans", Helvetica, sans-serif
 }
+
 [class*="col-"] {
     float: left; /* Di default tutti gli elementi sono addossati a destra*/
 }
@@ -38,7 +41,8 @@ h1, h2, h3, h4{ /* Regole generali per i titoli */
     margin-bottom: 10px;
     color: #24415E;
 }
-/*id per il form contenuto nella pagina di login*/
+
+/* header */
 #sfondo_header{
     background-color: #24415E;
     height: 70px;
@@ -50,37 +54,44 @@ h1, h2, h3, h4{ /* Regole generali per i titoli */
 #sfondo_header > #titolo{
     background-color: #24415E;
     height: 70px;
-    width: 20%;
     margin-top: 0px;
     position: absolute;
 }
 
+/* Nome del sito */
 h1.titolo{
     color: #fff;  
     font-size: 18px;
     padding: 10px;
+    padding-top: 20px;
     margin-top: 0px;
 }
 
+/* Form per autenticarsi*/
 #login{    
-    padding: 25px;
+   
     width: 400px;
     height: 300px;   
     margin: auto;/* Centra il box nella pagina, adattandolo*/
     margin-top: 30px;
+    padding: 25px;
     font-size: 15px;
 }
 
+/* input nel form di autenticazione */
 #id_password, #id_username{
     width: 100%;
     height: 28px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
 input:focus {
     background-color: #EEEEEE;
     border: none;
 }
+
+/* Regole generali per i bottoni */
 button{
     background-color: #906C37;
     border: none; 
@@ -96,10 +107,13 @@ button:active{
     color: #24415E;
     border: none;
 }
+
+
 .val{
     margin-top: 1px;
     float: right;
 }
+
 /*puntatore sopra il link*/
 a:link, a:visited {
     color: #906C37;
@@ -115,10 +129,9 @@ a:hover{
 a:active{
     text-decoration: underline;
 }
+
 /* PAGINA VALUTAZIONE */
-/* Sezione contenente titolo, autori ecc */
-
-
+/* Sezione contenente link alle altre pagine */
 nav#sfondo_menu{
     height: 70px;
 }
@@ -155,10 +168,12 @@ aside#barra_laterale{
     padding-left: 10px;
     padding-right: 10px;
 }
+
 aside > h1 {
     padding-left: 10px;
     margin-bottom: 0px;
 }
+
 aside > section#sottobox {
     padding-left: 10px;
 }
@@ -173,11 +188,14 @@ main::after {
     display: table;
     
 }
+
+/* Sezione contenente il resto del content */
 section#resto_pagina{
     padding: 10px;  /*Stacca le scritte dalla parte superiore*/
     padding-bottom: 0px;
     margin: 0px;
 }
+
 /* Sezione dei titoli e sottotitoli*/
 section#sfondo_descrizioni {
     text-align:center;
@@ -196,32 +214,37 @@ section#sfondo_descrizioni > section#sottotitoli {
     padding: 10px;
 }
 
-/* Paragrafo con la descrizione */
+/* Paragrafo con l'articolo */
 section#contenuto{
     padding: 12px;
     font-size: 14px;
     text-align: justify; 
 }
+
 /* Form per l'inserimento dati '*/
 section#valutazione {
     padding: 10px;
 }
+
 section#valutazione > h2 {
     margin: 0px;
 }
-/* Paragrafo per inserire il voto*/
 
+/* Paragrafo per inserire il voto*/
 p#valuta.col-4 {
     text-align: right;
 }
+
 textarea {
     width: 100%;
     height: 50px;
 }
+
 .col-10 label::after{
     content: '\A';
     white-space: pre;
 }
+
 #scelta_voto {
     padding: 17px;
 }
@@ -237,10 +260,12 @@ table {
     font-size: 20px;
     border-style: outset;
 }
+
 /* Indica le varie righe */
 tr{
     text-align: center;
 }
+
 /* Indica ogni cella */
 td, th{
     padding: 10px;
@@ -254,6 +279,7 @@ td, th{
 #righe_pari {
     background-color: #EEEEEE;
 }
+
 /* Classe per le icone nella tabella */
 .fas, .far::hover{
     opacity: 0.5;
@@ -262,63 +288,75 @@ td, th{
     content: "";
     clear: both;
 }
-/* SCRIVI UN ARTICOLO */
 
+/* SCRIVI UN ARTICOLO */
 /* Colonne di sinistra (Titolo, Autori ecc) */
 label.col-3 {
     margin: 0px;    
     padding-right: 30px;
     text-align: right;
-    font-size: 20px;
+    font-size: 18px;
 }
 
+/* Resto dei box per inserimento informazioni */
 #inserisci_categoria, #inserisci_password, #inserisci_immagine, #inserisci_autori, #inserisci_titolo, #inserisci_testo, #inserisci_email, #inserisci_data {
     margin-bottom: 10px;
 }
+
+/* Molti box hanno le stesse grandezze*/
 section#inserisci_titolo, #inserisci_password, #inserisci_email, section#inserisci_data, #inserisci_immagine{
     height: 30px;
 }
 
-/* Colonne a destra (Inserisci titolo ecc)*/
 /* Scelta del nome */
 section#nomi, #categorie{
     padding-left: 15px;   
     
 }
 
+/* Molti campi di input hanno le stesse grandezze*/
 section#cancel, input#corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, form#salva, input#email {
     width: 50%;
     height: 28px;
     margin-left: 15px;
     margin-bottom: 10px; 
 }
-form#salva {
-    height: 50px;
-}
 
-textarea.col-7 {
-    height: 250px;
-}
 section#inserisci_autori {
-    height: 90px;
+    height: 80px;
 }
 
+/* Paragrafi che contengono i nomi già inseriti*/
 section#nomi > p {
     margin-top: 2px;     
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
+
 section#inserisci_categoria {
     height: 65px;
+}
+
+/* Per mettere le categorie o la foto uso un cursore */
+input[type="checkbox"], input#foto_scelta {
+    cursor: pointer;
 }
 
 section#categorie > input {
     margin: 10px;
 }
+
+textarea.col-7 {
+    height: 250px;
+}
+
+/* Sezione per separare il pulsante per salvare*/
 section#nascosta {
     visibility: hidden;
 }
-input[type="checkbox"], input#foto_scelta {
-    cursor: pointer;
+
+/* Pulsante per salvare il nuovo articolo*/
+form#salva {
+    height: 50px;
 }
 
 /* PROFILO */
@@ -327,6 +365,7 @@ input[type="checkbox"], input#foto_scelta {
     height: 130px;
     margin-bottom: 10px;
 }
+
 section#immagine_profilo {
     display: inline;
 }
@@ -334,11 +373,14 @@ section#immagine_profilo {
 input#foto_scelta {
     padding-top: 5px;
 }
+
+/* Titolo principale*/
 h1.col-3{
     margin-top: 30px;
     margin-left: 5%;
 }
 
+/* Link per cancellare il profilo*/
 section#cancel {
     text-align: right;
 }
