@@ -11,11 +11,11 @@ and open the template in the editor.
 /* Importo il font */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0px;
     background-image: url(./images/pattern.jpg);
     font-family: "Open Sans", Helvetica, sans-serif
@@ -36,14 +36,19 @@ body{
 .col-9 {width: 90%;}
 .col-10 {width: 100%;} /* Il sito è diviso in 10 colonne*/
 
-h1, h2, h3, h4{ /* Regole generali per i titoli */
+h1, h2, h3, h4 { /* Regole generali per i titoli */
     margin-top: 10px;
     margin-bottom: 10px;
     color: #24415E;
 }
 
+/* Index*/
+h2.indice {
+    margin-top: 40px;
+}
+/* LOGIN*/
 /* header */
-#sfondo_header{
+#sfondo_header {
     background-color: #24415E;
     height: 70px;
     margin-top: 0px;
@@ -51,7 +56,7 @@ h1, h2, h3, h4{ /* Regole generali per i titoli */
 }
 
 /* ID per il box contenente il titolo */
-#sfondo_header > #titolo{
+#sfondo_header > #titolo {
     background-color: #24415E;
     height: 70px;
     margin-top: 0px;
@@ -59,7 +64,7 @@ h1, h2, h3, h4{ /* Regole generali per i titoli */
 }
 
 /* Nome del sito */
-h1.titolo{
+h1.titolo {
     color: #fff;  
     font-size: 18px;
     padding: 10px;
@@ -68,8 +73,7 @@ h1.titolo{
 }
 
 /* Form per autenticarsi*/
-#login{    
-   
+#login {    
     width: 400px;
     height: 300px;   
     margin: auto;/* Centra il box nella pagina, adattandolo*/
@@ -79,7 +83,7 @@ h1.titolo{
 }
 
 /* input nel form di autenticazione */
-#id_password, #id_username{
+#id_password, #id_username {
     width: 100%;
     height: 28px;
     margin-top: 5px;
@@ -92,7 +96,7 @@ input:focus {
 }
 
 /* Regole generali per i bottoni */
-button{
+button {
     background-color: #906C37;
     border: none; 
     width: 100%;
@@ -103,13 +107,13 @@ button{
     cursor: pointer;
 }
 
-button:active{
+button:active {
     color: #24415E;
     border: none;
 }
 
 
-.val{
+.val {
     margin-top: 1px;
     float: right;
 }
@@ -120,22 +124,22 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-a:hover{
+a:hover {
     color: #906C37;
     font-weight: bold;    
     font-style: oblique;
 }
 
-a:active{
+a:active {
     text-decoration: underline;
 }
 
 /* PAGINA VALUTAZIONE */
 /* Sezione contenente link alle altre pagine */
-nav#sfondo_menu{
+nav#sfondo_menu {
     height: 70px;
 }
-nav#sfondo_menu > ul#menu_pagine{
+nav#sfondo_menu > ul#menu_pagine {
     height: 70px;     
     margin: 0px;    
     padding-left: 0px;
@@ -156,15 +160,16 @@ nav#sfondo_menu > ul#menu_pagine > li > a {
     padding-left: 10%;
 }
 
-nav#sfondo_menu > ul#menu_pagine > li > a:hover{
+nav#sfondo_menu > ul#menu_pagine > li > a:hover {
     background-color: white;
     color: #24415E;
 }
 
 /* Barra laterale*/
-aside#barra_laterale{
+aside#barra_laterale {
     height: 843px;
-    background-color: #F6DDCC;
+    /*background-color: #F6DDCC;*/
+    background-color: #FFF4B9;
     padding-left: 10px;
     padding-right: 10px;
 }
