@@ -16,6 +16,7 @@ public class Utenti {
     private String cognome;
     private String email;
     private String ente;
+    private String status;
     
     /**
      * @return the nome
@@ -100,5 +101,20 @@ public class Utenti {
     public void setEnte(String ente) {
         this.ente = ente;
     }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     
 }
