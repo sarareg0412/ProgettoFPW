@@ -1,9 +1,11 @@
+<%-- 
+    Document   : registrazioni
+    Created on : 25-apr-2019, 13.18.14
+    Author     : Sara
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Registra un articolo</title>
@@ -18,18 +20,9 @@ and open the template in the editor.
     </head>
    
     <body>
-        <header id="sfondo_header" class="col-10">
-            <div id="titolo" class="col-2">
-                <h1 class="titolo">Free Peer revieW</h1>
-            </div>
-            <nav id="sfondo_menu" >
-                <ul id="menu_pagine" class="col-8">
-                    <li><a  class="col-3" href="articoli.html">Articoli</a></li>
-                    <li><a class="col-3" href="valutazione.html">Valutazioni</a></li>
-                    <li><a class="col-3" href="profilo.html">Profilo</a></li>
-                </ul>
-            </nav>
-        </header>
+        <!-- Header incluso qui -->
+        <jsp:include page="header.jsp"/>
+        
         <main>
             <aside id="barra_laterale" class="col-2">
                 <h1>Ciao, Sara! </h1>

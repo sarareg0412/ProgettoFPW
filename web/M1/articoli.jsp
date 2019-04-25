@@ -1,14 +1,17 @@
+<%-- 
+    Document   : articoli
+    Created on : 25-apr-2019, 12.59.43
+    Author     : Sara
+--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <title>Articoli</title>
         <!-- Inserimento dei metadati della pagina-->
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
         
@@ -20,18 +23,8 @@ and open the template in the editor.
 
     </head>
     <body>
-        <header id="sfondo_header" class="col-10">
-            <div id="titolo" class="col-2">
-                <h1 class="titolo">Free Peer revieW</h1>
-            </div>
-            <nav id="sfondo_menu" >
-                <ul id="menu_pagine" class="col-8">
-                    <li><a  class="col-3" href="articoli.html">Articoli</a></li>
-                    <li><a class="col-3" href="valutazione.html">Valutazioni</a></li>
-                    <li><a class="col-3" href="profilo.html">Profilo</a></li>
-                </ul>
-            </nav>
-        </header>
+        <!-- Header incluso qui -->
+        <jsp:include page="header.jsp"/>
         <main>
             <aside id="barra_laterale" class="col-2">
                 
@@ -102,7 +95,6 @@ and open the template in the editor.
                         <button type="submit">Nuovo Articolo</button>
                     </form>
                 </section>
-                
                 
             </section>
         </main>    
