@@ -12,7 +12,9 @@
         <!-- Inserimento dei metadati della pagina-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+        
         <meta name="author" content="Sara Regali">
         <meta name="keywords" content="FPW, Milestone1, HTML, CSS, Java">
         <meta name="description" content="Pagina del profilo; prima Milestone">            

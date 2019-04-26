@@ -35,15 +35,17 @@ public class UtentiFactory {
         u1.setEmail("sara98.regali@gmail.it");
         u1.setPassword("sara");
         u1.setEnte("universita di Cagliari");
+        u1.setStatus("Autore");
         users.add(u1);
         
         Utenti u2 = new Utenti();
-        u1.setUsername("bianchigiann81");
-        u1.setNome("Gianni");
-        u1.setCognome("Bianchi");
-        u1.setEmail("gianni.bianchi@gmail.it");
-        u1.setPassword("gianni");
-        u1.setEnte("universita di Cagliari");
+        u2.setUsername("bianchigiann81");
+        u2.setNome("Gianni");
+        u2.setCognome("Bianchi");
+        u2.setEmail("gianni.bianchi@gmail.it");
+        u2.setPassword("gianni");
+        u2.setEnte("universita di Cagliari");
+        u2.setStatus("Organizzatore");
         users.add(u2);
         
         return users;

@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login</title>
+        <title>Logo</title>
         <!-- Inserimento dei metadati della pagina-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
         <main>
             <section id="login">
                 
-                <form action="articoli.html" method="post">
+                <form action="Login" method="post">
                     <label for="id_username">Username: </label>
                     <input type="text" name="userName" id="id_username" value="Inserisci username"/>
                     <br/> 

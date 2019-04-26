@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import model.Utenti;
 import model.UtentiFactory;
+
 /**
  *
  * @author Sara
@@ -34,8 +35,8 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-         // inizializzo la sessione
+
+        // inizializzo la sessione
         HttpSession session = request.getSession();
 
         // cerco prima l'utente in sessione
@@ -44,23 +45,33 @@ public class Login extends HttpServlet {
         if (user == null) { //Utente non si è autenticato
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            
+
             //Controllo se per il dato username e pw c'è un utente nella factory
             user = UtentiFactory.getInstance().getUserByUP(username, password);
-            
-            if(user != null){
+
+            if (user != null) {
                 // ho autenticato l'utente, lo salvo in sessione
                 session.setAttribute("utente", user);
             }
+        } else {//Utente già autenticato
+            if (user.getStatus().equals("Autore")) {
+                // devo riportare alla pagina con l'elenco degli articoli
+                response.sendRedirect(request.getContextPath() + "/articoli.jsp");
+            } else { //riportare alla pagina gestione articoli
+                request.getRequestDispatcher("./M1/valutazione.jsp").forward(request, response);
+                
+            }
         }
-        
-        if (user == null) {   //Utente già autenticato (?)
-            // devo ricaricare il form di login (login.jsp)
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            //riportare alla pagina con elenco articoli o gestione articoli
-        }   
-            
+        /* if (username != null){
+            System.out.println(username);
+            if(username.equals("admin")) {
+                request.getRequestDispatcher("Profilo").forward(request, response);
+            }else{
+                request.getRequestDispatcher("registrazione.jsp").forward(request, response);
+            }
+        }else{
+            request.getRequestDispatcher("registrazione.jsp").forward(request, response);
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

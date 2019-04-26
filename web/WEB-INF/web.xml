@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <url-pattern>/M1/login.html</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -15,7 +15,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-           notizie.html 
+           ./M1/login.html
         </welcome-file>
     </welcome-file-list>
 </web-app>
