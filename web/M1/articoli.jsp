@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./M1/style.css" media="screen">
         
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         
@@ -28,7 +28,7 @@
         <main>
             <aside id="barra_laterale" class="col-2">
                 
-                <h1>Ciao, Sara! </h1>
+                <h1>Ciao, ${user.getNome()}! </h1>
                 <form action="login.html" method="post">
                     <button type="submit">Logout</button>
                 </form>

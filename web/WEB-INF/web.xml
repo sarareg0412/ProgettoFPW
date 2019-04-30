@@ -4,9 +4,25 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MyPapers</servlet-name>
+        <servlet-class>controller.MyPapers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Test</servlet-name>
+        <servlet-class>controller.Test</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
-        <url-pattern>/M1/login.html</url-pattern>
+        <url-pattern>/login.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyPapers</servlet-name>
+        <url-pattern>/articoli.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/Test</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -15,7 +31,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-           ./M1/login.html
+           login.html
         </welcome-file>
     </welcome-file-list>
 </web-app>

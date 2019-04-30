@@ -11,17 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import model.Utenti;
-import model.UtentiFactory;
 
 /**
  *
  * @author Sara
  */
-public class Login extends HttpServlet {
+public class MyPapers extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,43 +30,8 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         
-        // inizializzo la sessione
-        HttpSession session = request.getSession();
-
-        // cerco prima l'utente in sessione
-        Utenti user = (Utenti) session.getAttribute("utente");
-
-        if (user == null) { //Utente non si è autenticato
-            String username = request.getParameter("userName");
-            String password = request.getParameter("password");
-            
-            System.out.println(username);
-
-            //Controllo se per il dato username e pw c'è un utente nella factory
-            user = UtentiFactory.getInstance().getUserByUP(username, password);
-
-            if (user != null) {
-                // ho autenticato l'utente, lo salvo in sessione
-                session.setAttribute("utente", user);
-            }
-            else
-            {
-                request.getRequestDispatcher("./M1/login.jsp").forward(request,response);
-            }
-        } 
-        
-        if(user != null){//Utente già autenticato
-            
-            if (user.getStatus().equals("Autore")) {
-                // devo riportare alla pagina con l'elenco degli articoli
-                response.sendRedirect(request.getContextPath() + "/articoli.html");
-            } else { //riportare alla pagina gestione articoli
-                request.getRequestDispatcher("./M1/valutazione.jsp").forward(request, response);
-                
-            }
-        }
+        request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
         
     }
 

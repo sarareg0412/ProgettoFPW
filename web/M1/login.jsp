@@ -3,7 +3,7 @@
     Created on : 25-apr-2019, 18.55.25
     Author     : Sara
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
         <!-- Inserimento dei metadati della pagina-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./M1/style.css" media="screen">
         <meta name="author" content="Sara Regali">
         <meta name="keywords" content="FPW, Milestone1, HTML, CSS, Java">
         <meta name="description" content="Pagina di Login prima Milestone">
@@ -28,7 +28,7 @@
         <main>
             <section id="login">
                 
-                <form action="Login" method="post">
+                <form action="login.html" method="post">
                     <label for="id_username">Username: </label>
                     <input type="text" name="userName" id="id_username" value="Inserisci username"/>
                     <br/> 
