@@ -5,15 +5,17 @@
  */
 package model;
 
+import java.util.List;
+
 /**
  *
  * @author Sara
  */
 public class Articoli {
     private String titolo;
-    private String[] autori;
+    private List<Utenti> autori = null;
     private String[] categorie = new String[6]; //Max 6 categorie
-    private int[] data = new int[3]; //Le 3 celle contengono le cifre della data di creazione articolo
+    private Integer[] data = new Integer[3]; //Le 3 celle contengono le cifre della data di creazione articolo
     private String testo;
     private String stato; //Aperto, in valutazione ecc 
 
@@ -34,15 +36,15 @@ public class Articoli {
     /**
      * @return the autori
      */
-    public String[] getAutori() {
+    public List<Utenti> getAutori() {
         return autori;
     }
 
     /**
      * @param autori the autori to set
      */
-    public void setAutori(String[] autori) {
-        this.autori = autori;
+    public void setAutore(Utenti autore) {
+        this.autori.add(autore);
     }
 
     /**
@@ -62,7 +64,7 @@ public class Articoli {
     /**
      * @return the data
      */
-    public int[] getData() {
+    public Integer[] getData() {
         return data;
     }
 
@@ -70,7 +72,9 @@ public class Articoli {
      * @param data the data to set
      */
     public void setData(int[] data) {
-        this.data = data;
+        this.data[0] = data[0];
+        this.data[1] = data[1];
+        this.data[2] = data[2];
     }
 
     /**

@@ -38,28 +38,34 @@ public class ArticoliFactory {
     public List<Articoli> getArticles() {
         List<Articoli> articles = new ArrayList<>();
         String[] s = new String[3];
+        Utenti autore1 = new Utenti();
+        autore1.setUsername("sarareg98");
+        autore1.setPassword("sara");
+         
+        Utenti autore2 = new Utenti();
+        autore2.setUsername("bianchigiann81");
+        autore2.setPassword("gianni"); 
+        
         int[] data = new int[3];
         data[0] = 22;
         data[1] = 5;
         data[2] = 2019;
-        s[0] = "autore1";
-        s[1] = "autore2";
-        s[2] = "autore3";
 
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
-        a1.setAutori(s);
+   
         s[0] = "CSS";
         s[1] = "HTML";
         a1.setCategorie(s);
         a1.setData(data);
         a1.setTesto("La Sql injection è una pratica che consente...");
         a1.setStato("In valutazione");
+        a1.setAutore(autore1);
         articles.add(a1);
 
         Articoli a2 = new Articoli();
         a2.setTitolo("Le Servlet");
-        a2.setAutori(s);
+        a2.setAutore(autore2);
         s[0] = "JSP";
         s[1] = "HTML";
         a2.setCategorie(s);
@@ -114,7 +120,7 @@ public class ArticoliFactory {
     /**
      * @return lista di articoli che matchano l'autore inserito
      */
-    public List<Articoli> getArticlesByAuthor(String autore) {
+    public List<Articoli> getArticlesByAuthor(Utenti autore) {
 
         List<Articoli> articles = this.getArticles();
         List<Articoli> lista = null;    //Lista da restituire
@@ -122,10 +128,9 @@ public class ArticoliFactory {
         /* Per ogni articolo, controllo se contiene l'autore
         inserito,e lo aggiungo alla lista da restituire */
         for (Articoli u : articles) {
-            String[] s = u.getAutori();
 
-            for (int i = 0; i < s.length; i++) {
-                if (s[i].equals(autore)) {
+            for (Utenti autori : u.getAutori()) {
+                if (autori.equals(autore)) {
                     lista.add(u);
                 }
             }
@@ -146,7 +151,7 @@ public class ArticoliFactory {
         /* Per ogni articolo, controllo se contiene la data 
         inserita,e lo aggiungo alla lista da restituire */
         for (Articoli u : articles) {
-            int[] s = u.getData();
+            Integer[] s = u.getData();
 
             if (s[0] == data[0] && s[1] == data[1] && s[2] == data[2]) {
                 lista.add(u);

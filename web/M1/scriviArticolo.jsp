@@ -12,7 +12,7 @@
         <!-- Inserimento dei metadati della pagina-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="./M1/style.css" media="screen">
         <meta name="author" content="Sara Regali">
         <meta name="keywords" content="FPW, Milestone1, HTML, CSS, Java">
         <meta name="description" content="Pagina per scriverere un articolo; prima Milestone">
@@ -23,30 +23,7 @@
         <jsp:include page="header.jsp"/>
         
         <main>
-            <aside id="barra_laterale" class="col-2" >
-
-                <h1>Ciao, Sara! </h1>
-                <form action="login.html" method="post">
-                    <button type="submit">Logout</button>
-                </form>
-                <section id="sottobox">
-                    <h1>I miei articoli: </h1>
-                    <ul>
-                        <li><a href="">Le classi in Java</a></li>
-                        <li><a href="">Progammazione Server-Side</a></li>
-                        <li><a href="">Utilizzi di Javascript</a></li>
-                    </ul>
-                </section>
-                <section id="sottobox">
-                    <h1>Da valutare: </h1>
-                    <ul>
-                        <li><a href="">Il Sistema Operativo Linux</a></li>
-                        <li><a href="">HTML 6</a></li>
-                        <li><a href="">La SQL Injection</a></li>
-                    </ul>
-                </section>
-
-            </aside>
+            <jsp:include page="header.jsp"/>
 
             <section id="resto_pagina" class="col-8">
                 <section id="sfondo_descrizioni">

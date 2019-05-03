@@ -10,6 +10,7 @@ package model;
  * @author Sara
  */
 public class Utenti {
+
     private String username;
     private String password;
     private String nome;
@@ -17,7 +18,7 @@ public class Utenti {
     private String email;
     private String ente;
     private String status;
-    
+
     /**
      * @return the nome
      */
@@ -115,6 +116,28 @@ public class Utenti {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
+
+    @Override
+    //Due utenti sono uguali se il loro username e password sono uguali
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Utenti)) {
+            return false;
+        }
+        Utenti other = (Utenti) obj;
+        if (!this.username.equals(other.username)) {
+            return false;
+        }
+        
+        if (!this.password.equals(other.password)) {
+            return false;
+        }
+        
+        return true;
+    }
 }

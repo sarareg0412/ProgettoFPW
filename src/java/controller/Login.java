@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import model.Articoli;
 import model.Utenti;
 import model.UtentiFactory;
 
@@ -63,10 +64,11 @@ public class Login extends HttpServlet {
         } 
         
         if(user != null){//Utente già autenticato
-            
+            System.out.println(user.getPassword());
             if (user.getStatus().equals("Autore")) {
                 // devo riportare alla pagina con l'elenco degli articoli
-                response.sendRedirect(request.getContextPath() + "/articoli.html");
+                request.setAttribute("user", user);
+                request.getRequestDispatcher("/articoli.html").forward(request, response);
             } else { //riportare alla pagina gestione articoli
                 request.getRequestDispatcher("./M1/valutazione.jsp").forward(request, response);
                 

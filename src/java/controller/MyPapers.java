@@ -11,6 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+import model.Utenti;
+import model.UtentiFactory;
+import model.Articoli;
+import model.ArticoliFactory;
 
 /**
  *
@@ -33,7 +41,26 @@ public class MyPapers extends HttpServlet {
         
         request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
         
+        // recupero la sessione
+        HttpSession session = request.getSession(false);
+        
+        if(session == null){  //Non c'era una sessione attiva, torniamo al login
+            response.sendRedirect(request.getContextPath() + "/login.html");
+        }
+        // cerco l'utente nella sessione
+        Utenti user = (Utenti) session.getAttribute("utente");
+        
+        if(user == null){ //Torniamo al login
+           response.sendRedirect(request.getContextPath() + "/login.html");
+        }
+        //Recupero la lista degli articoli
+        List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+        request.setAttribute("articoli", articoli);
+        
+        request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
+
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
