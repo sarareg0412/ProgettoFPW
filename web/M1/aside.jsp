@@ -3,7 +3,7 @@
     Created on : 3-mag-2019, 19.03.10
     Author     : Sara
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <aside id="barra_laterale" class="col-2">
@@ -15,9 +15,10 @@
     <section id="sottobox">
         <h1>I miei articoli: </h1>
         <ul>
-            <li><a href="">Le classi in Java</a></li>
-            <li><a href="">Progammazione Server-Side</a></li>
-            <li><a href="">Utilizzi di Javascript</a></li>
+            <c:forEach items="${articoli}" var="u">
+                <li><a href="">${u.getTitolo()}</a></li>
+            </c:forEach>
+            
         </ul>
     </section>
     <section id="sottobox">

@@ -44,21 +44,31 @@
                             <th>Button</th>    
                         </tr>
                         <c:forEach items="${articoli}" var="u">
-                            <td>${u.getData()} </td>
-                            <td>${u.getTitolo()} </td>
-                            <td>${u.getStato()} </td>
-                            <td> Prova </td>
+                            <tr>
+                                <td>${u.getData().toString()} </td>
+                                <td>${u.getTitolo()} </td>
+                                <td>${u.getStato()} </td>
+                                <c:choose>
+                                    <c:when test="${u.getStato() == 'APERTO'}">
+                                        <td><a href="scriviArticolo.html"> <i class="fas fa-pencil-alt"></i> </a> <a href=""><i class="far fa-trash-alt"></i></a></td>
+                                    </c:when>
+                                    <c:when test="${u.getStato() == 'IN VALUTAZIONE'}">
+                                        <td><a href=""> <i class="far fa-trash-alt"></i> </a></td>
+                                    </c:when>
+                                    <c:when test="${u.getStato() == 'ACCETTATO'}">
+                                        <td><i class="fas fa-check"></i></td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td><i class="fas fa-times"></i></td>
+                                    </c:otherwise>
+                                </c:choose>
+                                
+                            </tr>
                         </c:forEach>
-                        <tr>
-                            <td>13/03/19</td>
-                            <td>Le classi in Java</td>
-                            <td>APERTO</td>
-                            <td><a href="scriviArticolo.html"><i class="fas fa-pencil-alt"> </i></a><a><i class="far fa-trash-alt"></i></a></td>
-                        </tr>
-                        
+
                     </table>
 
-                    <form action="../M1/scriviArticolo.html" method="post">
+                    <form action="" method="post">
                         <button type="submit">Nuovo Articolo</button>
                     </form>
                 </section>

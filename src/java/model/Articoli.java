@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ import java.util.List;
  */
 public class Articoli {
     private String titolo;
-    private List<Utenti> autori = null;
+    private List<Utenti> autori = new ArrayList<>();
     private String[] categorie = new String[6]; //Max 6 categorie
-    private Integer[] data = new Integer[3]; //Le 3 celle contengono le cifre della data di creazione articolo
+    private String data; //Le 3 celle contengono le cifre della data di creazione articolo
     private String testo;
     private String stato; //Aperto, in valutazione ecc 
 
@@ -64,17 +65,15 @@ public class Articoli {
     /**
      * @return the data
      */
-    public Integer[] getData() {
+    public String getData() {
         return data;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData(int[] data) {
-        this.data[0] = data[0];
-        this.data[1] = data[1];
-        this.data[2] = data[2];
+    public void setData(String data) {
+        this.data = data;
     }
 
     /**
@@ -104,5 +103,7 @@ public class Articoli {
     public void setStato(String stato) {
         this.stato = stato;
     }
+    
+    
     
 }

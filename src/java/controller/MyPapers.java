@@ -38,9 +38,7 @@ public class MyPapers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
-        
+                
         // recupero la sessione
         HttpSession session = request.getSession(false);
         
@@ -57,7 +55,9 @@ public class MyPapers extends HttpServlet {
         List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
         request.setAttribute("articoli", articoli);
         
+        //A questo punto chiamo la jsp
         request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
+        
 
     }
     
