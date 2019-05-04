@@ -56,6 +56,7 @@ public class Login extends HttpServlet {
             if (user != null) {
                 // ho autenticato l'utente, lo salvo in sessione
                 session.setAttribute("utente", user);
+                session.setAttribute("login", true);
             }
             else
             {
@@ -64,13 +65,14 @@ public class Login extends HttpServlet {
         } 
         
         if(user != null){//Utente già autenticato
-            System.out.println(user.getPassword());
+            //Setto l'utente
+            request.setAttribute("user", user);
+            request.setAttribute("login", true);
             if (user.getStatus().equals("Autore")) {
-                // devo riportare alla pagina con l'elenco degli articoli
-                request.setAttribute("user", user);
+                // devo riportare alla pagina con l'elenco degli articoli    
                 request.getRequestDispatcher("/articoli.html").forward(request, response);
             } else { //riportare alla pagina gestione articoli
-                request.getRequestDispatcher("./M1/valutazione.jsp").forward(request, response);
+                request.getRequestDispatcher("/articoli.html").forward(request, response);
                 
             }
         }

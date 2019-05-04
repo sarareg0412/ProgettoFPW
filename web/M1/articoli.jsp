@@ -30,49 +30,58 @@
             <jsp:include page="aside.jsp"/>
 
             <section id="resto_pagina" class="col-8">
+                
+                <c:if test="${user.getStatus() == 'Organizzatore' }">
+                    <section id="sfondo_descrizioni">
+                        <h1>Ciao ${user.getNome()},</h1> 
+                        <h3>purtroppo non hai i permessi
+                            per entrare in questa pagina</h3>
+                    </section>
+                </c:if>
 
-                <section id="sfondo_descrizioni">
-                    <h1>I Miei Articoli</h1>
-                </section>
+                <c:if test="${user.getStatus() == 'Autore' }">        
+                    <section id="sfondo_descrizioni">
+                        <h1>I Miei Articoli</h1>
+                    </section>
 
-                <section id="tabella" class="col-10">
-                    <table class="col-10">
-                        <tr id="prima_riga">
-                            <th>Data</th>
-                            <th>Titolo</th>
-                            <th>Stato</th>
-                            <th>Button</th>    
-                        </tr>
-                        <c:forEach items="${articoli}" var="u">
-                            <tr>
-                                <td>${u.getData().toString()} </td>
-                                <td>${u.getTitolo()} </td>
-                                <td>${u.getStato()} </td>
-                                <c:choose>
-                                    <c:when test="${u.getStato() == 'APERTO'}">
-                                        <td><a href="scriviArticolo.html"> <i class="fas fa-pencil-alt"></i> </a> <a href=""><i class="far fa-trash-alt"></i></a></td>
-                                    </c:when>
-                                    <c:when test="${u.getStato() == 'IN VALUTAZIONE'}">
-                                        <td><a href=""> <i class="far fa-trash-alt"></i> </a></td>
-                                    </c:when>
-                                    <c:when test="${u.getStato() == 'ACCETTATO'}">
-                                        <td><i class="fas fa-check"></i></td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td><i class="fas fa-times"></i></td>
-                                    </c:otherwise>
-                                </c:choose>
-                                
+                    <section id="tabella" class="col-10">
+                        <table class="col-10">
+                            <tr id="prima_riga">
+                                <th>Data</th>
+                                <th>Titolo</th>
+                                <th>Stato</th>
+                                <th>Button</th>    
                             </tr>
-                        </c:forEach>
+                            <c:forEach items="${articoli}" var="u">
+                                <tr>
+                                    <td>${u.getData().toString()} </td>
+                                    <td>${u.getTitolo()} </td>
+                                    <td>${u.getStato()} </td>
+                                    <c:choose>
+                                        <c:when test="${u.getStato() == 'APERTO'}">
+                                            <td><a href="scriviArticolo.html"> <i class="fas fa-pencil-alt"></i> </a> <a href=""><i class="far fa-trash-alt"></i></a></td>
+                                                </c:when>
+                                                <c:when test="${u.getStato() == 'IN VALUTAZIONE'}">
+                                            <td><a href=""> <i class="far fa-trash-alt"></i> </a></td>
+                                                    </c:when>
+                                                    <c:when test="${u.getStato() == 'ACCETTATO'}">
+                                            <td><i class="fas fa-check"></i></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><i class="fas fa-times"></i></td>
+                                            </c:otherwise>
+                                        </c:choose>
 
-                    </table>
+                                </tr>
+                            </c:forEach>
 
-                    <form action="" method="post">
-                        <button type="submit">Nuovo Articolo</button>
-                    </form>
-                </section>
+                        </table>
 
+                        <form action="" method="post">
+                            <button type="submit">Nuovo Articolo</button>
+                        </form>
+                    </section>
+                </c:if>
             </section>
         </main>    
     </body>

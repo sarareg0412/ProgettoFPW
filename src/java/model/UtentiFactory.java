@@ -48,6 +48,15 @@ public class UtentiFactory {
         u2.setStatus("Organizzatore");
         users.add(u2);
         
+        Utenti u3 = new Utenti();
+        u3.setUsername("mariorossi2");
+        u3.setNome("Mario");
+        u3.setCognome("Rossi");
+        u3.setEmail("mario.rossi@gmail.it");
+        u3.setPassword("mario");
+        u3.setEnte("universita di Cagliari");
+        u3.setStatus("Autore");
+        users.add(u3);
         return users;
     }
     

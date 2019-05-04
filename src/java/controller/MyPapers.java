@@ -42,7 +42,7 @@ public class MyPapers extends HttpServlet {
         // recupero la sessione
         HttpSession session = request.getSession(false);
         
-        if(session == null){  //Non c'era una sessione attiva, torniamo al login
+        if(session.getAttribute("login").equals(false)){  //Non c'era una sessione attiva, torniamo al login
             response.sendRedirect(request.getContextPath() + "/login.html");
         }
         // cerco l'utente nella sessione

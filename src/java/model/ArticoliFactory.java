@@ -47,6 +47,9 @@ public class ArticoliFactory {
         autore2.setUsername("bianchigiann81");
         autore2.setPassword("gianni"); 
         
+        Utenti autore3 = new Utenti();
+        autore3.setUsername("mariorossi2");
+        autore3.setPassword("mario"); 
 
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
@@ -92,8 +95,29 @@ public class ArticoliFactory {
         a4.setData("2/4/19");
         a4.setTesto("La Servlet vengono utilizzate nella programmazione web...");
         a4.setStato("RIFIUTATO");
-        articles.add(a4);;
-
+        articles.add(a4);
+        
+        Articoli a5 = new Articoli();
+        a5.setTitolo("Il tag br");
+        a5.setAutore(autore3);
+        s[0] = "CSS";
+        s[1] = "HTML";
+        a5.setCategorie(s);
+        a5.setData("2/4/19");
+        a5.setTesto("Il tag br viene utilizzato nel linguaggio html...");
+        a5.setStato("IN VALUTAZIONE");
+        articles.add(a5);
+        
+        Articoli a6 = new Articoli();
+        a6.setTitolo("Il ServletContainer");
+        s[0] = "Servlet";
+        a6.setCategorie(s);
+        a6.setData("4/5/19");
+        a6.setTesto("Il Servlet Container è...");
+        a6.setStato("RIFIUTATO");
+        a6.setAutore(autore3);
+        articles.add(a6);
+        
         return articles;
     }
 
