@@ -38,6 +38,7 @@ public class ArticoliFactory {
     public List<Articoli> getArticles() {
         List<Articoli> articles = new ArrayList<>();
         String[] s = new String[3];
+        
         Utenti autore1 = new Utenti();
         autore1.setUsername("sarareg98");
         autore1.setPassword("sara");
@@ -46,10 +47,6 @@ public class ArticoliFactory {
         autore2.setUsername("bianchigiann81");
         autore2.setPassword("gianni"); 
         
-        int[] data = new int[3];
-        data[0] = 22;
-        data[1] = 5;
-        data[2] = 2019;
 
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
@@ -57,22 +54,45 @@ public class ArticoliFactory {
         s[0] = "CSS";
         s[1] = "HTML";
         a1.setCategorie(s);
-        a1.setData(data);
+        a1.setData("24/3/19");
         a1.setTesto("La Sql injection è una pratica che consente...");
-        a1.setStato("In valutazione");
+        a1.setStato("IN VALUTAZIONE");
         a1.setAutore(autore1);
         articles.add(a1);
-
+        
         Articoli a2 = new Articoli();
         a2.setTitolo("Le Servlet");
-        a2.setAutore(autore2);
+   
+        s[0] = "CSS";
+        s[1] = "SERVLET";
+        a2.setCategorie(s);
+        a2.setData("2/4/19");
+        a2.setTesto("Le Servlet consentono di...");
+        a2.setStato("APERTO");
+        a2.setAutore(autore1);
+        articles.add(a2);
+        
+        Articoli a3 = new Articoli();
+        a3.setTitolo("Il DataBase");
+   
+        s[0] = "JSP";
+        a3.setCategorie(s);
+        a3.setData("4/5/19");
+        a3.setTesto("Il DataBase è...");
+        a3.setStato("RIFIUTATO");
+        a3.setAutore(autore1);
+        articles.add(a3);
+        
+        Articoli a4 = new Articoli();
+        a4.setTitolo("Le Classi Java");
+        a4.setAutore(autore2);
         s[0] = "JSP";
         s[1] = "HTML";
-        a2.setCategorie(s);
-        a2.setData(data);
-        a2.setTesto("La Servlet vengono utilizzate nella programmazione web...");
-        a2.setStato("Modificato");
-        articles.add(a2);;
+        a4.setCategorie(s);
+        a4.setData("2/4/19");
+        a4.setTesto("La Servlet vengono utilizzate nella programmazione web...");
+        a4.setStato("RIFIUTATO");
+        articles.add(a4);;
 
         return articles;
     }
@@ -123,7 +143,7 @@ public class ArticoliFactory {
     public List<Articoli> getArticlesByAuthor(Utenti autore) {
 
         List<Articoli> articles = this.getArticles();
-        List<Articoli> lista = null;    //Lista da restituire
+        List<Articoli> lista = new ArrayList<>();    //Lista da restituire
 
         /* Per ogni articolo, controllo se contiene l'autore
         inserito,e lo aggiungo alla lista da restituire */
@@ -143,7 +163,7 @@ public class ArticoliFactory {
      * @param data
      * @return lista di articoli che matchano la data inserita
      */
-    public List<Articoli> getArticlesByDate(int[] data) {
+    public List<Articoli> getArticlesByDate(String data) {
 
         List<Articoli> articles = this.getArticles();
         List<Articoli> lista = null;    //Lista da restituire
@@ -151,9 +171,9 @@ public class ArticoliFactory {
         /* Per ogni articolo, controllo se contiene la data 
         inserita,e lo aggiungo alla lista da restituire */
         for (Articoli u : articles) {
-            Integer[] s = u.getData();
+            String s = u.getData();
 
-            if (s[0] == data[0] && s[1] == data[1] && s[2] == data[2]) {
+            if (s.equals(data)) {
                 lista.add(u);
             }
 
@@ -184,4 +204,5 @@ public class ArticoliFactory {
 
         return lista;
     }
+    
 }

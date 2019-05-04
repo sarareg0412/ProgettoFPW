@@ -24,7 +24,7 @@
         
         <main>
             
-            <jsp:include page="header.jsp"/>
+            <jsp:include page="aside.jsp"/>
             
             <section id="resto_pagina" class="col-8">
                 <section id="sfondo_descrizioni">
