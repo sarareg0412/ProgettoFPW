@@ -19,6 +19,7 @@ public class Articoli {
     private String data; //Le 3 celle contengono le cifre della data di creazione articolo
     private String testo;
     private String stato; //Aperto, in valutazione ecc 
+    private String pid;
 
     /**
      * @return the titolo
@@ -102,6 +103,20 @@ public class Articoli {
      */
     public void setStato(String stato) {
         this.stato = stato;
+    }
+
+    /**
+     * @return the pid
+     */
+    public String getPid() {
+        return pid;
+    }
+
+    /**
+     * @param pid the pid to set
+     */
+    public void setPid(String pid) {
+        this.pid = pid;
     }
     
     

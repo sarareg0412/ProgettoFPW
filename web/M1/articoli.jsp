@@ -59,7 +59,7 @@
                                     <td>${u.getStato()} </td>
                                     <c:choose>
                                         <c:when test="${u.getStato() == 'APERTO'}">
-                                            <td><a href="scriviArticolo.html"> <i class="fas fa-pencil-alt"></i> </a> <a href=""><i class="far fa-trash-alt"></i></a></td>
+                                            <td><a href="scriviArticolo.html?pid=${u.getPid()}"> <i class="fas fa-pencil-alt"></i> </a> <a href=""><i class="far fa-trash-alt"></i></a></td>
                                                 </c:when>
                                                 <c:when test="${u.getStato() == 'IN VALUTAZIONE'}">
                                             <td><a href=""> <i class="far fa-trash-alt"></i> </a></td>

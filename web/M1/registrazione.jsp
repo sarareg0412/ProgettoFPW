@@ -3,6 +3,7 @@
     Created on : 25-apr-2019, 13.18.14
     Author     : Sara
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

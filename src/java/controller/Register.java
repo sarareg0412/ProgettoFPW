@@ -11,20 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpSession;
-import java.util.List;
-
 import model.Utenti;
-import model.UtentiFactory;
-import model.Articoli;
-import model.ArticoliFactory;
 
 /**
  *
  * @author Sara
  */
-public class MyPapers extends HttpServlet {
+public class Register extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,33 +31,8 @@ public class MyPapers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                
-        // recupero la sessione
-        HttpSession session = request.getSession(false);
         
-        if(session.getAttribute("login").equals(false)){  //Non c'era una sessione attiva, torniamo al login
-            response.sendRedirect(request.getContextPath() + "/login.html");
-        }
-        // cerco l'utente nella sessione
-        Utenti user = (Utenti) session.getAttribute("utente");
-     
-        if(user == null){ //Torniamo al login
-           response.sendRedirect(request.getContextPath() + "/login.html");
-        }
-        
-        request.setAttribute("user", user);
-        //Recupero la lista degli articoli
-        List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
-        
-        session.setAttribute("articoli", articoli);
-        request.setAttribute("articoli", articoli);
-        
-        //A questo punto chiamo la jsp
-        request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
-        
-
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

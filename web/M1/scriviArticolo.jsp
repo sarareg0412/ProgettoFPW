@@ -3,7 +3,7 @@
     Created on : 25-apr-2019, 13.22.21
     Author     : Sara
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@
         <jsp:include page="header.jsp"/>
         
         <main>
-            <jsp:include page="header.jsp"/>
+            <jsp:include page="aside.jsp"/>
 
             <section id="resto_pagina" class="col-8">
                 <section id="sfondo_descrizioni">
@@ -32,7 +32,7 @@
                 <section id="inserisci_titolo">
                     <form action="demo_form.asp" method="get">
                         <label class="col-3" for="corto">Titolo:</label>
-                        <input class="col-7" type="text" name="corto" id="corto" value="Inserisci il titolo" />
+                        <input class="col-7" type="text" name="corto" id="corto" value="${scelto.getTitolo()}" />
                     </form>
                 </section>
 
@@ -40,8 +40,9 @@
                     <form action="demo_form.asp" method="get">
                         <label class="col-3" for="corto">Autori:</label>
                         <section  id="nomi" class="col-7">
-                            <p>Sara Regali</p>
-                            <p>Mario Rossi</p>
+                            <c:forEach items="${scelto.getAutori()}" var="u">
+                                <p>${u.getNome()} ${u.getCognome()}</p>
+                            </c:forEach>
                             <select name="nome">
                                 <option value="nome1">Anna Rossi</option>
                                 <option value="nome2">Marco Neri</option>

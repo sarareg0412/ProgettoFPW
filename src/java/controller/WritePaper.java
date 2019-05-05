@@ -7,24 +7,21 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-
-import model.Utenti;
-import model.UtentiFactory;
 import model.Articoli;
 import model.ArticoliFactory;
+import model.Utenti;
 
 /**
  *
  * @author Sara
  */
-public class MyPapers extends HttpServlet {
+public class WritePaper extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,8 +35,7 @@ public class MyPapers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                
-        // recupero la sessione
+
         HttpSession session = request.getSession(false);
         
         if(session.getAttribute("login").equals(false)){  //Non c'era una sessione attiva, torniamo al login
@@ -47,24 +43,29 @@ public class MyPapers extends HttpServlet {
         }
         // cerco l'utente nella sessione
         Utenti user = (Utenti) session.getAttribute("utente");
-     
+        request.setAttribute("user", user);
+        
         if(user == null){ //Torniamo al login
            response.sendRedirect(request.getContextPath() + "/login.html");
         }
+         
         
-        request.setAttribute("user", user);
-        //Recupero la lista degli articoli
-        List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+        String n = request.getParameter("pid");
+         
+        Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
         
-        session.setAttribute("articoli", articoli);
-        request.setAttribute("articoli", articoli);
-        
-        //A questo punto chiamo la jsp
-        request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
-        
-
+        if(articoloScelto == null){
+            System.out.println("Articolo non trovato");
+        }else{
+            request.setAttribute("scelto" , articoloScelto );
+            System.out.println(articoloScelto.getTitolo());
+            List<Utenti> autori = articoloScelto.getAutori();
+            System.out.println(autori.get(0).getNome());
+            
+            request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request,response);
+        }
+      
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

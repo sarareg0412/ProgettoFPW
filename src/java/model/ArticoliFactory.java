@@ -59,8 +59,9 @@ public class ArticoliFactory {
         a1.setCategorie(s);
         a1.setData("24/3/19");
         a1.setTesto("La Sql injection è una pratica che consente...");
-        a1.setStato("IN VALUTAZIONE");
+        a1.setStato("APERTO");
         a1.setAutore(autore1);
+        a1.setPid("1");
         articles.add(a1);
         
         Articoli a2 = new Articoli();
@@ -73,6 +74,8 @@ public class ArticoliFactory {
         a2.setTesto("Le Servlet consentono di...");
         a2.setStato("APERTO");
         a2.setAutore(autore1);
+        a2.setPid("2");
+
         articles.add(a2);
         
         Articoli a3 = new Articoli();
@@ -82,8 +85,10 @@ public class ArticoliFactory {
         a3.setCategorie(s);
         a3.setData("4/5/19");
         a3.setTesto("Il DataBase è...");
-        a3.setStato("RIFIUTATO");
+        a3.setStato("APERTO");
         a3.setAutore(autore1);
+        a3.setPid("3");
+
         articles.add(a3);
         
         Articoli a4 = new Articoli();
@@ -95,6 +100,8 @@ public class ArticoliFactory {
         a4.setData("2/4/19");
         a4.setTesto("La Servlet vengono utilizzate nella programmazione web...");
         a4.setStato("RIFIUTATO");
+        a4.setPid("4");
+
         articles.add(a4);
         
         Articoli a5 = new Articoli();
@@ -106,6 +113,8 @@ public class ArticoliFactory {
         a5.setData("2/4/19");
         a5.setTesto("Il tag br viene utilizzato nel linguaggio html...");
         a5.setStato("IN VALUTAZIONE");
+        a5.setPid("5");
+
         articles.add(a5);
         
         Articoli a6 = new Articoli();
@@ -116,8 +125,22 @@ public class ArticoliFactory {
         a6.setTesto("Il Servlet Container è...");
         a6.setStato("RIFIUTATO");
         a6.setAutore(autore3);
+        a6.setPid("6");
+
         articles.add(a6);
         
+        Articoli a7 = new Articoli();
+        a7.setTitolo("HTML 6");
+   
+        s[0] = "HTML";
+        a7.setCategorie(s);
+        a7.setData("4/5/19");
+        a7.setTesto("HTML 6...");
+        a7.setStato("IN VALUTAZIONE");
+        a7.setAutore(autore1);
+        a7.setPid("7");
+
+        articles.add(a7);
         return articles;
     }
 
@@ -229,4 +252,16 @@ public class ArticoliFactory {
         return lista;
     }
     
+    public Articoli getArticleByPid(String pid){
+        List<Articoli> articles = this.getArticles();
+        
+        for (Articoli u : articles) {
+            String s = u.getPid();
+
+            if (s.equals(pid)) {
+                return u;
+            }
+        }
+        return null;
+    }
 }

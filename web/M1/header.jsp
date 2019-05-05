@@ -23,7 +23,7 @@
             <c:if test="${login == true }" >
                 <li><a  class="col-3" href="articoli.html">Articoli</a></li>
                 <li><a class="col-3" href="valutazione.html">Valutazioni</a></li>
-                <li><a class="col-3" href="profilo.jsp">Profilo</a></li>
+                <li><a class="col-3" href="registrazione.html">Profilo</a></li>
             </c:if>
         </ul>
     </nav>
