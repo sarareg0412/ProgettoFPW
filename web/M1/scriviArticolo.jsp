@@ -40,7 +40,7 @@
                     <form action="demo_form.asp" method="get">
                         <label class="col-3" for="corto">Autori:</label>
                         <section  id="nomi" class="col-7">
-                            <c:forEach items="${scelto.getAutori()}" var="u">
+                            <c:forEach items="${autori}" var="u">
                                 <p>${u.getNome()} ${u.getCognome()}</p>
                             </c:forEach>
                             <select name="nome">
@@ -73,17 +73,17 @@
                     <label class="col-3" for="start">Data:</label>
 
                     <input class="col-7" type="date" id="start" name="trip-start"
-                           value="2019-04-01"
+                           value=${scelto.getFormatoData()}
                            min="2018-01-01" max="2020-12-31">
                 </section>
                 <form id="inserisci_testo" action="demo_form.asp" method="get" class="col-10">
                     <label for="lungo" class="col-3">Testo:</label>
-                    <textarea class="col-7" name="lungo" id="lungo"></textarea>
+                    <textarea class="col-7" name="lungo" id="lungo">${scelto.getTesto()}</textarea>
                 </form>
                 <section class="col-3" id="nascosta">
                     <p>Non deve essere visualizzato</p>
                 </section>
-                <form id="salva" class="col-7" action="articoli.html" method="post">
+                <form id="salva" class="col-7" action="scriviArticolo.html?pid=${u.getPid()}" method="post">
                     <button type="submit">Salva</button>
                 </form>
             </section>

@@ -58,10 +58,9 @@ public class WritePaper extends HttpServlet {
             System.out.println("Articolo non trovato");
         }else{
             request.setAttribute("scelto" , articoloScelto );
-            System.out.println(articoloScelto.getTitolo());
-            List<Utenti> autori = articoloScelto.getAutori();
-            System.out.println(autori.get(0).getNome());
             
+            List<Utenti> autori = articoloScelto.getAutori();
+            request.setAttribute("autori", autori);
             request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request,response);
         }
       

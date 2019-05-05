@@ -38,59 +38,65 @@ public class ArticoliFactory {
     public List<Articoli> getArticles() {
         List<Articoli> articles = new ArrayList<>();
         String[] s = new String[3];
-        
+
         Utenti autore1 = new Utenti();
         autore1.setUsername("sarareg98");
         autore1.setPassword("sara");
-         
+
         Utenti autore2 = new Utenti();
         autore2.setUsername("bianchigiann81");
-        autore2.setPassword("gianni"); 
-        
+        autore2.setPassword("gianni");
+
         Utenti autore3 = new Utenti();
         autore3.setUsername("mariorossi2");
-        autore3.setPassword("mario"); 
+        autore3.setPassword("mario");
 
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
-   
+
         s[0] = "CSS";
         s[1] = "HTML";
         a1.setCategorie(s);
         a1.setData("24/3/19");
+        a1.setFormatoData("2019-03-24");
         a1.setTesto("La Sql injection è una pratica che consente...");
         a1.setStato("APERTO");
         a1.setAutore(autore1);
+        a1.setAutore(autore2);
+
         a1.setPid("1");
         articles.add(a1);
-        
+
         Articoli a2 = new Articoli();
         a2.setTitolo("Le Servlet");
-   
+
         s[0] = "CSS";
-        s[1] = "SERVLET";
+        s[1] = "Servlet";
         a2.setCategorie(s);
         a2.setData("2/4/19");
+        a2.setFormatoData("2019-04-02");
         a2.setTesto("Le Servlet consentono di...");
         a2.setStato("APERTO");
         a2.setAutore(autore1);
+        a2.setAutore(autore2);
         a2.setPid("2");
 
         articles.add(a2);
-        
+
         Articoli a3 = new Articoli();
         a3.setTitolo("Il DataBase");
-   
+
         s[0] = "JSP";
         a3.setCategorie(s);
         a3.setData("4/5/19");
+        a3.setFormatoData("2019-05-04");
         a3.setTesto("Il DataBase è...");
         a3.setStato("APERTO");
         a3.setAutore(autore1);
         a3.setPid("3");
 
         articles.add(a3);
-        
+
         Articoli a4 = new Articoli();
         a4.setTitolo("Le Classi Java");
         a4.setAutore(autore2);
@@ -98,12 +104,13 @@ public class ArticoliFactory {
         s[1] = "HTML";
         a4.setCategorie(s);
         a4.setData("2/4/19");
+        a4.setFormatoData("2019-04-02");
         a4.setTesto("La Servlet vengono utilizzate nella programmazione web...");
         a4.setStato("RIFIUTATO");
         a4.setPid("4");
 
         articles.add(a4);
-        
+
         Articoli a5 = new Articoli();
         a5.setTitolo("Il tag br");
         a5.setAutore(autore3);
@@ -111,30 +118,35 @@ public class ArticoliFactory {
         s[1] = "HTML";
         a5.setCategorie(s);
         a5.setData("2/4/19");
+        a5.setFormatoData("2019-04-02");
         a5.setTesto("Il tag br viene utilizzato nel linguaggio html...");
         a5.setStato("IN VALUTAZIONE");
         a5.setPid("5");
 
         articles.add(a5);
-        
+
         Articoli a6 = new Articoli();
         a6.setTitolo("Il ServletContainer");
         s[0] = "Servlet";
         a6.setCategorie(s);
         a6.setData("4/5/19");
+        a6.setFormatoData("2019-05-04");
+
         a6.setTesto("Il Servlet Container è...");
         a6.setStato("RIFIUTATO");
         a6.setAutore(autore3);
         a6.setPid("6");
 
         articles.add(a6);
-        
+
         Articoli a7 = new Articoli();
         a7.setTitolo("HTML 6");
-   
+
         s[0] = "HTML";
         a7.setCategorie(s);
         a7.setData("4/5/19");
+        a7.setFormatoData("2019-05-04");
+
         a7.setTesto("HTML 6...");
         a7.setStato("IN VALUTAZIONE");
         a7.setAutore(autore1);
@@ -251,10 +263,10 @@ public class ArticoliFactory {
 
         return lista;
     }
-    
-    public Articoli getArticleByPid(String pid){
+
+    public Articoli getArticleByPid(String pid) {
         List<Articoli> articles = this.getArticles();
-        
+
         for (Articoli u : articles) {
             String s = u.getPid();
 

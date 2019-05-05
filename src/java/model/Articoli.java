@@ -17,6 +17,7 @@ public class Articoli {
     private List<Utenti> autori = new ArrayList<>();
     private String[] categorie = new String[6]; //Max 6 categorie
     private String data; //Le 3 celle contengono le cifre della data di creazione articolo
+    private String formatoData;
     private String testo;
     private String stato; //Aperto, in valutazione ecc 
     private String pid;
@@ -39,7 +40,7 @@ public class Articoli {
      * @return the autori
      */
     public List<Utenti> getAutori() {
-        return autori;
+        return this.autori;
     }
 
     /**
@@ -117,6 +118,20 @@ public class Articoli {
      */
     public void setPid(String pid) {
         this.pid = pid;
+    }
+
+    /**
+     * @return the formatoData
+     */
+    public String getFormatoData() {
+        return formatoData;
+    }
+
+    /**
+     * @param formatoData the formatoData to set
+     */
+    public void setFormatoData(String formatoData) {
+        this.formatoData = formatoData;
     }
     
     
