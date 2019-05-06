@@ -21,7 +21,7 @@
     <body>
         <!-- Header incluso qui -->
         <jsp:include page="header.jsp"/>
-        
+
         <main>
             <jsp:include page="aside.jsp"/>
 
@@ -55,13 +55,17 @@
                 <section id="inserisci_categoria" >
                     <label class="col-3" for="corto">Categoria:</label>
                     <section id="categorie" class="col-7" >
-                        <input type="checkbox" name="category" value="cat1" >CSS
-                        <input type="checkbox" name="category" value="cat2">HTML
-                        <input type="checkbox" name="category" value="cat3">JSP
+
+                        <input type="checkbox" name="category" value="css" checked="${scelto.contieneCategoria("CSS")}" >CSS
+                        <input type="checkbox" name="category" value="html" checked="${scelto.contieneCategoria("HTML")}">HTML
+                        <input type="checkbox" name="category" value="jsp" checked="${scelto.contieneCategoria("JSP")}">JSP
                         </br>
-                        <input type="checkbox" name="category" value="cat4">AJAX
-                        <input type="checkbox" name="category" value="cat5">JavaScript
-                        <input type="checkbox" name="category" value="cat6">Servlet
+                        <input type="checkbox" name="category" value="ajax" checked="${scelto.contieneCategoria("AJAX")}">AJAX
+                        <input type="checkbox" name="category" value="javascript" checked="${scelto.contieneCategoria("JavaScript")}">JavaScript
+                        <input type="checkbox" name="category" value="servlet" checked="${scelto.contieneCategoria("Servlet")}">Servlet
+
+
+
                     </section>
                 </section>
 
@@ -83,10 +87,10 @@
                 <section class="col-3" id="nascosta">
                     <p>Non deve essere visualizzato</p>
                 </section>
-                
+
                 <form id="salva" class="col-7" action="scriviArticolo.html" method="post">
                     <input type="hidden" name="pid" value="${scelto.getPid()}"><br/>
-                    <button type="submit">Salva</button>
+                    <button type="submit" name="modifica">Salva</button>
                 </form>
             </section>
         </main>    

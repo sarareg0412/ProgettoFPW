@@ -40,26 +40,46 @@ public class WritePaper extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("utenteId") != null) {//Utente già autenticato
+
             //Setto l'utente
             int autoreId = (int) session.getAttribute("utenteId");
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
             request.setAttribute("user", user);
-            
+
             List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
-        
             request.setAttribute("articoli", articoli);
-            
-            String n = request.getParameter("pid");
-            Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
 
-            if (articoloScelto == null) {
-                System.out.println("Articolo non trovato");
+            if (request.getParameter("pid") == null) {
+                //request.getRequestDispatcher("error.jsp").forward(request, response);
             } else {
-                request.setAttribute("scelto", articoloScelto);
-
+                String n = request.getParameter("pid");
+                Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
                 List<Utenti> autori = articoloScelto.getAutori();
                 request.setAttribute("autori", autori);
+                
+                
+                if (request.getParameter("modifica") != null) {
+                    System.out.println("ciao");
+                    //Salvo le nuove info inserite
+                    String titolo = request.getParameter("titolo");
+                    String testo = request.getParameter("testo");
+                    String formatoData = request.getParameter("trip-start"); //Le 3 celle contengono le cifre della data di creazione articolo
+                    
+                    articoloScelto.setTitolo(titolo);
+                    articoloScelto.setTesto(testo);
+                    articoloScelto.setFormatoData(formatoData);
+                }
+
+                request.setAttribute("scelto", articoloScelto);
+                
+                String[] languages = {"CSS", "HTML", "Servlet", "AJAX", "JavaScript", "JSP"};
+                for (String lang : languages) {
+                    System.out.println(articoloScelto.contieneCategoria(lang));
+
+                }
+
                 request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request, response);
+
             }
         } else { //utente non autenticato
             request.getRequestDispatcher("./M1/login.jsp").forward(request, response);

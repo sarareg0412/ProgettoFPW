@@ -65,6 +65,7 @@ public class Login extends HttpServlet {
             int id = (int) session.getAttribute("utenteId");
             Utenti user = UtentiFactory.getInstance().getUserById(id);
             
+            request.setAttribute("id",id);
             request.setAttribute("autore", user);
             System.out.println(user.getStatus());
 

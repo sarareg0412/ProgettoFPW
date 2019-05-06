@@ -16,15 +16,11 @@
     </div>
     <nav id="sfondo_menu" >
         <ul id="menu_pagine" class="col-8">
-
-            <c:if test="${login == false }">
-                <li><a class="col-10" href="login.html">Login</a></li>
-            </c:if>
-            <c:if test="${login == true }" >
+            
                 <li><a  class="col-3" href="articoli.html">Articoli</a></li>
-                <li><a class="col-3" href="valutazione.html">Valutazioni</a></li>
+                <li><a class="col-3" href="articoli.html">Valutazioni</a></li>
                 <li><a class="col-3" href="registrazione.html">Profilo</a></li>
-            </c:if>
+            
         </ul>
     </nav>
 </header>

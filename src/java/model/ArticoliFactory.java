@@ -42,8 +42,11 @@ public class ArticoliFactory {
     public List<Articoli> getArticles() {
         List<Articoli> articles = new ArrayList<>();
         
-        String[] s = new String[3];
-
+        String s1,s2,s3;
+        s1 = "CSS";
+        s2 = "HTML";
+        s3 = "Servlet";
+        
         Utenti sara = UtentiFactory.getInstance().getUserById(1);
         Utenti gianni = UtentiFactory.getInstance().getUserById(2);
         Utenti mario = UtentiFactory.getInstance().getUserById(3);
@@ -51,9 +54,9 @@ public class ArticoliFactory {
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
 
-        s[0] = "CSS";
-        s[1] = "HTML";
-        a1.setCategorie(s);
+        
+        a1.getCategorie().add(s1);
+        a1.getCategorie().add(s2);
         a1.setData("24/3/19");
         a1.setFormatoData("2019-03-24");
         a1.setTesto("La Sql injection è una pratica che consente...");
@@ -65,9 +68,8 @@ public class ArticoliFactory {
         Articoli a2 = new Articoli();
         a2.setTitolo("Le Servlet");
 
-        s[0] = "CSS";
-        s[1] = "Servlet";
-        a2.setCategorie(s);
+        a2.getCategorie().add(s1);
+        a2.getCategorie().add(s3);
         a2.setData("2/4/19");
         a2.setFormatoData("2019-04-02");
         a2.setTesto("Le Servlet consentono di...");
@@ -80,8 +82,8 @@ public class ArticoliFactory {
         Articoli a3 = new Articoli();
         a3.setTitolo("Il DataBase");
 
-        s[0] = "JSP";
-        a3.setCategorie(s);
+        s1 = "JSP";
+        a3.getCategorie().add(s1);
         a3.setData("4/5/19");
         a3.setFormatoData("2019-05-04");
         a3.setTesto("Il DataBase è...");
@@ -96,9 +98,8 @@ public class ArticoliFactory {
         a4.setTitolo("Le Classi Java");
         a4.getAutori().add(sara);
         a4.getAutori().add(mario);
-        s[0] = "JSP";
-        s[1] = "HTML";
-        a4.setCategorie(s);
+        a4.getCategorie().add(s1);
+        a4.getCategorie().add(s2);
         a4.setData("2/4/19");
         a4.setFormatoData("2019-04-02");
         a4.setTesto("La Servlet vengono utilizzate nella programmazione web...");
@@ -110,9 +111,8 @@ public class ArticoliFactory {
         Articoli a5 = new Articoli();
         a5.setTitolo("Il tag br");
         a5.getAutori().add(mario);
-        s[0] = "CSS";
-        s[1] = "HTML";
-        a5.setCategorie(s);
+        a5.getCategorie().add(s1);
+        a5.getCategorie().add(s3);
         a5.setData("2/4/19");
         a5.setFormatoData("2019-04-02");
         a5.setTesto("Il tag br viene utilizzato nel linguaggio html...");
@@ -123,8 +123,8 @@ public class ArticoliFactory {
 
         Articoli a6 = new Articoli();
         a6.setTitolo("Il ServletContainer");
-        s[0] = "Servlet";
-        a6.setCategorie(s);
+        s2 = "Servlet";
+        a6.getCategorie().add(s2);
         a6.setData("4/5/19");
         a6.setFormatoData("2019-05-04");
         a6.setTesto("Il Servlet Container è...");
@@ -135,9 +135,8 @@ public class ArticoliFactory {
 
         Articoli a7 = new Articoli();
         a7.setTitolo("HTML 6");
-
-        s[0] = "HTML";
-        a7.setCategorie(s);
+        s1 = "HTML";
+        a7.getCategorie().add(s1);
         a7.setData("4/5/19");
         a7.setFormatoData("2019-05-04");
         a7.setTesto("HTML 6...");
@@ -173,17 +172,14 @@ public class ArticoliFactory {
     public List<Articoli> getArticlesByCategory(String categoria) {
 
         List<Articoli> articles = this.getArticles();
-        List<Articoli> lista = null;    //Lista da restituire
+        List<Articoli> lista = new ArrayList<>();    //Lista da restituire
 
         /* Per ogni articolo, controllo se contiene la categoria 
         inserita,e lo aggiungo alla lista da restituire */
         for (Articoli u : articles) {
-            String[] s = u.getCategorie();
 
-            for (int i = 0; i < s.length; i++) {
-                if (s[i].equals(categoria)) {
-                    lista.add(u);
-                }
+            if (u.getCategorie().contains(categoria)) {
+                lista.add(u);
             }
         }
 

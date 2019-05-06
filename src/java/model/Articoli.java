@@ -15,7 +15,7 @@ import java.util.List;
 public class Articoli {
     private String titolo;
     private List<Utenti> autori;
-    private String[] categorie = new String[6]; //Max 6 categorie
+    private List<String> categorie; //Max 6 categorie
     private String data; //Le 3 celle contengono le cifre della data di creazione articolo
     private String formatoData;
     private String testo;
@@ -24,6 +24,7 @@ public class Articoli {
 
     public Articoli(){
         this.autori = new ArrayList<>();
+        this.categorie = new ArrayList<>();
     }
     /**
      * @return the titolo
@@ -56,14 +57,14 @@ public class Articoli {
     /**
      * @return the categorie
      */
-    public String[] getCategorie() {
+    public List<String> getCategorie() {
         return categorie;
     }
 
     /**
      * @param categorie the categorie to set
      */
-    public void setCategorie(String[] categorie) {
+    public void setCategorie(List<String> categorie) {
         this.categorie = categorie;
     }
 
@@ -135,8 +136,12 @@ public class Articoli {
      */
     public void setFormatoData(String formatoData) {
         this.formatoData = formatoData;
+    } 
+    
+    public String contieneCategoria (String categoria){
+        if(this.categorie.contains(categoria)){
+            return "true";
+        }        
+        return "false";        
     }
-    
-    
-    
 }
