@@ -138,10 +138,7 @@ public class Articoli {
         this.formatoData = formatoData;
     } 
     
-    public String contieneCategoria (String categoria){
-        if(this.categorie.contains(categoria)){
-            return "true";
-        }        
-        return "false";        
+    public boolean contieneCategoria (String categoria){
+        return this.categorie.contains(categoria);       
     }
 }

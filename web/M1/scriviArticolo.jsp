@@ -55,16 +55,45 @@
                 <section id="inserisci_categoria" >
                     <label class="col-3" for="corto">Categoria:</label>
                     <section id="categorie" class="col-7" >
-
-                        <input type="checkbox" name="category" value="css" checked="${scelto.contieneCategoria("CSS")}" >CSS
-                        <input type="checkbox" name="category" value="html" checked="${scelto.contieneCategoria("HTML")}">HTML
-                        <input type="checkbox" name="category" value="jsp" checked="${scelto.contieneCategoria("JSP")}">JSP
-                        </br>
-                        <input type="checkbox" name="category" value="ajax" checked="${scelto.contieneCategoria("AJAX")}">AJAX
-                        <input type="checkbox" name="category" value="javascript" checked="${scelto.contieneCategoria("JavaScript")}">JavaScript
-                        <input type="checkbox" name="category" value="servlet" checked="${scelto.contieneCategoria("Servlet")}">Servlet
-
-
+                        <c:forEach items="${scelto.getCategorie()}" var="c">
+                            <c:if test="${c}.equals('CSS')">
+                                <input type="checkbox" name="category" value="css" checked="true" >CSS
+                            </c:if>
+                            <c:if test="${c}.equals('CSS')!=true">
+                                <input type="checkbox" name="category" value="css">CSS
+                            </c:if>
+                            <c:if test="${c}=='HTML'">
+                                <input type="checkbox" name="category" value="css" checked="true" >HTML
+                            </c:if>
+                            <c:if test="${c}!='HTML'">
+                                <input type="checkbox" name="category" value="css">HTML
+                            </c:if>
+                            <c:if test="${c}=='JSP'">
+                                <input type="checkbox" name="category" value="css" checked="true" >JSP
+                            </c:if>
+                            <c:if test="${c}!='JSP'">
+                                <input type="checkbox" name="category" value="css">JSP
+                            </c:if>                                
+                            </br>
+                            <c:if test="${c}=='AJAX'">
+                                <input type="checkbox" name="category" value="css" checked="true" >AJAX
+                            </c:if>
+                            <c:if test="${c}!='AJAX'">
+                                <input type="checkbox" name="category" value="css">AJAX
+                            </c:if>   
+                            <c:if test="${c}=='JavaScript'">
+                                <input type="checkbox" name="category" value="css" checked="true" >JavaScript
+                            </c:if>
+                            <c:if test="${c}!='JavaScript'">
+                                <input type="checkbox" name="category" value="css">JavaScript
+                            </c:if>    
+                            <c:if test="${c}=='Servlet'">
+                                <input type="checkbox" name="category" value="css" checked="true" >Servlet
+                            </c:if>
+                            <c:if test="${c}!='CSS'">
+                                <input type="checkbox" name="category" value="css">Servlet
+                            </c:if>    
+                        </c:forEach>
 
                     </section>
                 </section>
@@ -77,7 +106,7 @@
                     <label class="col-3" for="start">Data:</label>
 
                     <input class="col-7" type="date" id="start" name="trip-start"
-                           value=${scelto.getFormatoData()}
+                           value="${scelto.getFormatoData()}" 
                            min="2018-01-01" max="2020-12-31">
                 </section>
                 <form id="inserisci_testo" action="demo_form.asp" method="get" class="col-10">

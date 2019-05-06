@@ -70,14 +70,7 @@ public class WritePaper extends HttpServlet {
                     articoloScelto.setFormatoData(formatoData);
                 }
 
-                request.setAttribute("scelto", articoloScelto);
-                
-                String[] languages = {"CSS", "HTML", "Servlet", "AJAX", "JavaScript", "JSP"};
-                for (String lang : languages) {
-                    System.out.println(articoloScelto.contieneCategoria(lang));
-
-                }
-
+                request.setAttribute("scelto", articoloScelto);                
                 request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request, response);
 
             }
