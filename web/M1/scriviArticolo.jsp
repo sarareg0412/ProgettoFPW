@@ -55,7 +55,7 @@
                 <section id="inserisci_categoria" >
                     <label class="col-3" for="corto">Categoria:</label>
                     <section id="categorie" class="col-7" >
-                        <input type="checkbox" name="category" value="cat1">CSS
+                        <input type="checkbox" name="category" value="cat1" >CSS
                         <input type="checkbox" name="category" value="cat2">HTML
                         <input type="checkbox" name="category" value="cat3">JSP
                         </br>
@@ -83,7 +83,9 @@
                 <section class="col-3" id="nascosta">
                     <p>Non deve essere visualizzato</p>
                 </section>
-                <form id="salva" class="col-7" action="scriviArticolo.html?pid=${u.getPid()}" method="post">
+                
+                <form id="salva" class="col-7" action="scriviArticolo.html" method="post">
+                    <input type="hidden" name="pid" value="${scelto.getPid()}"><br/>
                     <button type="submit">Salva</button>
                 </form>
             </section>

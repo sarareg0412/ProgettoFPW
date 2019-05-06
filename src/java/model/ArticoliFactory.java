@@ -23,34 +23,31 @@ public class ArticoliFactory {
      * Nessuno può creare altre ArticoliFactory
      */
     private ArticoliFactory() {
+    
     }
 
+    
     public static ArticoliFactory getInstance() {
         if (singleton == null) {
             singleton = new ArticoliFactory();
         }
         return singleton;
     }
+    
+    /* METODI D'ISTANZA */
 
     /**
      * Ritorna la lista degli articoli creati
      */
     public List<Articoli> getArticles() {
         List<Articoli> articles = new ArrayList<>();
+        
         String[] s = new String[3];
 
-        Utenti autore1 = new Utenti();
-        autore1.setUsername("sarareg98");
-        autore1.setPassword("sara");
-
-        Utenti autore2 = new Utenti();
-        autore2.setUsername("bianchigiann81");
-        autore2.setPassword("gianni");
-
-        Utenti autore3 = new Utenti();
-        autore3.setUsername("mariorossi2");
-        autore3.setPassword("mario");
-
+        Utenti sara = UtentiFactory.getInstance().getUserById(1);
+        Utenti gianni = UtentiFactory.getInstance().getUserById(2);
+        Utenti mario = UtentiFactory.getInstance().getUserById(3);
+        
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
 
@@ -61,9 +58,7 @@ public class ArticoliFactory {
         a1.setFormatoData("2019-03-24");
         a1.setTesto("La Sql injection è una pratica che consente...");
         a1.setStato("APERTO");
-        a1.setAutore(autore1);
-        a1.setAutore(autore2);
-
+        a1.getAutori().add(sara);
         a1.setPid("1");
         articles.add(a1);
 
@@ -77,10 +72,9 @@ public class ArticoliFactory {
         a2.setFormatoData("2019-04-02");
         a2.setTesto("Le Servlet consentono di...");
         a2.setStato("APERTO");
-        a2.setAutore(autore1);
-        a2.setAutore(autore2);
+        a2.getAutori().add(sara);
+        a2.getAutori().add(mario);
         a2.setPid("2");
-
         articles.add(a2);
 
         Articoli a3 = new Articoli();
@@ -92,14 +86,16 @@ public class ArticoliFactory {
         a3.setFormatoData("2019-05-04");
         a3.setTesto("Il DataBase è...");
         a3.setStato("APERTO");
-        a3.setAutore(autore1);
+        a3.getAutori().add(sara);
+        a3.getAutori().add(gianni);
         a3.setPid("3");
 
         articles.add(a3);
 
         Articoli a4 = new Articoli();
         a4.setTitolo("Le Classi Java");
-        a4.setAutore(autore2);
+        a4.getAutori().add(sara);
+        a4.getAutori().add(mario);
         s[0] = "JSP";
         s[1] = "HTML";
         a4.setCategorie(s);
@@ -113,7 +109,7 @@ public class ArticoliFactory {
 
         Articoli a5 = new Articoli();
         a5.setTitolo("Il tag br");
-        a5.setAutore(autore3);
+        a5.getAutori().add(mario);
         s[0] = "CSS";
         s[1] = "HTML";
         a5.setCategorie(s);
@@ -131,12 +127,10 @@ public class ArticoliFactory {
         a6.setCategorie(s);
         a6.setData("4/5/19");
         a6.setFormatoData("2019-05-04");
-
         a6.setTesto("Il Servlet Container è...");
         a6.setStato("RIFIUTATO");
-        a6.setAutore(autore3);
+        a6.getAutori().add(sara);
         a6.setPid("6");
-
         articles.add(a6);
 
         Articoli a7 = new Articoli();
@@ -146,13 +140,13 @@ public class ArticoliFactory {
         a7.setCategorie(s);
         a7.setData("4/5/19");
         a7.setFormatoData("2019-05-04");
-
         a7.setTesto("HTML 6...");
         a7.setStato("IN VALUTAZIONE");
-        a7.setAutore(autore1);
+        a7.getAutori().add(mario);
         a7.setPid("7");
-
         articles.add(a7);
+        
+        
         return articles;
     }
 
@@ -208,10 +202,8 @@ public class ArticoliFactory {
         inserito,e lo aggiungo alla lista da restituire */
         for (Articoli u : articles) {
 
-            for (Utenti autori : u.getAutori()) {
-                if (autori.equals(autore)) {
-                    lista.add(u);
-                }
+            if (u.getAutori().contains(autore)) {
+                lista.add(u);
             }
         }
 

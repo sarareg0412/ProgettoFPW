@@ -16,6 +16,14 @@
         <servlet-name>Register</servlet-name>
         <servlet-class>controller.Register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>controller.Logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificaArticolo</servlet-name>
+        <servlet-class>controller.ModificaArticolo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login.html</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/registrazione.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificaArticolo</servlet-name>
+        <url-pattern>/modificaArticolo.html</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

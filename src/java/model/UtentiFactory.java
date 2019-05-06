@@ -29,6 +29,7 @@ public class UtentiFactory {
         List<Utenti> users = new ArrayList<>();
         
         Utenti u1 = new Utenti();
+        u1.setId(1);
         u1.setUsername("sarareg98");
         u1.setNome("Sara");
         u1.setCognome("Regali");
@@ -39,6 +40,7 @@ public class UtentiFactory {
         users.add(u1);
         
         Utenti u2 = new Utenti();
+        u2.setId(2);
         u2.setUsername("bianchigiann81");
         u2.setNome("Gianni");
         u2.setCognome("Bianchi");
@@ -49,6 +51,7 @@ public class UtentiFactory {
         users.add(u2);
         
         Utenti u3 = new Utenti();
+        u3.setId(3);
         u3.setUsername("mariorossi2");
         u3.setNome("Mario");
         u3.setCognome("Rossi");
@@ -94,11 +97,11 @@ public class UtentiFactory {
      /** Ritorna un utente in base alla sua mail
      * @return user*/
     
-    public Utenti getUserByEmail(String mail){
+    public Utenti getUserByEmail(String email){
         List<Utenti> users = this.getUsers();
         
         for(Utenti u : users){
-            if(u.getEmail().equals(mail)){
+            if(u.getEmail().equals(email)){
                 return u;
             }
         }
@@ -106,7 +109,20 @@ public class UtentiFactory {
         return null; 
     }
     
+    /** Ritorna un utente in base al suo id
+     * @return user*/
     
+    public Utenti getUserById(int id){
+        List<Utenti> users = this.getUsers();
+        
+        for(Utenti u : users){
+            if(u.getId() == id ){
+                return u;
+            }
+        }
+        
+        return null; 
+    }
     
     /**
      *

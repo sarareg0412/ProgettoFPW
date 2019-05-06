@@ -37,7 +37,7 @@
                     <input type="password" name="password" id="id_password" value="oscurato"/>
                     
                     <br/>
-                    <button type="submit">Login</button>
+                    <button type="submit" name="login">Login</button>
                     <br/>
                     <label>
                         <input type="checkbox" checked="checked" name="remember" />Ricordami

@@ -9,7 +9,7 @@
 <aside id="barra_laterale" class="col-2">
 
     <h1>Ciao, ${user.getNome()}! </h1>
-    <form action="login.html" method="post">
+    <form action="logout.html?logout=true" method="post">
         <button type="submit">Logout</button>
     </form>
     <section id="sottobox">

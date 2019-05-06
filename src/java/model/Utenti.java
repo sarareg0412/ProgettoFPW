@@ -18,6 +18,7 @@ public class Utenti {
     private String email;
     private String ente;
     private String status;
+    private int id;
 
     /**
      * @return the nome
@@ -139,5 +140,19 @@ public class Utenti {
         }
         
         return true;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

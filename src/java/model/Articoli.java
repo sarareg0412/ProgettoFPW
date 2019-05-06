@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Articoli {
     private String titolo;
-    private List<Utenti> autori = new ArrayList<>();
+    private List<Utenti> autori;
     private String[] categorie = new String[6]; //Max 6 categorie
     private String data; //Le 3 celle contengono le cifre della data di creazione articolo
     private String formatoData;
@@ -22,6 +22,9 @@ public class Articoli {
     private String stato; //Aperto, in valutazione ecc 
     private String pid;
 
+    public Articoli(){
+        this.autori = new ArrayList<>();
+    }
     /**
      * @return the titolo
      */
@@ -46,8 +49,8 @@ public class Articoli {
     /**
      * @param autori the autori to set
      */
-    public void setAutore(Utenti autore) {
-        this.autori.add(autore);
+    public void setAutore(List<Utenti> autore) {
+        this.autori = autore;
     }
 
     /**

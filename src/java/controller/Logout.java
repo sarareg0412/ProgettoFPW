@@ -11,20 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-
-import model.Utenti;
-import model.UtentiFactory;
-import model.Articoli;
-import model.ArticoliFactory;
 
 /**
  *
  * @author Sara
  */
-public class MyPapers extends HttpServlet {
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,29 +31,15 @@ public class MyPapers extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-                
-        // recupero la sessione
         HttpSession session = request.getSession();
         
-        if(session.getAttribute("utenteId")!= null){//Utente già autenticato
-            //Setto l'utente
-            int autoreId = (int) session.getAttribute("utenteId");
-            Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
-            request.setAttribute("user", user);
-    
-            List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
-        
-            request.setAttribute("articoli", articoli);
-            //A questo punto chiamo la jsp
-            request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
-        
-        } else { //utente non autenticato
-                request.getRequestDispatcher("./M1/login.jsp").forward(request, response);
-                
+        if(request.getParameter("logout")!= null){
+            session.invalidate();
+            request.getRequestDispatcher("/login.html").forward(request, response);
+        }else{
+            request.getRequestDispatcher("/login.html").forward(request, response);
         }
-
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

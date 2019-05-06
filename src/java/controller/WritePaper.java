@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import model.Articoli;
 import model.ArticoliFactory;
 import model.Utenti;
+import model.UtentiFactory;
 
 /**
  *
@@ -36,34 +37,35 @@ public class WritePaper extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        HttpSession session = request.getSession(false);
-        
-        if(session.getAttribute("login").equals(false)){  //Non c'era una sessione attiva, torniamo al login
-            response.sendRedirect(request.getContextPath() + "/login.html");
-        }
-        // cerco l'utente nella sessione
-        Utenti user = (Utenti) session.getAttribute("utente");
-        request.setAttribute("user", user);
-        
-        if(user == null){ //Torniamo al login
-           response.sendRedirect(request.getContextPath() + "/login.html");
-        }
-         
-        
-        String n = request.getParameter("pid");
-         
-        Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
-        
-        if(articoloScelto == null){
-            System.out.println("Articolo non trovato");
-        }else{
-            request.setAttribute("scelto" , articoloScelto );
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("utenteId") != null) {//Utente già autenticato
+            //Setto l'utente
+            int autoreId = (int) session.getAttribute("utenteId");
+            Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
+            request.setAttribute("user", user);
             
-            List<Utenti> autori = articoloScelto.getAutori();
-            request.setAttribute("autori", autori);
-            request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request,response);
+            List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+        
+            request.setAttribute("articoli", articoli);
+            
+            String n = request.getParameter("pid");
+            Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
+
+            if (articoloScelto == null) {
+                System.out.println("Articolo non trovato");
+            } else {
+                request.setAttribute("scelto", articoloScelto);
+
+                List<Utenti> autori = articoloScelto.getAutori();
+                request.setAttribute("autori", autori);
+                request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request, response);
+            }
+        } else { //utente non autenticato
+            request.getRequestDispatcher("./M1/login.jsp").forward(request, response);
+
         }
-      
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
