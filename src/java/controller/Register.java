@@ -7,11 +7,14 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Articoli;
+import model.ArticoliFactory;
 import model.Utenti;
 import model.UtentiFactory;
 
@@ -33,38 +36,41 @@ public class Register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         HttpSession session = request.getSession();
-        
-        if(session.getAttribute("utenteId") != null) {//Utente già autenticato
+
+        if (session.getAttribute("utenteId") != null) {//Utente già autenticato
             System.out.println("entrato utente con id" + session.getAttribute("utenteId"));
             int autoreId = (int) session.getAttribute("utenteId");
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
             
-            if(request.getParameter("modifica") != null){
-               System.out.println("modifico utente con id" + session.getAttribute("utenteId"));
+            List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+            request.setAttribute("articoli", articoli);
+            if (request.getParameter("modifica") != null) {
+                System.out.println("modifico utente con id" + session.getAttribute("utenteId"));
 
-               String nome = request.getParameter("nome");
-               String cognome = request.getParameter("cognome");
-               String email = request.getParameter("email");
-               String password = request.getParameter("password");
-               String ente = request.getParameter("ente");
-               
-               user.setNome(nome);
-               user.setCognome(cognome);
-               user.setEmail(email);
-               user.setPassword(password);
-               user.setEnte(ente);
-               
-               System.out.println("nuovo nome: "+nome);
+                String nome = request.getParameter("nome");
+                String cognome = request.getParameter("cognome");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                String ente = request.getParameter("ente");
+
+                user.setNome(nome);
+                user.setCognome(cognome);
+                user.setEmail(email);
+                user.setPassword(password);
+                user.setEnte(ente);
+
+                System.out.println("nuovo nome: " + nome);
             }
-            
+
             request.setAttribute("user", user);
             
             request.getRequestDispatcher("./M1/profilo.jsp").forward(request, response);
-
-        
+        } else {
+            request.getRequestDispatcher("./M1/profilo.jsp").forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

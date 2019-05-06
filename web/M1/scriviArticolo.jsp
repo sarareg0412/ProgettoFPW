@@ -29,16 +29,16 @@
                 <section id="sfondo_descrizioni">
                     <h1>Scrivi un Articolo</h1>
                 </section>
-                <section id="inserisci_titolo">
-                    <form action="demo_form.asp" method="get">
-                        <label class="col-3" for="corto">Titolo:</label>
-                        <input class="col-7" type="text" name="corto" id="corto" value="${scelto.getTitolo()}" />
-                    </form>
-                </section>
+                
+                <form id="salva_articolo" class="col-10" action="scriviArticolo.html" method="post">
+                    <section id="inserisci_titolo">
+                        <label class="col-3" for="titolo">Titolo:</label>
+                        <input class="col-7" type="text" name="titolo" id="corto" value="${scelto.getTitolo()}" />
+                    </section>
 
-                <section id="inserisci_autori">
-                    <form action="demo_form.asp" method="get">
+                    <section id="inserisci_autori">
                         <label class="col-3" for="corto">Autori:</label>
+                        
                         <section  id="nomi" class="col-7">
                             <c:forEach items="${autori}" var="u">
                                 <p>${u.getNome()} ${u.getCognome()}</p>
@@ -49,77 +49,76 @@
                                 <option value="nome3">Marta Verdi</option>
                             </select>
                         </section>
-                    </form>
-                </section>
-
-                <section id="inserisci_categoria" >
-                    <label class="col-3" for="corto">Categoria:</label>
-                    <section id="categorie" class="col-7" >
-                        <c:forEach items="${scelto.getCategorie()}" var="c">
-                            <c:if test="${c}.equals('CSS')">
-                                <input type="checkbox" name="category" value="css" checked="true" >CSS
-                            </c:if>
-                            <c:if test="${c}.equals('CSS')!=true">
-                                <input type="checkbox" name="category" value="css">CSS
-                            </c:if>
-                            <c:if test="${c}=='HTML'">
-                                <input type="checkbox" name="category" value="css" checked="true" >HTML
-                            </c:if>
-                            <c:if test="${c}!='HTML'">
-                                <input type="checkbox" name="category" value="css">HTML
-                            </c:if>
-                            <c:if test="${c}=='JSP'">
-                                <input type="checkbox" name="category" value="css" checked="true" >JSP
-                            </c:if>
-                            <c:if test="${c}!='JSP'">
-                                <input type="checkbox" name="category" value="css">JSP
-                            </c:if>                                
-                            </br>
-                            <c:if test="${c}=='AJAX'">
-                                <input type="checkbox" name="category" value="css" checked="true" >AJAX
-                            </c:if>
-                            <c:if test="${c}!='AJAX'">
-                                <input type="checkbox" name="category" value="css">AJAX
-                            </c:if>   
-                            <c:if test="${c}=='JavaScript'">
-                                <input type="checkbox" name="category" value="css" checked="true" >JavaScript
-                            </c:if>
-                            <c:if test="${c}!='JavaScript'">
-                                <input type="checkbox" name="category" value="css">JavaScript
-                            </c:if>    
-                            <c:if test="${c}=='Servlet'">
-                                <input type="checkbox" name="category" value="css" checked="true" >Servlet
-                            </c:if>
-                            <c:if test="${c}!='CSS'">
-                                <input type="checkbox" name="category" value="css">Servlet
-                            </c:if>    
-                        </c:forEach>
 
                     </section>
-                </section>
 
-                <section id="inserisci_immagine">
-                    <label class="col-3" for="immagine">Immagine:</label>
-                    <input type="file" class="col-7" id="foto_scelta" name="immagine" accept="image/png, image/jpeg">
-                </section>
-                <section id="inserisci_data">
-                    <label class="col-3" for="start">Data:</label>
+                    <section id="inserisci_categoria" >
+                        <label class="col-3" for="category">Categoria:</label>
+                        <section id="categorie" class="col-7" >
+                            <input type="checkbox" name="category" value="css" unchecked="" >prova
+                            <c:forEach items="${scelto.getCategorie()}" var="c">
+                                <c:if test="${c=='CSS'}">
+                                    <input type="checkbox" name="category" value="css" checked="true" >CSS
+                                </c:if>
+                                <c:if test="${c!='CSS'}">
+                                    <input type="checkbox" name="category" value="css">CSS
+                                </c:if>
+                                <c:if test="${c=='HTML'}">
+                                    <input type="checkbox" name="category" value="css" checked="true" >HTML
+                                </c:if>
+                                <c:if test="${c!='HTML'}">
+                                    <input type="checkbox" name="category" value="css">HTML
+                                </c:if>
+                                <c:if test="${c=='JSP'}">
+                                    <input type="checkbox" name="category" value="css" checked="true" >JSP
+                                </c:if>
+                                <c:if test="${c!='JSP'}">
+                                    <input type="checkbox" name="category" value="css">JSP
+                                </c:if>                                
+                                </br>
+                                <c:if test="${c=='AJAX'}">
+                                    <input type="checkbox" name="category" value="css" checked="true" >AJAX
+                                </c:if>
+                                <c:if test="${c!='AJAX'}">
+                                    <input type="checkbox" name="category" value="css">AJAX
+                                </c:if>   
+                                <c:if test="${c=='JavaScript'}">
+                                    <input type="checkbox" name="category" value="css" checked="true" >JavaScript
+                                </c:if>
+                                <c:if test="${c!='JavaScript'}">
+                                    <input type="checkbox" name="category" value="css">JavaScript
+                                </c:if>    
+                                <c:if test="${c=='Servlet'}">
+                                    <input type="checkbox" name="category" value="css" checked="true" >Servlet
+                                </c:if>
+                                <c:if test="${c!='Servlet'}">
+                                    <input type="checkbox" name="category" value="css">Servlet
+                                </c:if>    
+                            </c:forEach>
 
-                    <input class="col-7" type="date" id="start" name="trip-start"
-                           value="${scelto.getFormatoData()}" 
-                           min="2018-01-01" max="2020-12-31">
-                </section>
-                <form id="inserisci_testo" action="demo_form.asp" method="get" class="col-10">
-                    <label for="lungo" class="col-3">Testo:</label>
-                    <textarea class="col-7" name="lungo" id="lungo">${scelto.getTesto()}</textarea>
-                </form>
-                <section class="col-3" id="nascosta">
-                    <p>Non deve essere visualizzato</p>
-                </section>
+                        </section>
+                    </section>
 
-                <form id="salva" class="col-7" action="scriviArticolo.html" method="post">
+                    <section id="inserisci_immagine">
+                        <label class="col-3" for="immagine">Immagine:</label>
+                        <input type="file" class="col-7" id="foto_scelta" name="immagine" accept="image/png, image/jpeg">
+                    </section>
+                    <section id="inserisci_data">
+                        <label class="col-3" for="start">Data:</label>
+                        <input class="col-7" type="date" id="start" name="start"
+                               value="${scelto.getFormatoData()}" 
+                               min="2018-01-01" max="2020-12-31">
+                    </section>
+                    <section id="inserisci_testo" class="col-10">
+                        <label for="testo" class="col-3">Testo:</label>
+                        <textarea class="col-7" name="testo" id="lungo">${scelto.getTesto()}</textarea>
+                    </section>
+                    <section class="col-3" id="nascosta">
+                        <p>Non deve essere visualizzato</p>
+                    </section>
+
                     <input type="hidden" name="pid" value="${scelto.getPid()}"><br/>
-                    <button type="submit" name="modifica">Salva</button>
+                    <button class="col-7" type="submit" name="modifica" id="save_articolo">Salva</button>
                 </form>
             </section>
         </main>    

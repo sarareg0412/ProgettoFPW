@@ -11,8 +11,7 @@
 <header id="sfondo_header" class="col-10">
     <div id="titolo" class="col-2">
         <h1 class="titolo">Free Peer revieW</h1>
-
-
+            
     </div>
     <nav id="sfondo_menu" >
         <ul id="menu_pagine" class="col-8">

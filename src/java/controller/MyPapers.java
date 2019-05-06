@@ -55,7 +55,8 @@ public class MyPapers extends HttpServlet {
             request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
         
         } else { //utente non autenticato
-                request.getRequestDispatcher("./M1/login.jsp").forward(request, response);
+            Utenti user = null;
+            request.getRequestDispatcher("./M1/articoli.jsp").forward(request, response);
                 
         }
 

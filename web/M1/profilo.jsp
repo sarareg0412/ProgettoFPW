@@ -43,7 +43,7 @@
 
                     </c:if>    
                 </section>
-                <form id="salva" class="col-10" action="registrazione.html" method="post">
+                <form id="salva_profilo" class="col-10" action="registrazione.html" method="post">
                     <section id="inserisci_titolo" class="col-10">
                         <label class="col-3" for="nome">Nome:</label>
                         <input class="col-7" type="text" name="nome" id="corto" value="${user.getNome()}" />
@@ -77,14 +77,14 @@
                         <p>Non deve essere visualizzato</p>
                     </section>
 
-
                     <input type="hidden"><br/>
-                    <button type="submit" name="modifica">Salva</button>
+                    <button class="col-7" type="submit" name="modifica" id="save">Salva</button>
                 </form>
 
-                <section class="col-3" id="nascosta">
-                    <p>Non deve essere visualizzato</p>
-                </section>
+                    <section class="col-3" id="nascosta">
+                        <p>Non deve essere visualizzato</p>
+                    </section>
+
                 <section class="col-7" id="cancel">
                     <a   href="../index.html">Cancella il tuo profilo</a>
                 </section>

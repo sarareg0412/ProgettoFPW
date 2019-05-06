@@ -318,11 +318,14 @@ section#nomi, #categorie{
     padding-left: 15px;   
     
 }
-form#salva{
-    height: 500px;
+
+form#salva_articolo{
+    height: 630px;
+    margin-top: 10px;
 }
+
 /* Molti campi di input hanno le stesse grandezze*/
-section#cancel, input#corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, input#email {
+section#cancel, button#save, button#save_articolo, input#corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, input#email {
     width: 50%;
     height: 28px;
     margin-left: 15px;
@@ -361,13 +364,11 @@ section#nascosta {
     visibility: hidden;
 }
 
-/* Pulsante per salvare il nuovo articolo*/
-form#salva {
-    height: 50px;
-}
-
 /* PROFILO */
 
+form#salva_profilo{
+    height: 290px;
+}
 .profilo { /* Classe per titolo e immagine */
     height: 130px;
     margin-bottom: 10px;

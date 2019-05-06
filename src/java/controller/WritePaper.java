@@ -63,7 +63,7 @@ public class WritePaper extends HttpServlet {
                     //Salvo le nuove info inserite
                     String titolo = request.getParameter("titolo");
                     String testo = request.getParameter("testo");
-                    String formatoData = request.getParameter("trip-start"); //Le 3 celle contengono le cifre della data di creazione articolo
+                    String formatoData = request.getParameter("start"); //Le 3 celle contengono le cifre della data di creazione articolo
                     
                     articoloScelto.setTitolo(titolo);
                     articoloScelto.setTesto(testo);
@@ -75,7 +75,8 @@ public class WritePaper extends HttpServlet {
 
             }
         } else { //utente non autenticato
-            request.getRequestDispatcher("./M1/login.jsp").forward(request, response);
+            Utenti user = null;
+            request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request, response);
 
         }
 
