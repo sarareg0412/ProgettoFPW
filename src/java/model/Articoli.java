@@ -141,4 +141,30 @@ public class Articoli {
     public boolean contieneCategoria (String categoria){
         return this.categorie.contains(categoria);       
     }
+    
+    @Override
+    //Due articoli sono uguali se il loro titolo e formato data sono uguali
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Utenti)) {
+            return false;
+        }
+        
+        Articoli other = (Articoli) obj;
+        if (!this.titolo.equals(other.titolo)) {
+            return false;
+        }
+        
+        if (!this.formatoData.equals(other.formatoData)) {
+            return false;
+        }
+        
+        return true;
+    }
+
 }

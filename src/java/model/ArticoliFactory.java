@@ -53,8 +53,6 @@ public class ArticoliFactory {
         
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
-
-        
         a1.getCategorie().add(s1);
         a1.getCategorie().add(s2);
         a1.setData("24/3/19");

@@ -7,22 +7,24 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import model.Articoli;
+import model.ArticoliFactory;
 import model.Utenti;
 import model.UtentiFactory;
+import model.Valutazioni;
+import model.ValutazioniFactory;
 
 /**
  *
  * @author Sara
  */
-public class Login extends HttpServlet {
+public class Manage extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,53 +38,24 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         
-        // inizializzo la sessione
         HttpSession session = request.getSession();
 
-        if (request.getParameter("login") != null ) { //Utente non si è autenticato
-            String username = request.getParameter("userName");
-            String password = request.getParameter("password");
+        if (session.getAttribute("utenteId") != null) {//Utente già autenticato
+            int autoreId = (int) session.getAttribute("utenteId");
+            //Cerco l'utente nel sistema e lo setto
+            Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
+            request.setAttribute("user", user);
             
-            System.out.println(username);
-            //Controllo se per il dato username e pw c'è un utente nella factory
-            Utenti user = UtentiFactory.getInstance().getUserByUP(username, password);
-
-            if (user != null) {
-                // ho autenticato l'utente, lo salvo in sessione
-                session.setAttribute("utenteId", user.getId());
-            }
-            else
-            {
-                request.getRequestDispatcher("./M1/login.jsp").forward(request,response);
-            }
-        } 
+            //Cerco gli articoli nel sistema e li setto
+            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioni();
+            request.setAttribute("valutazioni", valutazioni);
+            
+            request.getRequestDispatcher("./M1/gestione.jsp").forward(request, response);
         
-        if(session.getAttribute("utenteId")!= null){//Utente già autenticato
-            System.out.println(session.getAttribute("utenteId"));
-            //Setto l'utente
-            int id = (int) session.getAttribute("utenteId");
-            Utenti user = UtentiFactory.getInstance().getUserById(id);
-            
-            request.setAttribute("id",id);
-            request.setAttribute("autore", user);
-            System.out.println(user.getStatus());
-
-            if (user.getStatus().equals("Autore")) {
-                // devo riportare alla pagina con l'elenco degli articoli  
-                 System.out.println("Entrato");
-                request.getRequestDispatcher("/articoli.html").forward(request, response);
-            } else { //utente è organizzatore
-                //Riporto alla pagina di gestione
-                request.getRequestDispatcher("/gestione.html").forward(request, response);
-            }
-            
-        } else { //utente non autenticato
-                request.getRequestDispatcher("./M1/login.jsp").forward(request, response);
-                
+        } else {
+            request.getRequestDispatcher("./M1/gestione.jsp").forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

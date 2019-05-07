@@ -10,24 +10,10 @@ package model;
  * @author Sara
  */
 public class Valutazioni {
-    private String autore;
+    private Articoli articolo;
     private int voto;
     private String commento;
-
-    /**
-     * @return the autore
-     */
-    public String getAutore() {
-        return autore;
-    }
-
-    /**
-     * @param autore the autore to set
-     */
-    public void setAutore(String autore) {
-        this.autore = autore;
-    }
-
+    private String decisione;
     /**
      * @return the valutazione
      */
@@ -54,6 +40,34 @@ public class Valutazioni {
      */
     public void setCommento(String commento) {
         this.commento = commento;
+    }
+
+    /**
+     * @return the articolo
+     */
+    public Articoli getArticolo() {
+        return articolo;
+    }
+
+    /**
+     * @param articolo the articolo to set
+     */
+    public void setArticolo(Articoli articolo) {
+        this.articolo = articolo;
+    }
+
+    /**
+     * @return the decisione
+     */
+    public String getDecisione() {
+        return decisione;
+    }
+
+    /**
+     * @param decisione the decisione to set
+     */
+    public void setDecisione(String decisione) {
+        this.decisione = decisione;
     }
     
 }
