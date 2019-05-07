@@ -19,6 +19,8 @@ import model.Utenti;
 import model.UtentiFactory;
 import model.Articoli;
 import model.ArticoliFactory;
+import model.Valutazioni;
+import model.ValutazioniFactory;
 
 /**
  *
@@ -47,7 +49,9 @@ public class MyPapers extends HttpServlet {
             int autoreId = (int) session.getAttribute("utenteId");
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
             request.setAttribute("user", user);
-    
+            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
+            request.setAttribute("valutazioni", valutazioni);
+            
             List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
         
             request.setAttribute("articoli", articoli);

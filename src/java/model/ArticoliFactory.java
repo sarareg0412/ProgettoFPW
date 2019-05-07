@@ -87,7 +87,6 @@ public class ArticoliFactory {
         a3.setTesto("Il DataBase è...");
         a3.setStato("APERTO");
         a3.getAutori().add(sara);
-        a3.getAutori().add(gianni);
         a3.setPid("3");
 
         articles.add(a3);

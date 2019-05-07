@@ -5,12 +5,16 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Sara
  */
 public class Valutazioni {
-    private Articoli articolo;
+    private List<Utenti> valutatori = new ArrayList<>();      //Chi ha creato la valutazione
+    private Articoli articolo;      //Articolo valutato
     private int voto;
     private String commento;
     private String decisione;
@@ -68,6 +72,20 @@ public class Valutazioni {
      */
     public void setDecisione(String decisione) {
         this.decisione = decisione;
+    }
+
+    /**
+     * @return the valutatore
+     */
+    public List<Utenti> getValutatori() {
+        return valutatori;
+    }
+
+    /**
+     * @param valutatore the valutatore to set
+     */
+    public void setValutatori(List<Utenti> valutatori) {
+        this.valutatori = valutatori;
     }
     
 }

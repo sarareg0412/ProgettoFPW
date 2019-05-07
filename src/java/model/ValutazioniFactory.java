@@ -31,6 +31,11 @@ public class ValutazioniFactory {
     
     public List<Valutazioni> getValutazioni() {
         List<Valutazioni> valutazioni = new ArrayList<>();
+        
+        Utenti sara = UtentiFactory.getInstance().getUserById(1);
+        Utenti gianni = UtentiFactory.getInstance().getUserById(2);
+        Utenti mario = UtentiFactory.getInstance().getUserById(3);
+        
         Articoli a1 = ArticoliFactory.getInstance().getArticleByPid("1");
         Articoli a2 = ArticoliFactory.getInstance().getArticleByPid("2");
         Articoli a3 = ArticoliFactory.getInstance().getArticleByPid("3");
@@ -40,6 +45,8 @@ public class ValutazioniFactory {
         Articoli a7 = ArticoliFactory.getInstance().getArticleByPid("7");
         
         Valutazioni v1 = new Valutazioni();
+        v1.getValutatori().add(mario);
+        v1.getValutatori().add(sara);
         v1.setArticolo(a1);
         v1.setVoto(4);
         v1.setCommento("Articolo scritto molto bene");
@@ -47,6 +54,7 @@ public class ValutazioniFactory {
         valutazioni.add(v1);
         
         Valutazioni v2 = new Valutazioni();
+        v2.getValutatori().add(sara);
         v2.setArticolo(a2);
         v2.setVoto(2);
         v2.setCommento("Articolo scritto molto male");
@@ -54,6 +62,7 @@ public class ValutazioniFactory {
         valutazioni.add(v2);
         
         Valutazioni v3 = new Valutazioni();
+        v3.getValutatori().add(sara);
         v3.setArticolo(a3);
         v3.setVoto(3);
         v3.setCommento("Articolo scritto abbastanza bene");
@@ -61,6 +70,7 @@ public class ValutazioniFactory {
         valutazioni.add(v3);
         
         Valutazioni v4 = new Valutazioni();
+        v4.getValutatori().add(mario);
         v4.setArticolo(a4);
         v4.setVoto(3);
         v4.setCommento("Articolo scritto abbastanza bene");
@@ -87,6 +97,7 @@ public class ValutazioniFactory {
         v7.setCommento("Articolo scritto bene");
         v7.setDecisione("Rifiutato");
         valutazioni.add(v7);
+        
         return valutazioni;
     }
 
@@ -97,10 +108,27 @@ public class ValutazioniFactory {
      */
     public List<Valutazioni> getValutazioniByArticle(Articoli articolo ) {
         List<Valutazioni> valutazioni = this.getValutazioni();
-        List<Valutazioni> lista = null;
+        List<Valutazioni> lista = new ArrayList<>();
         
         for (Valutazioni u : valutazioni) {
             if (u.getArticolo().equals(articolo)) {
+                lista.add(u);
+            }
+        }
+
+        return lista;
+    }
+ /**
+     * Ritorna una lista di valutazioni in base al valutatore
+     *
+     * @param titolo
+     */
+    public List<Valutazioni> getValutazioniByValutatore(Utenti valutatore ) {
+        List<Valutazioni> valutazioni = this.getValutazioni();
+        List<Valutazioni> lista = new ArrayList<>();
+        
+        for (Valutazioni u : valutazioni) {
+            if (u.getValutatori().contains(valutatore)) {
                 lista.add(u);
             }
         }
@@ -115,7 +143,7 @@ public class ValutazioniFactory {
      */
     public List<Valutazioni> getValutazioniByMark(int voto) {
         List<Valutazioni> valutazioni = this.getValutazioni();
-        List<Valutazioni> lista = null;
+        List<Valutazioni> lista = new ArrayList<>();
         
         for (Valutazioni u : valutazioni) {
             if (u.getVoto() == voto) {

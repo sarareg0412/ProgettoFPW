@@ -17,6 +17,8 @@ import model.Articoli;
 import model.ArticoliFactory;
 import model.Utenti;
 import model.UtentiFactory;
+import model.Valutazioni;
+import model.ValutazioniFactory;
 
 /**
  *
@@ -46,6 +48,10 @@ public class Register extends HttpServlet {
             
             List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
             request.setAttribute("articoli", articoli);
+            
+            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
+            request.setAttribute("valutazioni", valutazioni);
+            
             if (request.getParameter("modifica") != null) {
                 System.out.println("modifico utente con id" + session.getAttribute("utenteId"));
 

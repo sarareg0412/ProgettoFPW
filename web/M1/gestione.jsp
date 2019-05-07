@@ -53,11 +53,11 @@
                                 <th>Valutazione</th>
                                 <th>Decidi</th>    
                             </tr>
-                            <c:forEach items="${valutazioni}" var="u">
+                            <c:forEach items="${valutazionitot}" var="u">
                                 <tr>
                                     <td>${u.getArticolo().getData().toString()} </td>
                                     <td>${u.getArticolo().getTitolo()} </td>
-                                    <td>${u.getValutazione()} </td> 
+                                    <td>${u.getVoto().toString()} </td> 
                                     <td>${u.getDecisione()}</td>
                                 </tr>
                             </c:forEach>

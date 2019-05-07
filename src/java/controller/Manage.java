@@ -47,10 +47,17 @@ public class Manage extends HttpServlet {
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
             request.setAttribute("user", user);
             
-            //Cerco gli articoli nel sistema e li setto
-            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioni();
-            request.setAttribute("valutazioni", valutazioni);
+            if(user.getStatus().equals("Autore")){
+                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+                request.setAttribute("articoli", articoli);
             
+                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
+                request.setAttribute("valutazioni", valutazioni);
+            }else{
+                //Cerco gli articoli nel sistema e li setto
+                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioni();
+                request.setAttribute("valutazionitot", valutazioni);
+            }
             request.getRequestDispatcher("./M1/gestione.jsp").forward(request, response);
         
         } else {

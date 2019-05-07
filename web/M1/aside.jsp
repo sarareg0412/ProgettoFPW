@@ -12,28 +12,36 @@
         <form action="login.html" method="post">
             <button type="submit">Login</button>
         </form>
+    </c:if>
+    <c:if test="${user != null}">
+        <c:if test="${user.getStatus() == 'Organizzatore'}">
+            <h1>Benvenuto, organizzatore</h1>
+            <form action="logout.html?logout=true" method="post">
+                <button type="submit">Logout</button>
+            </form>
         </c:if>
-        <c:if test="${user != null}">
-        <h1>Ciao, ${user.getNome()}! </h1>
-        <form action="logout.html?logout=true" method="post">
-            <button type="submit">Logout</button>
-        </form>
-        <section id="sottobox">
-            <h1>I miei articoli: </h1>
-            <ul>
-                <c:forEach items="${articoli}" var="u">
-                    <li><a href="">${u.getTitolo()}</a></li>
-                    </c:forEach>
+        <c:if test="${user.getStatus() == 'Autore'}">
+            <h1>Ciao, ${user.getNome()}! </h1>
+            <form action="logout.html?logout=true" method="post">
+                <button type="submit">Logout</button>
+            </form>
+            <section id="sottobox">
+                <h1>I miei articoli: </h1>
+                <ul>
+                    <c:forEach items="${articoli}" var="u">
+                        <li><a href="">${u.getTitolo()}</a></li>
+                        </c:forEach>
 
-            </ul>
-        </section>
-        <section id="sottobox">
-            <h1>Da valutare: </h1>
-            <ul>
-                <li><a href="">Il Sistema Operativo Linux</a></li>
-                <li><a href="">HTML 6</a></li>
-                <li><a href="">La SQL Injection</a></li>
-            </ul>
-        </section>
+                </ul>
+            </section>
+            <section id="sottobox">
+                <h1>Da valutare: </h1>
+                <ul>
+                    <c:forEach items="${valutazioni}" var="u">
+                        <li><a href="">${u.getArticolo().getTitolo()}</a></li>
+                        </c:forEach>
+                </ul>
+            </section>
+        </c:if>
     </c:if>
 </aside>
