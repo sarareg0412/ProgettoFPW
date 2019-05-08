@@ -53,21 +53,20 @@ public class Register extends HttpServlet {
             request.setAttribute("valutazioni", valutazioni);
             
             if (request.getParameter("modifica") != null) {
-                System.out.println("modifico utente con id" + session.getAttribute("utenteId"));
-
                 String nome = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 String ente = request.getParameter("ente");
+                String immagine = request.getParameter("immagine");
 
                 user.setNome(nome);
                 user.setCognome(cognome);
                 user.setEmail(email);
                 user.setPassword(password);
                 user.setEnte(ente);
+                user.setUrl(immagine);
 
-                System.out.println("nuovo nome: " + nome);
             }
 
             request.setAttribute("user", user);

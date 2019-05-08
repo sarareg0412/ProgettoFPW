@@ -27,6 +27,8 @@
                 
             <c:if test="${user.getStatus() == 'Organizzatore'}">
                 <li><a  class="col-3" href="gestione.html">Gestione</a></li>
+                <li><a class="col-3" href="registrazione.html">Profilo</a></li>
+
             </c:if>
         </ul>
     </nav>

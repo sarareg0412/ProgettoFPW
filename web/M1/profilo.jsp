@@ -56,7 +56,7 @@
 
                     <section id="inserisci_immagine" class="col-10">
                         <label class="col-3" for="immagine">Foto:</label>
-                        <input type="file" class="col-7" id="foto_scelta" name="immagine" accept="image/png, image/jpeg">
+                        <input type="file" class="col-7" id="foto_scelta" name="immagine" accept="image/png, image/jpeg" value="${uset.getUrl()}">
                     </section>
 
                     <section id="inserisci_email" class="col-10">
@@ -77,16 +77,23 @@
                         <p>Non deve essere visualizzato</p>
                     </section>
 
-                    <input type="hidden"><br/>
-                    <button class="col-7" type="submit" name="modifica" id="save">Salva</button>
+                    <c:if test="${user != null}">
+                        <input type="hidden"><br/>
+                        <button class="col-7" type="submit" name="modifica" id="save">Salva</button>
+                    </c:if>
+                    <c:if test="${user == null}">
+                        <input type="hidden"><br/>
+                        <button class="col-7" type="submit" name="modifica" id="save">Registrazione</button>
+                    </c:if>
+
                 </form>
 
-                    <section class="col-3" id="nascosta">
-                        <p>Non deve essere visualizzato</p>
-                    </section>
+                <section class="col-3" id="nascosta">
+                    <p>Non deve essere visualizzato</p>
+                </section>
 
                 <section class="col-7" id="cancel">
-                    <a   href="../index.html">Cancella il tuo profilo</a>
+                    <a   href="">Cancella il tuo profilo</a>
                 </section>
             </section>
         </main>

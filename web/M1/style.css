@@ -37,7 +37,7 @@ body {
 .col-10 {width: 100%;} /* Il sito è diviso in 10 colonne*/
 
 h1, h2, h3, h4 { /* Regole generali per i titoli */
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 10px;
     color: #24415E;
 }

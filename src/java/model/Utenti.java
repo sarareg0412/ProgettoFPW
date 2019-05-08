@@ -5,6 +5,7 @@
  */
 package model;
 
+
 /**
  *
  * @author Sara
@@ -19,6 +20,7 @@ public class Utenti {
     private String ente;
     private String status;
     private int id;
+    private String url;
 
     /**
      * @return the nome
@@ -134,11 +136,11 @@ public class Utenti {
         if (!this.username.equals(other.username)) {
             return false;
         }
-        
+
         if (!this.password.equals(other.password)) {
             return false;
         }
-        
+
         return true;
     }
 
@@ -154,5 +156,19 @@ public class Utenti {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the url
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * @param aUrl the url to set
+     */
+    public void setUrl(String aUrl) {
+        url = aUrl;
     }
 }

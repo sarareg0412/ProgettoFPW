@@ -31,7 +31,7 @@
             <jsp:include page="aside.jsp"/>
 
             <section id="resto_pagina" class="col-8">
-                
+
                 <c:if test="${user.getStatus() == 'Autore' }">
                     <section id="sfondo_descrizioni">
                         <h1>Ciao ${user.getNome()},</h1> 
@@ -58,7 +58,18 @@
                                     <td>${u.getArticolo().getData().toString()} </td>
                                     <td>${u.getArticolo().getTitolo()} </td>
                                     <td>${u.getVoto().toString()} </td> 
-                                    <td>${u.getDecisione()}</td>
+                                    
+                                    <c:choose>
+                                        <c:when test="${u.getDecisione() == 'Decidi'}">
+                                            <td><a href="gestione.html">${u.getDecisione()}</a></td>
+                                        </c:when>
+                                        <c:when test="${u.getDecisione() == 'Attesa Valutazioni'}">
+                                            <td><a href="gestione.html">${u.getDecisione()}</a></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td>${u.getDecisione()}</td>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </tr>
                             </c:forEach>
 

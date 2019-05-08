@@ -60,14 +60,18 @@ public class WritePaper extends HttpServlet {
                 Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
                 List<Utenti> autori = articoloScelto.getAutori();
                 request.setAttribute("autori", autori);
-
+                
+                if (request.getParameter("modifica") == null) {
+                    request.setAttribute("modif", false);
+                }
                 if (request.getParameter("modifica") != null) {
-                    System.out.println("ciao");
+                    request.setAttribute("modif", true);
+
                     //Salvo le nuove info inserite
                     String titolo = request.getParameter("titolo");
                     String testo = request.getParameter("testo");
                     String formatoData = request.getParameter("start"); //Le 3 celle contengono le cifre della data di creazione articolo
-
+                    
                     articoloScelto.setTitolo(titolo);
                     articoloScelto.setTesto(testo);
                     articoloScelto.setFormatoData(formatoData);

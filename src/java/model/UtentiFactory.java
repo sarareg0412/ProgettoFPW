@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -27,7 +28,6 @@ public class UtentiFactory {
     /** Ritorna la lista degli utenti loggati*/
     public List<Utenti> getUsers(){
         List<Utenti> users = new ArrayList<>();
-        
         Utenti u1 = new Utenti();
         u1.setId(1);
         u1.setUsername("sarareg98");
@@ -37,6 +37,7 @@ public class UtentiFactory {
         u1.setPassword("sara");
         u1.setEnte("universita di Cagliari");
         u1.setStatus("Autore");
+        u1.setUrl("null");
         users.add(u1);
         
         Utenti u2 = new Utenti();
@@ -48,6 +49,7 @@ public class UtentiFactory {
         u2.setPassword("gianni");
         u2.setEnte("universita di Cagliari");
         u2.setStatus("Organizzatore");
+        u2.setUrl("null");
         users.add(u2);
         
         Utenti u3 = new Utenti();
@@ -59,6 +61,7 @@ public class UtentiFactory {
         u3.setPassword("mario");
         u3.setEnte("universita di Cagliari");
         u3.setStatus("Autore");
+        u3.setUrl("null");
         users.add(u3);
         return users;
     }

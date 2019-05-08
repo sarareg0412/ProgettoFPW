@@ -70,7 +70,7 @@
                                         <c:otherwise>
                                             <td><i class="fas fa-times"></i></td>
                                             </c:otherwise>
-                                        </c:choose>
+                                    </c:choose>
 
                                 </tr>
                             </c:forEach>
