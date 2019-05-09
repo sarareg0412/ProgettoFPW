@@ -6,6 +6,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,34 +24,32 @@ public class ArticoliFactory {
      * Nessuno può creare altre ArticoliFactory
      */
     private ArticoliFactory() {
-    
+
     }
 
-    
     public static ArticoliFactory getInstance() {
         if (singleton == null) {
             singleton = new ArticoliFactory();
         }
         return singleton;
     }
-    
-    /* METODI D'ISTANZA */
 
+    /* METODI D'ISTANZA */
     /**
      * Ritorna la lista degli articoli creati
      */
     public List<Articoli> getArticles() {
         List<Articoli> articles = new ArrayList<>();
-        
-        String s1,s2,s3;
+
+        String s1, s2, s3;
         s1 = "CSS";
         s2 = "HTML";
         s3 = "Servlet";
-        
+
         Utenti sara = UtentiFactory.getInstance().getUserById(1);
         Utenti gianni = UtentiFactory.getInstance().getUserById(2);
         Utenti mario = UtentiFactory.getInstance().getUserById(3);
-        
+
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
         a1.getCategorie().add(s1);
@@ -120,7 +119,8 @@ public class ArticoliFactory {
 
         Articoli a6 = new Articoli();
         a6.setTitolo("Il ServletContainer");
-        s2 = "Servlet";
+        s2 = "Servle        Collections.sort(articles);\n"
+                + "t";
         a6.getCategorie().add(s2);
         a6.setData("4/5/19");
         a6.setFormatoData("2019-05-04");
@@ -141,8 +141,9 @@ public class ArticoliFactory {
         a7.getAutori().add(mario);
         a7.setPid("7");
         articles.add(a7);
-        
-        
+
+        Collections.sort(articles);
+
         return articles;
     }
 

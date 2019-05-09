@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Sara
  */
-public class Articoli {
+public class Articoli implements Comparable<Articoli> {
     private String titolo;
     private List<Utenti> autori;
     private List<String> categorie; //Max 6 categorie
@@ -166,5 +166,9 @@ public class Articoli {
         
         return true;
     }
-
+ 
+    @Override
+    public int compareTo(Articoli obj){
+        return obj.formatoData.compareTo(this.formatoData);
+    }
 }

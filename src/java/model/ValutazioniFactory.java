@@ -5,6 +5,7 @@
  */
 package model;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 /**
  *
@@ -98,6 +99,7 @@ public class ValutazioniFactory {
         v7.setDecisione("Rifiutato");
         valutazioni.add(v7);
         
+        Collections.sort(valutazioni);
         return valutazioni;
     }
 
