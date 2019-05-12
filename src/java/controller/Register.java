@@ -5,8 +5,13 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,41 +43,46 @@ public class Register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
+        //Setto la sessione
         HttpSession session = request.getSession();
 
         if (session.getAttribute("utenteId") != null) {//Utente già autenticato
-            System.out.println("entrato utente con id" + session.getAttribute("utenteId"));
+            //Setto l'utente
             int autoreId = (int) session.getAttribute("utenteId");
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
             
+            //Setto gli articoli dell'utente
             List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
             request.setAttribute("articoli", articoli);
             
+            //Setto le valutazioni dell'utente
             List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
             request.setAttribute("valutazioni", valutazioni);
             
+            //Se è stato premuto il pulsante salva setto tutti i nuovi parametri dell'utente
             if (request.getParameter("modifica") != null) {
                 String nome = request.getParameter("nome");
                 String cognome = request.getParameter("cognome");
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 String ente = request.getParameter("ente");
-                String immagine = request.getParameter("immagine");
-
+                
+                File file = new File(request.getParameter("immagine"));
                 user.setNome(nome);
                 user.setCognome(cognome);
                 user.setEmail(email);
                 user.setPassword(password);
                 user.setEnte(ente);
-                user.setUrl(immagine);
+                user.setFile(file);
 
             }
-
+            //Setto l'utente
             request.setAttribute("user", user);
-            
+            //Chiamo la jsp
             request.getRequestDispatcher("./M1/profilo.jsp").forward(request, response);
         } else {
+            //Chiamo comunque la jsp
             request.getRequestDispatcher("./M1/profilo.jsp").forward(request, response);
         }
 
@@ -105,7 +115,7 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-    }
+    } 
 
     /**
      * Returns a short description of the servlet.

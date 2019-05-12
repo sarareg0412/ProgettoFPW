@@ -65,17 +65,17 @@ public class ValutazioniFactory {
         Valutazioni v3 = new Valutazioni();
         v3.getValutatori().add(sara);
         v3.setArticolo(a3);
-        v3.setVoto(3);
-        v3.setCommento("Articolo scritto abbastanza bene");
+        v3.setVoto(0);
+        v3.setCommento("Articolo non ancora valutato");
         v3.setDecisione("Attesa Valutazioni");
         valutazioni.add(v3);
         
         Valutazioni v4 = new Valutazioni();
         v4.getValutatori().add(mario);
         v4.setArticolo(a4);
-        v4.setVoto(3);
+        v4.setVoto(0);
         v4.setCommento("Articolo scritto abbastanza bene");
-        v4.setDecisione("Accettato");
+        v4.setDecisione("Attesa Valutazioni");
         valutazioni.add(v4);
         
         Valutazioni v5 = new Valutazioni();
@@ -87,19 +87,19 @@ public class ValutazioniFactory {
         
         Valutazioni v6 = new Valutazioni();
         v6.setArticolo(a6);
-        v6.setVoto(3);
-        v6.setCommento("Articolo scritto abbastanza bene");
+        v6.setVoto(0);
+        v6.setCommento("Articolo scritto malissimo");
         v6.setDecisione("Rifiutato");
         valutazioni.add(v6);
         
         Valutazioni v7 = new Valutazioni();
         v7.setArticolo(a7);
-        v7.setVoto(5);
-        v7.setCommento("Articolo scritto bene");
+        v7.setVoto(1);
+        v7.setCommento("Articolo scritto male");
         v7.setDecisione("Rifiutato");
         valutazioni.add(v7);
         
-        Collections.sort(valutazioni);
+        Collections.sort(valutazioni);      //
         return valutazioni;
     }
 

@@ -13,11 +13,12 @@ import java.util.List;
  * @author Sara
  */
 public class Valutazioni implements Comparable<Valutazioni>{
-    private List<Utenti> valutatori = new ArrayList<>();      //Chi ha creato la valutazione
-    private Articoli articolo;      //Articolo valutato
-    private int voto;
-    private String commento;
-    private String decisione;
+    private List<Utenti> valutatori = new ArrayList<>();        //Chi ha creato la valutazione
+    private Articoli articolo;          //Articolo valutato
+    private int voto;                   //Voto per l'articolo    
+    private String commento;            //Commento
+    private String decisione;           //Decisione
+    
     /**
      * @return the valutazione
      */
@@ -88,6 +89,9 @@ public class Valutazioni implements Comparable<Valutazioni>{
         this.valutatori = valutatori;
     }
     
+    @Override
+    //Una valutazione è più piccola di un'altra se il formato data dell'articolo
+    //valutato è minore (meno recente) di un altro.
     public int compareTo(Valutazioni other){
         return other.getArticolo().getFormatoData().compareTo(this.getArticolo().getFormatoData());
     }

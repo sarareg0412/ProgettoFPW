@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.io.File;
+
 
 /**
  *
@@ -12,15 +14,15 @@ package model;
  */
 public class Utenti {
 
-    private String username;
-    private String password;
-    private String nome;
-    private String cognome;
-    private String email;
-    private String ente;
-    private String status;
-    private int id;
-    private String url;
+    private String username;        //Username utente
+    private String password;        //Password utente
+    private String nome;            //Nome
+    private String cognome;         //Cognome
+    private String email;           //Email
+    private String ente;            //Ente
+    private String status;          //Organizzatore o Autore
+    private int id;                 //Ogni utente ha un id che lo contraddistingue
+    private File path;             //Path per l'immagine
 
     /**
      * @return the nome
@@ -120,6 +122,34 @@ public class Utenti {
         this.status = status;
     }
 
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    /**
+     * @return the path
+     */
+    public File getFile() {
+        return path;
+    }
+
+    /**
+     * @param path the path to set
+     */
+    public void setFile(File path) {
+        this.path = path;
+    }
+    
     @Override
     //Due utenti sono uguali se il loro username e password sono uguali
     public boolean equals(Object obj) {
@@ -144,31 +174,6 @@ public class Utenti {
         return true;
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    /**
-     * @return the url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * @param aUrl the url to set
-     */
-    public void setUrl(String aUrl) {
-        url = aUrl;
-    }
 }

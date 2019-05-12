@@ -119,8 +119,7 @@ public class ArticoliFactory {
 
         Articoli a6 = new Articoli();
         a6.setTitolo("Il ServletContainer");
-        s2 = "Servle        Collections.sort(articles);\n"
-                + "t";
+        s2 = "Servlet";
         a6.getCategorie().add(s2);
         a6.setData("4/5/19");
         a6.setFormatoData("2019-05-04");
@@ -142,7 +141,7 @@ public class ArticoliFactory {
         a7.setPid("7");
         articles.add(a7);
 
-        Collections.sort(articles);
+        Collections.sort(articles);     //Ordina la lista secondo il compareTo() degli articoli
 
         return articles;
     }
@@ -152,6 +151,7 @@ public class ArticoliFactory {
      *
      * @param titolo
      */
+    
     public Articoli getArticleByTitle(String titolo) {
         List<Articoli> articles = this.getArticles();
 
@@ -226,7 +226,29 @@ public class ArticoliFactory {
 
         return lista;
     }
+/**
+     * @param data
+     * @return lista di articoli che matchano il formato data inserito
+     */
+    public List<Articoli> getArticlesByFormato(String formato) {
 
+        List<Articoli> articles = this.getArticles();
+        List<Articoli> lista = null;    //Lista da restituire
+
+        /* Per ogni articolo, controllo se contiene la data 
+        inserita,e lo aggiungo alla lista da restituire */
+        for (Articoli u : articles) {
+            String s = u.getFormatoData();
+
+            if (s.equals(formato)) {
+                lista.add(u);
+            }
+
+        }
+
+        return lista;
+    }
+    
     /**
      * @param stato
      * @return lista di articoli che matchano lo stato inserito

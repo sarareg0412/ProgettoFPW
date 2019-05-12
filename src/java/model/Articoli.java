@@ -14,15 +14,15 @@ import java.util.List;
  */
 public class Articoli implements Comparable<Articoli> {
     private String titolo;
-    private List<Utenti> autori;
-    private List<String> categorie; //Max 6 categorie
-    private String data; //Le 3 celle contengono le cifre della data di creazione articolo
-    private String formatoData;
-    private String testo;
-    private String stato; //Aperto, in valutazione ecc 
-    private String pid;
+    private List<Utenti> autori;        //Lista di autori dell'articolo
+    private List<String> categorie;     //Lista di categorie
+    private String data;                //Data creazione articolo
+    private String formatoData;         //Formato aaaa-mm-gg
+    private String testo;               //Stringa contenente il testo
+    private String stato;               //Aperto, in valutazione, accettato, rifiutato 
+    private String pid;                 //Pid articolo
 
-    public Articoli(){
+    public Articoli(){      //Creo le liste
         this.autori = new ArrayList<>();
         this.categorie = new ArrayList<>();
     }
@@ -138,10 +138,6 @@ public class Articoli implements Comparable<Articoli> {
         this.formatoData = formatoData;
     } 
     
-    public boolean contieneCategoria (String categoria){
-        return this.categorie.contains(categoria);       
-    }
-    
     @Override
     //Due articoli sono uguali se il loro titolo e formato data sono uguali
     public boolean equals(Object obj) {
@@ -168,6 +164,8 @@ public class Articoli implements Comparable<Articoli> {
     }
  
     @Override
+    //Un articolo è più "piccolo" di un altro se il suo formato data è più piccolo,
+    //cioè se è meno recente
     public int compareTo(Articoli obj){
         return obj.formatoData.compareTo(this.formatoData);
     }

@@ -57,7 +57,12 @@
                                 <tr>
                                     <td>${u.getArticolo().getData().toString()} </td>
                                     <td>${u.getArticolo().getTitolo()} </td>
-                                    <td>${u.getVoto().toString()} </td> 
+                                    <c:if test="${u.getDecisione() == 'Attesa Valutazioni'}">
+                                        <td><a href="">Scegli valutatori</a></td> 
+                                    </c:if>
+                                    <c:if test="${u.getDecisione() != 'Attesa Valutazioni'}">
+                                        <td>${u.getVoto().toString()} </td> 
+                                    </c:if>
                                     
                                     <c:choose>
                                         <c:when test="${u.getDecisione() == 'Decidi'}">

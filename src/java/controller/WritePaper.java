@@ -38,21 +38,32 @@ public class WritePaper extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        //Setto la sessione
         HttpSession session = request.getSession();
 
         if (session.getAttribute("utenteId") != null) {//Utente già autenticato
-
-            if (request.getParameter("pid") == null) {
+            
+            //Se non viene passato un pid alla risposta, o se il pid non è valido, 
+            // o se un utente cerca di accedere a un articolo che non ha scritto, 
+            // o se si cerca di accedere a un atricolo che non ha lo stato "APERTO", si viene rimandati alla jsp errore
+            if (request.getParameter("pid") == null 
+                    || ArticoliFactory.getInstance().getArticleByPid(request.getParameter("pid")) == null
+                    || ArticoliFactory.getInstance().getArticleByPid(request.getParameter("pid")).
+                            getAutori().contains(UtentiFactory.getInstance().getUserById((int)session.getAttribute("utenteId"))) == false
+                    || ArticoliFactory.getInstance().getArticleByPid(request.getParameter("pid")).getStato().equals("APERTO") == false) {  
+                
                 request.getRequestDispatcher("./M1/errore.jsp").forward(request, response);
             } else {
                 //Setto l'utente
                 int autoreId = (int) session.getAttribute("utenteId");
                 Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
                 request.setAttribute("user", user);
-
+                
+                //Setto gli articoli dell'utente
                 List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
                 request.setAttribute("articoli", articoli);
+                
+                //Setto le valutazioni dell'utente
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
                 request.setAttribute("valutazioni", valutazioni);
 
@@ -76,13 +87,13 @@ public class WritePaper extends HttpServlet {
                     articoloScelto.setTesto(testo);
                     articoloScelto.setFormatoData(formatoData);
                 }
-
+                //Setto l'articolo scelto e invio alla jsp
                 request.setAttribute("scelto", articoloScelto);
                 request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request, response);
 
             }
         } else { //utente non autenticato
-            Utenti user = null;
+            //Invio comunque alla jsp
             request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request, response);
 
         }

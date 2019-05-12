@@ -33,10 +33,11 @@ public class Logout extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         
-        if(request.getParameter("logout")!= null){
-            session.invalidate();
+        if(request.getParameter("logout")!= null){      //Si è premuto il pulsante di logout
+            session.invalidate();       //Invalido la sessione e reinvio alla pagina di login
             request.getRequestDispatcher("/login.html").forward(request, response);
         }else{
+            //Reinvio comunque alla pagina di login
             request.getRequestDispatcher("/login.html").forward(request, response);
         }
     }

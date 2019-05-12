@@ -56,7 +56,7 @@
 
                     <section id="inserisci_immagine" class="col-10">
                         <label class="col-3" for="immagine">Foto:</label>
-                        <input type="file" class="col-7" id="foto_scelta" name="immagine" accept="image/png, image/jpeg" value="${uset.getUrl()}">
+                        <input type="file" class="col-7" id="foto_scelta" name="immagine" accept="image/png, image/jpeg" value="${uset.getFile().getAbsplutePath()}">
                     </section>
 
                     <section id="inserisci_email" class="col-10">

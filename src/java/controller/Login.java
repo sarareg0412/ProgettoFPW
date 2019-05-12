@@ -42,10 +42,9 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (request.getParameter("login") != null ) { //Utente non si è autenticato
-            String username = request.getParameter("userName");
+            String username = request.getParameter("userName");     //Prelevo dalla richiesta username e password
             String password = request.getParameter("password");
             
-            System.out.println(username);
             //Controllo se per il dato username e pw c'è un utente nella factory
             Utenti user = UtentiFactory.getInstance().getUserByUP(username, password);
 
@@ -54,31 +53,30 @@ public class Login extends HttpServlet {
                 session.setAttribute("utenteId", user.getId());
             }
             else
-            {
+            {   //Riporto alla pagina di login
                 request.getRequestDispatcher("./M1/login.jsp").forward(request,response);
             }
         } 
         
         if(session.getAttribute("utenteId")!= null){//Utente già autenticato
-            System.out.println(session.getAttribute("utenteId"));
-            //Setto l'utente
-            int id = (int) session.getAttribute("utenteId");
-            Utenti user = UtentiFactory.getInstance().getUserById(id);
             
+            int id = (int) session.getAttribute("utenteId");            //Salvo l'id
+            Utenti user = UtentiFactory.getInstance().getUserById(id);  //Cerco l'utente tramite il suo id
+            
+            //Setto i parametri della richiesta
             request.setAttribute("id",id);
             request.setAttribute("autore", user);
-            System.out.println(user.getStatus());
-
+            
+            //In base allo status dell'autore lo riporto alle diverse pagine
             if (user.getStatus().equals("Autore")) {
                 // devo riportare alla pagina con l'elenco degli articoli  
-                 System.out.println("Entrato");
                 request.getRequestDispatcher("/articoli.html").forward(request, response);
             } else { //utente è organizzatore
                 //Riporto alla pagina di gestione
                 request.getRequestDispatcher("/gestione.html").forward(request, response);
             }
             
-        } else { //utente non autenticato
+        } else { //utente non autenticato, lo riporto alla pagina di login
                 request.getRequestDispatcher("./M1/login.jsp").forward(request, response);
                 
         }

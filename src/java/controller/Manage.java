@@ -39,28 +39,32 @@ public class Manage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
+        //Setto la sessione
         HttpSession session = request.getSession();
 
         if (session.getAttribute("utenteId") != null) {//Utente già autenticato
             int autoreId = (int) session.getAttribute("utenteId");
-            //Cerco l'utente nel sistema e lo setto
+            //Cerco l'utente nel sistema e lo setto nella risposta
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
             request.setAttribute("user", user);
             
-            if(user.getStatus().equals("Autore")){
+            if(user.getStatus().equals("Autore")){  //L'utente Autore non può entrare in questa pagina, 
+                                                    //ma setto comunque gli attributi fondamentali per la richiesta
                 List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
-                request.setAttribute("articoli", articoli);
+                request.setAttribute("articoli", articoli);         //Articoli dell'utente
             
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
-                request.setAttribute("valutazioni", valutazioni);
+                request.setAttribute("valutazioni", valutazioni);   //Valutazioni dell'utente
             }else{
-                //Cerco gli articoli nel sistema e li setto
+                //Cerco tutti gli articoli nel sistema e li setto
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioni();
                 request.setAttribute("valutazionitot", valutazioni);
             }
+            //Riporto alla jsp gestion
             request.getRequestDispatcher("./M1/gestione.jsp").forward(request, response);
         
-        } else {
+        } else {    //Utente non autenticato
+            //Riporto comunque alla jsp gestione
             request.getRequestDispatcher("./M1/gestione.jsp").forward(request, response);
         }
     }
