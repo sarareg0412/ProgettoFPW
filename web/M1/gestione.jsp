@@ -55,7 +55,7 @@
                             </tr>
                             <c:forEach items="${valutazionitot}" var="u">
                                 <tr>
-                                    <td>${u.getArticolo().getData().toString()} </td>
+                                    <td>${u.getArticolo().getFormatoData().toString()} </td>
                                     <td>${u.getArticolo().getTitolo()} </td>
                                     <c:if test="${u.getDecisione() == 'Attesa Valutazioni'}">
                                         <td><a href="">Scegli valutatori</a></td> 
