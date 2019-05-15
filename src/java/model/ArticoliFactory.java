@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -40,7 +41,8 @@ public class ArticoliFactory {
      */
     public List<Articoli> getArticles() {
         List<Articoli> articles = new ArrayList<>();
-
+        long a = 2019;
+        Date date = new Date(a);
         String s1, s2, s3;
         s1 = "CSS";
         s2 = "HTML";
@@ -54,8 +56,7 @@ public class ArticoliFactory {
         a1.setTitolo("La SQL injection");
         a1.getCategorie().add(s1);
         a1.getCategorie().add(s2);
-        a1.setData("24/3/19");
-        a1.setFormatoData("2019-03-24");
+        a1.setFormatoData(date.valueOf("2019-04-10"));
         a1.setTesto("La Sql injection è una pratica che consente...");
         a1.setStato("APERTO");
         a1.getAutori().add(sara);
@@ -67,8 +68,7 @@ public class ArticoliFactory {
 
         a2.getCategorie().add(s1);
         a2.getCategorie().add(s3);
-        a2.setData("2/4/19");
-        a2.setFormatoData("2019-04-02");
+        a2.setFormatoData(date.valueOf("2019-01-08"));
         a2.setTesto("Le Servlet consentono di...");
         a2.setStato("APERTO");
         a2.getAutori().add(sara);
@@ -78,11 +78,9 @@ public class ArticoliFactory {
 
         Articoli a3 = new Articoli();
         a3.setTitolo("Il DataBase");
-
         s1 = "JSP";
         a3.getCategorie().add(s1);
-        a3.setData("4/5/19");
-        a3.setFormatoData("2019-05-04");
+        a3.setFormatoData(date.valueOf("2019-03-18"));
         a3.setTesto("Il DataBase è...");
         a3.setStato("APERTO");
         a3.getAutori().add(sara);
@@ -96,8 +94,7 @@ public class ArticoliFactory {
         a4.getAutori().add(mario);
         a4.getCategorie().add(s1);
         a4.getCategorie().add(s2);
-        a4.setData("2/4/19");
-        a4.setFormatoData("2019-04-02");
+        a4.setFormatoData(date.valueOf("2019-05-24"));
         a4.setTesto("La Servlet vengono utilizzate nella programmazione web...");
         a4.setStato("RIFIUTATO");
         a4.setPid("4");
@@ -109,8 +106,7 @@ public class ArticoliFactory {
         a5.getAutori().add(mario);
         a5.getCategorie().add(s1);
         a5.getCategorie().add(s3);
-        a5.setData("2/4/19");
-        a5.setFormatoData("2019-04-02");
+        a5.setFormatoData(date.valueOf("2019-05-01"));
         a5.setTesto("Il tag br viene utilizzato nel linguaggio html...");
         a5.setStato("IN VALUTAZIONE");
         a5.setPid("5");
@@ -121,8 +117,7 @@ public class ArticoliFactory {
         a6.setTitolo("Il ServletContainer");
         s2 = "Servlet";
         a6.getCategorie().add(s2);
-        a6.setData("4/5/19");
-        a6.setFormatoData("2019-05-04");
+        a6.setFormatoData(date.valueOf("2019-05-02"));
         a6.setTesto("Il Servlet Container è...");
         a6.setStato("RIFIUTATO");
         a6.getAutori().add(sara);
@@ -133,8 +128,7 @@ public class ArticoliFactory {
         a7.setTitolo("HTML 6");
         s1 = "HTML";
         a7.getCategorie().add(s1);
-        a7.setData("4/5/19");
-        a7.setFormatoData("2019-05-04");
+        a7.setFormatoData(date.valueOf("2019-02-18"));
         a7.setTesto("HTML 6...");
         a7.setStato("IN VALUTAZIONE");
         a7.getAutori().add(mario);
@@ -208,7 +202,7 @@ public class ArticoliFactory {
      * @param data
      * @return lista di articoli che matchano la data inserita
      */
-    public List<Articoli> getArticlesByDate(String data) {
+    public List<Articoli> getArticlesByDate(Date data) {
 
         List<Articoli> articles = this.getArticles();
         List<Articoli> lista = null;    //Lista da restituire
@@ -216,31 +210,9 @@ public class ArticoliFactory {
         /* Per ogni articolo, controllo se contiene la data 
         inserita,e lo aggiungo alla lista da restituire */
         for (Articoli u : articles) {
-            String s = u.getData();
+            Date s = u.getFormatoData();
 
             if (s.equals(data)) {
-                lista.add(u);
-            }
-
-        }
-
-        return lista;
-    }
-/**
-     * @param data
-     * @return lista di articoli che matchano il formato data inserito
-     */
-    public List<Articoli> getArticlesByFormato(String formato) {
-
-        List<Articoli> articles = this.getArticles();
-        List<Articoli> lista = null;    //Lista da restituire
-
-        /* Per ogni articolo, controllo se contiene la data 
-        inserita,e lo aggiungo alla lista da restituire */
-        for (Articoli u : articles) {
-            String s = u.getFormatoData();
-
-            if (s.equals(formato)) {
                 lista.add(u);
             }
 

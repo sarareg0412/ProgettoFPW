@@ -5,19 +5,19 @@
  */
 package model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ *sss
  * @author Sara
  */
 public class Articoli implements Comparable<Articoli> {
     private String titolo;
     private List<Utenti> autori;        //Lista di autori dell'articolo
     private List<String> categorie;     //Lista di categorie
-    private String data;                //Data creazione articolo
-    private String formatoData;         //Formato aaaa-mm-gg
+    private Date formatoData;         //Formato aaaa-mm-gg
     private String testo;               //Stringa contenente il testo
     private String stato;               //Aperto, in valutazione, accettato, rifiutato 
     private String pid;                 //Pid articolo
@@ -69,20 +69,6 @@ public class Articoli implements Comparable<Articoli> {
     }
 
     /**
-     * @return the data
-     */
-    public String getData() {
-        return data;
-    }
-
-    /**
-     * @param data the data to set
-     */
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    /**
      * @return the testo
      */
     public String getTesto() {
@@ -127,14 +113,14 @@ public class Articoli implements Comparable<Articoli> {
     /**
      * @return the formatoData
      */
-    public String getFormatoData() {
+    public Date getFormatoData() {
         return formatoData;
     }
 
     /**
      * @param formatoData the formatoData to set
      */
-    public void setFormatoData(String formatoData) {
+    public void setFormatoData(Date formatoData) {
         this.formatoData = formatoData;
     } 
     

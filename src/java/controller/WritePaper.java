@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -80,12 +81,13 @@ public class WritePaper extends HttpServlet {
 
                     //Salvo le nuove info inserite
                     String titolo = request.getParameter("titolo");
-                    String testo = request.getParameter("testo");
-                    String formatoData = request.getParameter("start"); //Le 3 celle contengono le cifre della data di creazione articolo
-                    
+                    String testo = request.getParameter("testo"); 
+                    long a = 20190412;
+                    Date data = new Date(a); ; //Le 3 celle contengono le cifre della data di creazione articolo
+                   
                     articoloScelto.setTitolo(titolo);
                     articoloScelto.setTesto(testo);
-                    articoloScelto.setFormatoData(formatoData);
+                    articoloScelto.setFormatoData(data.valueOf(request.getParameter("start")));
                 }
                 //Setto l'articolo scelto e invio alla jsp
                 request.setAttribute("scelto", articoloScelto);

@@ -54,7 +54,7 @@
                             </tr>
                             <c:forEach items="${articoli}" var="u">
                                 <tr>
-                                    <td>${u.getData().toString()} </td>
+                                    <td>${u.getFormatoData().toString()} </td>
                                     <td>${u.getTitolo()} </td>
                                     <td>${u.getStato()} </td>
                                     <c:choose>
