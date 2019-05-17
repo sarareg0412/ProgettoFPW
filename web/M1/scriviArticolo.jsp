@@ -112,12 +112,12 @@
 
                         <section id="inserisci_immagine">
                             <label class="col-3" for="immagine">Immagine:</label>
-                            <input type="file" class="col-7" id="foto_scelta" name="immagine" accept="image/png, image/jpeg">
+                            <input type="file" class="col-7" value="${scelto.getImmagine()}" id="foto_scelta" name="immagine" accept="image/png, image/jpeg">
                         </section>
                         <section id="inserisci_data">
                             <label class="col-3" for="start">Data:</label>
                             <input class="col-7" type="date" id="start" name="start"
-                                   value="${scelto.getFormatoData()}" 
+                                   value="${scelto.getData()}" 
                                    min="2018-01-01" max="2020-12-31">
                         </section>
                         <section id="inserisci_testo" class="col-10">

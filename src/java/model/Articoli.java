@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,12 @@ public class Articoli implements Comparable<Articoli> {
     private String titolo;
     private List<Utenti> autori;        //Lista di autori dell'articolo
     private List<String> categorie;     //Lista di categorie
-    private Date formatoData;         //Formato aaaa-mm-gg
+    private Date data;         //Formato aaaa-mm-gg
     private String testo;               //Stringa contenente il testo
     private String stato;               //Aperto, in valutazione, accettato, rifiutato 
     private String pid;                 //Pid articolo
-
+    private URL immagine;
+    
     public Articoli(){      //Creo le liste
         this.autori = new ArrayList<>();
         this.categorie = new ArrayList<>();
@@ -113,15 +115,15 @@ public class Articoli implements Comparable<Articoli> {
     /**
      * @return the formatoData
      */
-    public Date getFormatoData() {
-        return formatoData;
+    public Date getData() {
+        return data;
     }
 
     /**
      * @param formatoData the formatoData to set
      */
-    public void setFormatoData(Date formatoData) {
-        this.formatoData = formatoData;
+    public void setData(Date data) {
+        this.data = data;
     } 
     
     @Override
@@ -142,7 +144,7 @@ public class Articoli implements Comparable<Articoli> {
             return false;
         }
         
-        if (!this.formatoData.equals(other.formatoData)) {
+        if (!this.data.equals(other.data)) {
             return false;
         }
         
@@ -153,6 +155,20 @@ public class Articoli implements Comparable<Articoli> {
     //Un articolo è più "piccolo" di un altro se il suo formato data è più piccolo,
     //cioè se è meno recente
     public int compareTo(Articoli obj){
-        return obj.formatoData.compareTo(this.formatoData);
+        return obj.data.compareTo(this.data);
+    }
+
+    /**
+     * @return the immagine
+     */
+    public URL getImmagine() {
+        return immagine;
+    }
+
+    /**
+     * @param immagine the immagine to set
+     */
+    public void setImmagine(URL immagine) {
+        this.immagine = immagine;
     }
 }

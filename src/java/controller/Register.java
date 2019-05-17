@@ -66,7 +66,7 @@ public class Register extends HttpServlet {
                 String cognome = request.getParameter("cognome");
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
-                String ente = request.getParameter("ente");
+                URL ente = new URL(request.getParameter("ente"));
                 
                 File file = new File(request.getParameter("immagine"));
                 user.setNome(nome);

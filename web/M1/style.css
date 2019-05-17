@@ -286,13 +286,13 @@ td, th{
 }
 
 /* Classe per le icone nella tabella */
-.fas, .far::hover{
-    opacity: 0.5;
+i[class~="far"]::hover{
+    opacity: 0.7;
 }
-.fas::after{
+/*.fas::after{
     content: "";
     clear: both;
-}
+}*/
 
 /* SCRIVI UN ARTICOLO */
 /* Colonne di sinistra (Titolo, Autori ecc) */

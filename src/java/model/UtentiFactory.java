@@ -5,6 +5,8 @@
  */
 package model;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -26,42 +28,39 @@ public class UtentiFactory {
     }
     
     /** Ritorna la lista degli utenti loggati*/
-    public List<Utenti> getUsers(){
+    public List<Utenti> getUsers() throws MalformedURLException{
         List<Utenti> users = new ArrayList<>();
         File file = null;
-        
+        URL url = new URL("https://www.unica.it/unica/");
         Utenti u1 = new Utenti();
         u1.setId(1);
-        u1.setUsername("sarareg98");
         u1.setNome("Sara");
         u1.setCognome("Regali");
-        u1.setEmail("sara98.regali@gmail.it");
+        u1.setEmail("sara98.regali@gmail.com");
         u1.setPassword("sara");
-        u1.setEnte("universita di Cagliari");
+        u1.setEnte(url);
         u1.setStatus("Autore");
         u1.setFile(file);
         users.add(u1);
         
         Utenti u2 = new Utenti();
         u2.setId(2);
-        u2.setUsername("bianchigiann81");
         u2.setNome("Gianni");
         u2.setCognome("Bianchi");
-        u2.setEmail("gianni.bianchi@gmail.it");
+        u2.setEmail("gianni.bianchi@gmail.com");
         u2.setPassword("gianni");
-        u2.setEnte("universita di Cagliari");
+        u2.setEnte(url);
         u2.setStatus("Organizzatore");
         u2.setFile(file);
         users.add(u2);
         
         Utenti u3 = new Utenti();
         u3.setId(3);
-        u3.setUsername("mariorossi2");
         u3.setNome("Mario");
         u3.setCognome("Rossi");
-        u3.setEmail("mario.rossi@gmail.it");
+        u3.setEmail("mario.rossi@gmail.com");
         u3.setPassword("mario");
-        u3.setEnte("universita di Cagliari");
+        u3.setEnte(url);
         u3.setStatus("Autore");
         u3.setFile(file);
         users.add(u3);
@@ -71,11 +70,11 @@ public class UtentiFactory {
     /** Ritorna un utente in base al suo username e password
      * @return user*/
     
-    public Utenti getUserByUP(String username, String password){
+    public Utenti getUserByUP(String username, String password) throws MalformedURLException{
         List<Utenti> users = this.getUsers();
         
         for(Utenti u : users){
-            if(u.getUsername().equals(username) && u.getPassword().equals(password)){
+            if(u.getEmail().equals(username) && u.getPassword().equals(password)){
                 return u;
             }
         }
@@ -86,7 +85,7 @@ public class UtentiFactory {
      /** Ritorna un utente in base al suo nome e cognome
      * @return user*/
     
-    public Utenti getUserByNS(String nome, String cognome){
+    public Utenti getUserByNS(String nome, String cognome) throws MalformedURLException{
         List<Utenti> users = this.getUsers();
         
         for(Utenti u : users){
@@ -101,7 +100,7 @@ public class UtentiFactory {
      /** Ritorna un utente in base alla sua mail
      * @return user*/
     
-    public Utenti getUserByEmail(String email){
+    public Utenti getUserByEmail(String email) throws MalformedURLException{
         List<Utenti> users = this.getUsers();
         
         for(Utenti u : users){
@@ -116,7 +115,7 @@ public class UtentiFactory {
     /** Ritorna un utente in base al suo id
      * @return user*/
     
-    public Utenti getUserById(int id){
+    public Utenti getUserById(int id) throws MalformedURLException{
         List<Utenti> users = this.getUsers();
         
         for(Utenti u : users){
@@ -135,7 +134,7 @@ public class UtentiFactory {
      */
     
     /** Ritorna una lista di utenti appartenenti a quell'ente*/
-    public List<Utenti> getUsersByEnte(String ente) {
+    public List<Utenti> getUsersByEnte(String ente) throws MalformedURLException {
 
         List<Utenti> users = this.getUsers();
         List<Utenti> lista = null;    //Lista da restituire
@@ -143,7 +142,7 @@ public class UtentiFactory {
         /* Per ogni utente, controllo se appartiene all'ente
         inserito,e lo aggiungo alla lista da restituire */
         for (Utenti u : users) {
-            String s = u.getEnte();
+            URL s = u.getEnte();
 
             if (s.equals(ente)) {
                 lista.add(u);

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +31,7 @@ public class ValutazioniFactory {
         return singleton;
     }
     
-    public List<Valutazioni> getValutazioni() {
+    public List<Valutazioni> getValutazioni() throws MalformedURLException {
         List<Valutazioni> valutazioni = new ArrayList<>();
         
         Utenti sara = UtentiFactory.getInstance().getUserById(1);
@@ -108,7 +109,7 @@ public class ValutazioniFactory {
      *
      * @param titolo
      */
-    public List<Valutazioni> getValutazioniByArticle(Articoli articolo ) {
+    public List<Valutazioni> getValutazioniByArticle(Articoli articolo ) throws MalformedURLException {
         List<Valutazioni> valutazioni = this.getValutazioni();
         List<Valutazioni> lista = new ArrayList<>();
         
@@ -125,7 +126,7 @@ public class ValutazioniFactory {
      *
      * @param titolo
      */
-    public List<Valutazioni> getValutazioniByValutatore(Utenti valutatore ) {
+    public List<Valutazioni> getValutazioniByValutatore(Utenti valutatore ) throws MalformedURLException {
         List<Valutazioni> valutazioni = this.getValutazioni();
         List<Valutazioni> lista = new ArrayList<>();
         
@@ -143,7 +144,7 @@ public class ValutazioniFactory {
      *
      * @param titolo
      */
-    public List<Valutazioni> getValutazioniByMark(int voto) {
+    public List<Valutazioni> getValutazioniByMark(int voto) throws MalformedURLException {
         List<Valutazioni> valutazioni = this.getValutazioni();
         List<Valutazioni> lista = new ArrayList<>();
         

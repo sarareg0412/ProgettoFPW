@@ -6,6 +6,8 @@
 package model;
 
 import java.io.File;
+import java.net.URL;
+import static javax.servlet.SessionTrackingMode.URL;
 
 
 /**
@@ -14,12 +16,11 @@ import java.io.File;
  */
 public class Utenti {
 
-    private String username;        //Username utente
     private String password;        //Password utente
     private String nome;            //Nome
     private String cognome;         //Cognome
     private String email;           //Email
-    private String ente;            //Ente
+    private URL ente;            //Ente
     private String status;          //Organizzatore o Autore
     private int id;                 //Ogni utente ha un id che lo contraddistingue
     private File path;             //Path per l'immagine
@@ -53,20 +54,6 @@ public class Utenti {
     }
 
     /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
      * @return the cognome
      */
     public String getCognome() {
@@ -97,14 +84,14 @@ public class Utenti {
     /**
      * @return the ente
      */
-    public String getEnte() {
+    public URL getEnte() {
         return ente;
     }
 
     /**
      * @param ente the ente to set
      */
-    public void setEnte(String ente) {
+    public void setEnte(URL ente) {
         this.ente = ente;
     }
 
@@ -163,7 +150,7 @@ public class Utenti {
             return false;
         }
         Utenti other = (Utenti) obj;
-        if (!this.username.equals(other.username)) {
+        if (!this.email.equals(other.email)) {
             return false;
         }
 

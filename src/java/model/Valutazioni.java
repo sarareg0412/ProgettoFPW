@@ -90,9 +90,9 @@ public class Valutazioni implements Comparable<Valutazioni>{
     }
     
     @Override
-    //Una valutazione è più piccola di un'altra se il formato data dell'articolo
+    //Una valutazione è più piccola di un'altra se l'articolo
     //valutato è minore (meno recente) di un altro.
     public int compareTo(Valutazioni other){
-        return other.getArticolo().getFormatoData().compareTo(this.getArticolo().getFormatoData());
+        return -other.getArticolo().compareTo(this.getArticolo());
     }
 }
