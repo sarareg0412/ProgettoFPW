@@ -50,7 +50,7 @@
                             <tr id="prima_riga">
                                 <th>Data</th>
                                 <th>Titolo</th>
-                                <th>Valutazione</th>
+                                <th># Valutazioni</th>
                                 <th>Decidi</th>    
                             </tr>
                             <c:forEach items="${valutazionitot}" var="u">
