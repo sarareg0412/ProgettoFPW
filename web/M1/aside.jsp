@@ -25,7 +25,7 @@
             <form action="logout.html?logout=true" method="post">
                 <button type="submit">Logout</button>
             </form>
-            <section id="sottobox">
+            <section class="sottobox">
                 <h1>I miei articoli: </h1>
                 <ul>
                     <c:forEach items="${articoli}" var="u">
@@ -34,7 +34,7 @@
 
                 </ul>
             </section>
-            <section id="sottobox">
+            <section class="sottobox">
                 <h1>Da valutare: </h1>
                 <ul>
                     <c:forEach items="${valutazioni}" var="u">

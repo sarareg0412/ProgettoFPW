@@ -32,6 +32,7 @@ public class UtentiFactory {
         List<Utenti> users = new ArrayList<>();
         File file = null;
         URL url = new URL("https://www.unica.it/unica/");
+        URL foto = new URL("https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg");
         Utenti u1 = new Utenti();
         u1.setId(1);
         u1.setNome("Sara");
@@ -40,7 +41,7 @@ public class UtentiFactory {
         u1.setPassword("sara");
         u1.setEnte(url);
         u1.setStatus("Autore");
-        u1.setFile(file);
+        u1.setImmagine(foto);
         users.add(u1);
         
         Utenti u2 = new Utenti();
@@ -51,7 +52,7 @@ public class UtentiFactory {
         u2.setPassword("gianni");
         u2.setEnte(url);
         u2.setStatus("Organizzatore");
-        u2.setFile(file);
+        u2.setImmagine(foto);
         users.add(u2);
         
         Utenti u3 = new Utenti();
@@ -62,7 +63,7 @@ public class UtentiFactory {
         u3.setPassword("mario");
         u3.setEnte(url);
         u3.setStatus("Autore");
-        u3.setFile(file);
+        u3.setImmagine(foto);
         users.add(u3);
         return users;
     }

@@ -85,12 +85,12 @@ public class WritePaper extends HttpServlet {
                     String testo = request.getParameter("testo"); 
                     long a = 20190412;
                     Date data = new Date(a); ; //Le 3 celle contengono le cifre della data di creazione articolo
-                    //URL url = new URL(request.getParameter("immagine"));
+                    URL url = new URL(request.getParameter("immagine"));
                     
                     articoloScelto.setTitolo(titolo);
                     articoloScelto.setTesto(testo);
                     articoloScelto.setData(data.valueOf(request.getParameter("start")));
-                    //articoloScelto.setImmagine(url);
+                    articoloScelto.setImmagine(url);
                 }
                 //Setto l'articolo scelto e invio alla jsp
                 request.setAttribute("scelto", articoloScelto);

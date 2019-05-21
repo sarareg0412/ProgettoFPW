@@ -23,7 +23,7 @@ public class Utenti {
     private URL ente;            //Ente
     private String status;          //Organizzatore o Autore
     private int id;                 //Ogni utente ha un id che lo contraddistingue
-    private File path;             //Path per l'immagine
+    private URL immagine;             //Path per l'immagine
 
     /**
      * @return the nome
@@ -126,15 +126,15 @@ public class Utenti {
     /**
      * @return the path
      */
-    public File getFile() {
-        return path;
+    public URL getImmagine() {
+        return immagine;
     }
 
     /**
      * @param path the path to set
      */
-    public void setFile(File path) {
-        this.path = path;
+    public void setImmagine(URL immagine) {
+        this.immagine = immagine;
     }
     
     @Override

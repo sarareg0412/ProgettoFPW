@@ -50,6 +50,7 @@ h2.indice {
 /* header */
 #sfondo_header {
     background-color: #24415E;
+    color: #24415E;
     height: 70px;
     margin-top: 0px;
     padding-top: 0px;
@@ -179,11 +180,11 @@ aside > h1 {
     margin-bottom: 0px;
 }
 
-aside > section#sottobox {
+aside > section.sottobox {
     padding-left: 10px;
 }
 
-section#sottobox > ul{
+section.sottobox > ul{
     margin-top: 0px;
 }
 /* Sezioni centrali*/
@@ -286,7 +287,7 @@ td, th{
 }
 
 /* Classe per le icone nella tabella */
-i[class~="far"]::hover{
+i[class~="far"]:hover{
     opacity: 0.7;
 }
 /*.fas::after{
@@ -304,12 +305,12 @@ label.col-3 {
 }
 
 /* Resto dei box per inserimento informazioni */
-#inserisci_categoria, #inserisci_password, #inserisci_immagine, #inserisci_autori, #inserisci_titolo, #inserisci_testo, #inserisci_email, #inserisci_data {
+#inserisci_categoria, #inserisci_nome, #inserisci_cognome, #inserisci_password, #inserisci_immagine, #inserisci_autori, #inserisci_titolo, #inserisci_testo, #inserisci_email, #inserisci_data {
     margin-bottom: 10px;
 }
 
 /* Molti box hanno le stesse grandezze*/
-section#inserisci_titolo, #inserisci_password, #inserisci_email, section#inserisci_data, #inserisci_immagine{
+section#inserisci_titolo, #inserisci_nome, #inserisci_cognome, #inserisci_password, #inserisci_email, section#inserisci_data, #inserisci_immagine{
     height: 30px;
 }
 
@@ -325,7 +326,7 @@ form#salva_articolo{
 }
 
 /* Molti campi di input hanno le stesse grandezze*/
-section#cancel, button#save, button#save_articolo, input#corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, input#email {
+section#cancel, button#save, button#save_articolo, .corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, input#email {
     width: 50%;
     height: 28px;
     margin-left: 15px;
@@ -360,7 +361,7 @@ textarea.col-7 {
 }
 
 /* Sezione per separare il pulsante per salvare*/
-section#nascosta {
+.nascosta {
     visibility: hidden;
 }
 

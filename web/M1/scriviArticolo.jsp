@@ -44,7 +44,7 @@
                     <form id="salva_articolo" class="col-10" action="scriviArticolo.html" method="post">
                         <section id="inserisci_titolo">
                             <label class="col-3" for="titolo">Titolo:</label>
-                            <input class="col-7" type="text" name="titolo" id="corto" value="${scelto.getTitolo()}" />
+                            <input class="col-7 corto" type="text" name="titolo" value="${scelto.getTitolo()}" />
                         </section>
 
                         <section id="inserisci_autori">
@@ -66,7 +66,7 @@
                         <section id="inserisci_categoria" >
                             <label class="col-3" for="category">Categoria:</label>
                             <section id="categorie" class="col-7" >
-                                
+
                                 <c:forEach items="${scelto.getCategorie()}" var="c">
                                     <c:if test="${c=='CSS'}">
                                         <input type="checkbox" name="category" value="css" checked="true" >CSS
@@ -111,8 +111,8 @@
                         </section>
 
                         <section id="inserisci_immagine">
-                            <label class="col-3" for="immagine">Immagine:</label>
-                            <input type="file" class="col-7" value="${scelto.getImmagine()}" id="foto_scelta" name="immagine" accept="image/png, image/jpeg">
+                            <label class="col-3" for="immagine">Foto:</label>
+                            <input class="col-7 corto" type="text" name="immagine" value="${scelto.getImmagine()}" />
                         </section>
                         <section id="inserisci_data">
                             <label class="col-3" for="start">Data:</label>
@@ -124,11 +124,11 @@
                             <label for="testo" class="col-3">Testo:</label>
                             <textarea class="col-7" name="testo" id="lungo">${scelto.getTesto()}</textarea>
                         </section>
-                        <section class="col-3" id="nascosta">
+                        <section class="col-3 nascosta">
                             <p>Non deve essere visualizzato</p>
                         </section>
 
-                        <input type="hidden" name="pid" value="${scelto.getPid()}"><br/>
+                        <input type="hidden" name="pid" value="${scelto.getPid()}">
                         <button class="col-7" type="submit" name="modifica" id="save_articolo">Salva</button>
                     </form>
                 </section>

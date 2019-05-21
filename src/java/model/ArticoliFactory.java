@@ -6,6 +6,7 @@
 package model;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,7 +53,8 @@ public class ArticoliFactory {
         Utenti sara = UtentiFactory.getInstance().getUserById(1);
         Utenti gianni = UtentiFactory.getInstance().getUserById(2);
         Utenti mario = UtentiFactory.getInstance().getUserById(3);
-
+        URL foto = new URL("https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg");
+        
         Articoli a1 = new Articoli();
         a1.setTitolo("La SQL injection");
         a1.getCategorie().add(s1);
@@ -62,6 +64,7 @@ public class ArticoliFactory {
         a1.setStato("APERTO");
         a1.getAutori().add(sara);
         a1.setPid("1");
+        a1.setImmagine(foto);
         articles.add(a1);
 
         Articoli a2 = new Articoli();
@@ -75,6 +78,7 @@ public class ArticoliFactory {
         a2.getAutori().add(sara);
         a2.getAutori().add(mario);
         a2.setPid("2");
+        a2.setImmagine(foto);
         articles.add(a2);
 
         Articoli a3 = new Articoli();
@@ -86,7 +90,7 @@ public class ArticoliFactory {
         a3.setStato("APERTO");
         a3.getAutori().add(sara);
         a3.setPid("3");
-
+        a3.setImmagine(foto);
         articles.add(a3);
 
         Articoli a4 = new Articoli();
@@ -99,7 +103,7 @@ public class ArticoliFactory {
         a4.setTesto("La Servlet vengono utilizzate nella programmazione web...");
         a4.setStato("RIFIUTATO");
         a4.setPid("4");
-
+        a4.setImmagine(foto);
         articles.add(a4);
 
         Articoli a5 = new Articoli();
@@ -111,7 +115,7 @@ public class ArticoliFactory {
         a5.setTesto("Il tag br viene utilizzato nel linguaggio html...");
         a5.setStato("IN VALUTAZIONE");
         a5.setPid("5");
-
+        a5.setImmagine(foto);
         articles.add(a5);
 
         Articoli a6 = new Articoli();
@@ -123,6 +127,7 @@ public class ArticoliFactory {
         a6.setStato("RIFIUTATO");
         a6.getAutori().add(sara);
         a6.setPid("6");
+        a6.setImmagine(foto);
         articles.add(a6);
 
         Articoli a7 = new Articoli();
@@ -134,6 +139,7 @@ public class ArticoliFactory {
         a7.setStato("IN VALUTAZIONE");
         a7.getAutori().add(mario);
         a7.setPid("7");
+        a7.setImmagine(foto);
         articles.add(a7);
 
         Collections.sort(articles);     //Ordina la lista secondo il compareTo() degli articoli

@@ -67,14 +67,13 @@ public class Register extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 URL ente = new URL(request.getParameter("ente"));
-                
-                File file = new File(request.getParameter("immagine"));
+                URL foto = new URL(request.getParameter("immagine"));
                 user.setNome(nome);
                 user.setCognome(cognome);
                 user.setEmail(email);
                 user.setPassword(password);
                 user.setEnte(ente);
-                user.setFile(file);
+                user.setImmagine(foto);
 
             }
             //Setto l'utente

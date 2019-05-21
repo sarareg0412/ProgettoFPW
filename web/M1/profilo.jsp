@@ -33,7 +33,7 @@
 
                 <section id="sfondo_descrizioni" class="profilo">
                     <section id="immagine_profilo" class="col-3">
-                        <img  title="Foto profilo" alt="Immagine del profilo" src='./M1/images/picture.jpg' width="120" height="120">
+                        <img  title="Foto profilo" alt="Immagine del profilo" src='${user.getImmagine()}' width="170" height="120">
                     </section>
                     <c:if test="${user != null}">
                         <h1 class="col-3">Profilo</h1>
@@ -44,19 +44,20 @@
                     </c:if>    
                 </section>
                 <form id="salva_profilo" class="col-10" action="registrazione.html" method="post">
-                    <section id="inserisci_titolo" class="col-10">
+                    <section id="inserisci_nome" class="col-10">
                         <label class="col-3" for="nome">Nome:</label>
-                        <input class="col-7" type="text" name="nome" id="corto" value="${user.getNome()}" />
+                        <input class="col-7 corto" type="text" name="nome" value="${user.getNome()}" />
                     </section>
 
-                    <section id="inserisci_titolo" class="col-10">
+                    <section id="inserisci_cognome" class="col-10">
                         <label class="col-3" for="cognome">Cognome:</label>
-                        <input class="col-7" type="text" name="cognome" id="corto" value="${user.getCognome()}" />
+                        <input class="col-7 corto" type="text" name="cognome" value="${user.getCognome()}" />
                     </section>
 
                     <section id="inserisci_immagine" class="col-10">
                         <label class="col-3" for="immagine">Foto:</label>
-                        <input type="file" class="col-7" id="foto_scelta" name="immagine" accept="image/png, image/jpeg" value="${uset.getFile().getAbsplutePath()}">
+                        <input class="col-7 corto" type="text" name="immagine" value="${user.getImmagine()}" />
+                        
                     </section>
 
                     <section id="inserisci_email" class="col-10">
@@ -70,10 +71,10 @@
                     </section>
                     <section id="inserisci_titolo" class="col-10">
                         <label class="col-3" for="ente">Ente:</label>
-                        <input class="col-7" type="text" name="ente" id="corto" value="${user.getEnte()}" />
+                        <input class="col-7 corto" type="text" name="ente" value="${user.getEnte()}" />
                     </section>  
 
-                    <section class="col-3" id="nascosta">
+                    <section class="col-3 nascosta">
                         <p>Non deve essere visualizzato</p>
                     </section>
 
@@ -88,7 +89,7 @@
 
                 </form>
 
-                <section class="col-3" id="nascosta">
+                <section class="col-3 nascosta">
                     <p>Non deve essere visualizzato</p>
                 </section>
 

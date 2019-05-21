@@ -1,4 +1,4 @@
-<%-- 
+h3<%-- 
     Document   : valutazione
     Created on : 25-apr-2019, 13.25.33
     Author     : Sara
@@ -32,14 +32,14 @@
                     <h1>La SQL Injection</h1>
                     <section id="sottotitoli" class="col-10">
                         <h2 class="col-3">Autori: Vari</h2>
-                        <h2 class="col-3">Categoria: HTML, CSS</h3> 
+                        <h2 class="col-3">Categoria: HTML, CSS</h2> 
                         <h3 class="col-4">Data: 31 Marzo 2018</h3>
                     </section>
                     
                 </section>
 
                 <section id="immagine">
-                    <img  title="Foto aticolo" alt="La sql injection" src='images/sql.jpg'>
+                    <img  title="Foto aticolo" alt="La sql injection" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNKFp2Zg2UpitVBvziMobicmXxaW3iKZkqSnetj6IkKygB728KVg'>
                 </section>
                 <section id="contenuto">
                     <p>
@@ -57,22 +57,22 @@
                         <p id="valuta" class="col-4">La tua valutazione: </p>
                         <div id="scelta_voto" class="col-6">
                             <label for="1">1</label>
-                            <input type="radio" name="voto" id="voto-1" value="1">
+                            <input type="radio" name="voto1" id="voto-1" value="1">
                             <label for="2">2</label>
-                            <input type="radio" name="voto" id="voto-2" value="2">
+                            <input type="radio" name="voto2" id="voto-2" value="2">
                             <label for="3">3</label>
-                            <input type="radio" name="voto" id="voto-3" value="3">
+                            <input type="radio" name="voto3" id="voto-3" value="3">
                              <label for="4">4</label>
-                            <input type="radio" name="voto" id="voto-4" value="4">
+                            <input type="radio" name="voto4" id="voto-4" value="4">
                              <label for="5">5</label>
-                            <input type="radio" name="voto" id="voto-5" value="5">
+                            <input type="radio" name="voto5" id="voto-5" value="5">
                         </div>
                     </form>
                     <form action="demo_form.asp" method="get" class="col-10">
                         <label for="lungo">Se sei un autore inserisci un commento:</label>
-                        <textarea name="lungo" id="lungo"></textarea>
+                        <textarea name="lungo" class="lungo"></textarea>
                         <label for="lungo">Se sei un organizzatore inserisci un commento:</label>
-                        <textarea name="lungo" id="lungo"></textarea>
+                        <textarea name="lungo" class="lungo"></textarea>
                     </form>
                     <form action="articoli.html" method="post">
                         <button type="submit">Invia</button>
