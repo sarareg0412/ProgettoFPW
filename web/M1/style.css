@@ -52,20 +52,18 @@ h2.indice {
     background-color: #24415E;
     color: #24415E;
     height: 70px;
-    margin-top: 0px;
-    padding-top: 0px;
 }
 
 /* ID per il box contenente il titolo */
 #sfondo_header > #titolo {
     background-color: #24415E;
     height: 70px;
-    margin-top: 0px;
     position: absolute;
 }
 
 /* Nome del sito */
 h1.titolo {
+    background-color: #24415E;
     color: #fff;  
     font-size: 18px;
     padding: 10px;
@@ -92,6 +90,7 @@ h1.titolo {
 }
 
 input:focus {
+    color: black;
     background-color: #EEEEEE;
     border: none;
 }
@@ -109,6 +108,7 @@ button {
 }
 
 button:active {
+    background-color: #906C37;
     color: #24415E;
     border: none;
 }
@@ -154,6 +154,7 @@ nav#sfondo_menu > ul#menu_pagine > li {
 }
 
 nav#sfondo_menu > ul#menu_pagine > li > a {
+    background-color: #24415E;
     color: white;
     height: 70px;
     margin-top: 0px;
@@ -169,7 +170,7 @@ nav#sfondo_menu > ul#menu_pagine > li > a:hover {
 /* Barra laterale*/
 aside#barra_laterale {
     height: 843px;
-    /*background-color: #F6DDCC;*/
+    color: #24415E;
     background-color: #FFF4B9;
     padding-left: 10px;
     padding-right: 10px;
@@ -198,7 +199,6 @@ main::after {
 /* Sezione contenente il resto del content */
 section#resto_pagina{
     padding: 10px;  /*Stacca le scritte dalla parte superiore*/
-    padding-bottom: 0px;
     margin: 0px;
 }
 
@@ -209,7 +209,6 @@ section#sfondo_descrizioni {
 
 section#sfondo_descrizioni > h1{
     font-size: 45px;
-    color: #24415E;
 }
 
 section#sfondo_descrizioni > section#sottotitoli {
@@ -326,7 +325,7 @@ form#salva_articolo{
 }
 
 /* Molti campi di input hanno le stesse grandezze*/
-section#cancel, button#save, button#save_articolo, .corto, input#id_pass, textarea.col-7, input#start, input#foto_scelta, input#email {
+section#cancel, button#save, button#save_articolo, .corto, input#id_pass, input#start, input#foto_scelta, input#email {
     width: 50%;
     height: 28px;
     margin-left: 15px;
@@ -358,6 +357,9 @@ section#categorie > input {
 
 textarea.col-7 {
     height: 250px;
+    width: 50%;
+    margin-left: 15px;
+    margin-bottom: 10px; 
 }
 
 /* Sezione per separare il pulsante per salvare*/
