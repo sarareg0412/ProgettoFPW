@@ -331,9 +331,9 @@ section#cancel, button#save, button#save_articolo, .corto, input#id_pass, input#
     margin-left: 15px;
     margin-bottom: 10px; 
 }
-
-section#inserisci_autori {
-    height: 80px;
+section#inserisci_autori{
+    height: 50px;
+    
 }
 
 /* Paragrafi che contengono i nomi già inseriti*/

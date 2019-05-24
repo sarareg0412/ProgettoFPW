@@ -68,43 +68,20 @@
                             <section id="categorie" class="col-7" >
 
                                 <c:forEach items="${scelto.getCategorie()}" var="c">
-                                    <c:if test="${c=='CSS'}">
-                                        <input type="checkbox" name="category" value="css" checked="true" >CSS
-                                    </c:if>
-                                    <c:if test="${c!='CSS'}">
-                                        <input type="checkbox" name="category" value="css">CSS
-                                    </c:if>
-                                    <c:if test="${c=='HTML'}">
-                                        <input type="checkbox" name="category" value="html" checked="true" >HTML
-                                    </c:if>
-                                    <c:if test="${c!='HTML'}">
-                                        <input type="checkbox" name="category" value="html">HTML
-                                    </c:if>
-                                    <c:if test="${c=='JSP'}">
-                                        <input type="checkbox" name="category" value="jsp" checked="true" >JSP
-                                    </c:if>
-                                    <c:if test="${c!='JSP'}">
-                                        <input type="checkbox" name="category" value="jsp">JSP
-                                    </c:if>                                
+                                    <input type="checkbox" name="category" value="css" <c:if test="${c=='CSS'}"> checked  </c:if>>CSS
+
+                                    <input type="checkbox" name="category" value="html"  <c:if test="${c=='HTML'}"> checked </c:if>>HTML
+
+                                    <input type="checkbox" name="category" value="jsp" <c:if test="${c=='JSP'}"> checked </c:if> >JSP
+
                                     </br>
-                                    <c:if test="${c=='AJAX'}">
-                                        <input type="checkbox" name="category" value="ajax" checked="true" >AJAX
-                                    </c:if>
-                                    <c:if test="${c!='AJAX'}">
-                                        <input type="checkbox" name="category" value="ajax">AJAX
-                                    </c:if>   
-                                    <c:if test="${c=='JavaScript'}">
-                                        <input type="checkbox" name="category" value="javascript" checked="true" >JavaScript
-                                    </c:if>
-                                    <c:if test="${c!='JavaScript'}">
-                                        <input type="checkbox" name="category" value="javascript">JavaScript
-                                    </c:if>    
-                                    <c:if test="${c=='Servlet'}">
-                                        <input type="checkbox" name="category" value="servlet" checked="true" >Servlet
-                                    </c:if>
-                                    <c:if test="${c!='Servlet'}">
-                                        <input type="checkbox" name="category" value="servlet">Servlet
-                                    </c:if>    
+
+                                    <input type="checkbox" name="category" value="ajax" <c:if test="${c=='AJAX'}"> checked </c:if> >AJAX
+                                    
+                                    <input type="checkbox" name="category" value="javascript" <c:if test="${c=='JavaScript'}"> checked </c:if> >JavaScript
+
+                                    <input type="checkbox" name="category" value="servlet" <c:if test="${c=='Servlet'}"> checked </c:if> >Servlet
+                                    
                                 </c:forEach>
 
                             </section>
