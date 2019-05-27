@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -86,7 +87,13 @@ public class WritePaper extends HttpServlet {
                     long a = 20190412;
                     Date data = new Date(a); ; //Le 3 celle contengono le cifre della data di creazione articolo
                     URL url = new URL(request.getParameter("immagine"));
+                    String[] categorie = request.getParameterValues("category");
+                    List<String> categ_nuove = new ArrayList<>();
                     
+                    for (String s: categorie){
+                        categ_nuove.add(s);
+                    }
+                    articoloScelto.setCategorie(categ_nuove);
                     articoloScelto.setTitolo(titolo);
                     articoloScelto.setTesto(testo);
                     articoloScelto.setData(data.valueOf(request.getParameter("start")));

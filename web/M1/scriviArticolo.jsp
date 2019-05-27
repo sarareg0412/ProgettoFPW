@@ -67,22 +67,22 @@
                             <label class="col-3" for="category">Categoria:</label>
                             <section id="categorie" class="col-7" >
 
-                                <c:forEach items="${scelto.getCategorie()}" var="c">
-                                    <input type="checkbox" name="category" value="css" <c:if test="${c=='CSS'}"> checked  </c:if>>CSS
+                                
+                                    <input type="checkbox" name="category" value="CSS" <c:if test="${scelto.getCategorie().contains('CSS')}"> checked  </c:if>>CSS
 
-                                    <input type="checkbox" name="category" value="html"  <c:if test="${c=='HTML'}"> checked </c:if>>HTML
+                                    <input type="checkbox" name="category" value="HTML"  <c:if test="${scelto.getCategorie().contains('HTML')}" > checked </c:if>>HTML
 
-                                    <input type="checkbox" name="category" value="jsp" <c:if test="${c=='JSP'}"> checked </c:if> >JSP
+                                    <input type="checkbox" name="category" value="JSP" <c:if test="${scelto.getCategorie().contains('JSP')}" > checked </c:if> >JSP
 
                                     </br>
 
-                                    <input type="checkbox" name="category" value="ajax" <c:if test="${c=='AJAX'}"> checked </c:if> >AJAX
+                                    <input type="checkbox" name="category" value="AJAX" <c:if test="${scelto.getCategorie().contains('AJAX')}"> checked </c:if> >AJAX
                                     
-                                    <input type="checkbox" name="category" value="javascript" <c:if test="${c=='JavaScript'}"> checked </c:if> >JavaScript
+                                    <input type="checkbox" name="category" value="JavaScript" <c:if test="${scelto.getCategorie().contains('JavaScript')}"> checked </c:if> >JavaScript
 
-                                    <input type="checkbox" name="category" value="servlet" <c:if test="${c=='Servlet'}"> checked </c:if> >Servlet
+                                    <input type="checkbox" name="category" value="Servlet" <c:if test="${scelto.getCategorie().contains('Servlet')}"> checked </c:if> >Servlet
                                     
-                                </c:forEach>
+                              
 
                             </section>
                         </section>
