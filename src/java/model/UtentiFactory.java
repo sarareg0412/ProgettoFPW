@@ -49,64 +49,35 @@ public class UtentiFactory {
      */
     public List<Utenti> getUsers() throws MalformedURLException {
         List<Utenti> users = new ArrayList<>();
-        URL url = new URL("https://www.unica.it/unica/");
-        URL foto = new URL("https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg");
-
+        
         try {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select * from autori";
+            String sql = "select * from utente";
             ResultSet set = stmt.executeQuery(sql);
 
             while (set.next()) {
                 Utenti utente = new Utenti();
-                utente.setId(set.getInt("id_autore"));
+                
+                utente.setId(set.getInt("id"));
                 utente.setNome(set.getString("nome"));
-                //{...}
+                utente.setCognome(set.getString("cognome"));
+                utente.setImmagine(new URL(set.getString("foto")));
+                utente.setEmail(set.getString("email"));
+                utente.setPassword(set.getString("password"));
+                utente.setStatus(set.getString("status"));
+                utente.setEnte(new URL(set.getString("ente")));
                 users.add(utente);
             }
-
+        
             stmt.close();
             conn.close();
+        
         } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
-
-        /*
-        Utenti u1 = new Utenti();
-        u1.setId(1);
-        u1.setNome("Sara");
-        u1.setCognome("Regali");
-        u1.setEmail("sara98.regali@gmail.com");
-        u1.setPassword("sara");
-        u1.setEnte(url);
-        u1.setStatus("Autore");
-        u1.setImmagine(foto);
-        users.add(u1);
         
-        Utenti u2 = new Utenti();
-        u2.setId(2);
-        u2.setNome("Gianni");
-        u2.setCognome("Bianchi");
-        u2.setEmail("gianni.bianchi@gmail.com");
-        u2.setPassword("gianni");
-        u2.setEnte(url);
-        u2.setStatus("Organizzatore");
-        u2.setImmagine(foto);
-        users.add(u2);
-        
-        Utenti u3 = new Utenti();
-        u3.setId(3);
-        u3.setNome("Mario");
-        u3.setCognome("Rossi");
-        u3.setEmail("mario.rossi@gmail.com");
-        u3.setPassword("mario");
-        u3.setEnte(url);
-        u3.setStatus("Autore");
-        u3.setImmagine(foto);
-        users.add(u3);
-         */
         return users;
     }
 
@@ -121,7 +92,7 @@ public class UtentiFactory {
             Boolean loggedIn;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from utenti where email = ? and password = ?";
+            String sql = "select * from utente where email = ? and password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, email);
@@ -133,9 +104,16 @@ public class UtentiFactory {
 
             if (loggedIn == true) {
                 Utenti utente = new Utenti();
-                utente.setId(set.getInt("id_autore"));
+                
+                utente.setId(set.getInt("id"));
                 utente.setNome(set.getString("nome"));
-                //{...}
+                utente.setCognome(set.getString("cognome"));
+                utente.setImmagine(new URL(set.getString("foto")));
+                utente.setEmail(set.getString("email"));
+                utente.setPassword(set.getString("password"));
+                utente.setStatus(set.getString("status"));
+                utente.setEnte(new URL(set.getString("ente")));
+                
                 stmt.close();
                 conn.close();
                 return utente;
@@ -144,47 +122,6 @@ public class UtentiFactory {
             }
         } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
-        }
-
-        /*List<Utenti> users = this.getUsers();
-        
-        for(Utenti u : users){
-            if(u.getEmail().equals(username) && u.getPassword().equals(password)){
-                return u;
-            }
-        }*/
-        return null;
-    }
-
-    /**
-     * Ritorna un utente in base al suo nome e cognome
-     *
-     * @return user
-     */
-    public Utenti getUserByNS(String nome, String cognome) throws MalformedURLException {
-        List<Utenti> users = this.getUsers();
-
-        for (Utenti u : users) {
-            if (u.getNome().equals(nome) && u.getCognome().equals(cognome)) {
-                return u;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Ritorna un utente in base alla sua mail
-     *
-     * @return user
-     */
-    public Utenti getUserByEmail(String email) throws MalformedURLException {
-        List<Utenti> users = this.getUsers();
-
-        for (Utenti u : users) {
-            if (u.getEmail().equals(email)) {
-                return u;
-            }
         }
 
         return null;
@@ -196,58 +133,110 @@ public class UtentiFactory {
      * @return user
      */
     public Utenti getUserById(int id) throws MalformedURLException {
-        List<Utenti> users = this.getUsers();
+        try {
+            Boolean loggedIn;
 
-        for (Utenti u : users) {
-            if (u.getId() == id) {
-                return u;
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "select * from utenti where id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, id);
+
+            ResultSet set = stmt.executeQuery();
+
+            loggedIn = set.next(); 
+
+            if (loggedIn == true) {
+                Utenti utente = new Utenti();
+                
+                utente.setId(set.getInt("id"));
+                utente.setNome(set.getString("nome"));
+                utente.setCognome(set.getString("cognome"));
+                utente.setImmagine(new URL(set.getString("foto")));
+                utente.setEmail(set.getString("email"));
+                utente.setPassword(set.getString("password"));
+                utente.setStatus(set.getString("status"));
+                utente.setEnte(new URL(set.getString("ente")));
+                
+                stmt.close();
+                conn.close();
+                return utente;
+            } else {
+                return null;
             }
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
         return null;
     }
 
     /**
-     *
-     * @param ente
-     * @return Lista utenti
-     */
-    /**
-     * Ritorna una lista di utenti appartenenti a quell'ente
-     */
-    public List<Utenti> getUsersByEnte(String ente) throws MalformedURLException {
+        try {
+            String autore = "DELETE FROM autori WHERE id_autore = ?";
 
-        List<Utenti> users = this.getUsers();
-        List<Utenti> lista = null;    //Lista da restituire
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
 
-        /* Per ogni utente, controllo se appartiene all'ente
-        inserito,e lo aggiungo alla lista da restituire */
-        for (Utenti u : users) {
-            URL s = u.getEnte();
-
-            if (s.equals(ente)) {
-                lista.add(u);
+            conn.commit();
+            conn.setAutoCommit(true); //Per completezza
+            stmt.close();
+            conn.close();
+            
+        } catch (SQLException e) {
+            Logger.getLogger(AutoreFactory.class.getName()).log(Level.SEVERE, null, e);
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AutoreFactory.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+            return false;
+
         }
+        return null;
 
-        return lista;
     }
-
+     */
+    
     public Boolean deleteUtente(int id) {
         Connection conn = null;
+        
         try {
             conn = DbManager.getInstance().getDbConnection();
             conn.setAutoCommit(false);
 
-            String articolo = "delete from articoli where autore = ?";
+            String articolo = "delete from utenti_articoli where utente_id = ?";
             PreparedStatement stmt = conn.prepareStatement(articolo);
             
             stmt.setInt(1, id);
             stmt.executeUpdate();
-            String autore = "delete from utenti where id_autore = ?";
+            
+            String valutazioni = "delete from valutazione where id_utente = ?";
+            
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            
+            String utente = "delete from utenti where id= ?";
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+            conn.commit();
+            conn.setAutoCommit(true); 
+            stmt.close();
+            conn.close();
             
         } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ec) {
+                    Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, ec);
+                }
+            }
+            return false;
         }
         
         return false;

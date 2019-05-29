@@ -44,6 +44,15 @@ alter table valutazione add foreign key id_utente(id_utente)
 alter table valutazione add foreign key id_articolo(id_articolo) 
  references articolo(pid) on update cascade on delete cascade;
 
+insert into valutazione values(default, 'fatto bene', 'fatto male', 4, 'decidi', 2, 1);
+insert into valutazione values(default, 'fatto bene', 'fatto male', 4, 'decidi', 3, 1);
+insert into valutazione values(default, 'fatto male', 'fatto malissimo', 2, 'decidi', 2, 2);
+insert into valutazione values(default, 'fatto bene', 'fatto benino', 3, 'accettato', 2, 5);
+insert into valutazione values(default, 'fatto male', 'fatto malissimo', 0, 'rifiutato', 2, 6);
+insert into valutazione values(default, 'fatto male', 'fatto malissimo', 2, 'rifiutato', 2, 7);
+insert into valutazione values(default, default, default, default, 'non ancora valutato',1, 3);
+insert into valutazione values(default, default, default, default, 'non ancora valutato',1, 4);
+
 create table utenti_articoli(
     utente_id bigint unsigned, 
     articolo_id bigint unsigned,

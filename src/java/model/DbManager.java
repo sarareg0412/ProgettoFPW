@@ -37,7 +37,7 @@ public class DbManager {
     
     //Metodo che restituisce connessione pronta all'uso
     public Connection getDbConnection(){
-        String db = "jdbc:mysql://localhost:3306/fpw19_dbregalisara?zeroDateTimebehavior=convertToNull";
+        String db = "jdbc:mysql://localhost:8889/fpw19_DbRegaliSara?zeroDateTimeBehavior=convertToNull";
         try{
         Connection conn = DriverManager.getConnection(db, "fpw19_regalisara", "freePeerReview");
         }catch(SQLException ex){
