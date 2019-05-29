@@ -1,25 +1,16 @@
-create table organizzatore(
-    id_organizzatore serial primary key,
+create table utente(
+    id serial primary key,
     nome varchar(100),
     cognome varchar(100),
     foto varchar(100),
     email varchar(100),
-    pw varchar(100)
+    pw varchar(100),
+    status varchar (100)
 );
 
-insert into organizzatore values(default, 'Gianni', 'Bianchi', 'https://www.itsmarcopolo.it/wp-content/uploads/2017/08/sagoma-profilo.jpeg', 'gianni.bianchi@gmail.com','gianni');
-
-create table autore(
-    id_autore serial primary key,
-    nome varchar(100),
-    cognome varchar(100),
-    foto varchar(100),
-    email varchar(100),
-    pw varchar(100)
-);
-
-insert into autore values(default, 'Sara', 'Regali', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'sara98.regali@gmail.com','sara');
-insert into autore values(default, 'Mario', 'Rossi', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'mario.rossi@gmail.com','mario');
+insert into utente values(default, 'Gianni', 'Bianchi', 'https://www.itsmarcopolo.it/wp-content/uploads/2017/08/sagoma-profilo.jpeg', 'gianni.bianchi@gmail.com','gianni', 'organizzatore');
+insert into utente values(default, 'Sara', 'Regali', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'sara98.regali@gmail.com','sara', 'autore');
+insert into utente values(default, 'Mario', 'Rossi', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'mario.rossi@gmail.com','mario', 'autore');
 
 create table articolo(
     pid serial primary key,

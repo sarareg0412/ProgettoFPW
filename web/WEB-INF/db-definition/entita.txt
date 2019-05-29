@@ -1,13 +1,14 @@
 Entita':
-      Autore		     Organizzatore  					
-    #id		    	    #id		
-    - Nome		    - Nome
-    - Cognome	    	    - Cognome
-    - Foto		    - Foto
-    - Email		    - Email
-    - Password	            - Password
-    - Ente		    - Ente	
+      Utente		     			
+    #id		    	    	
+    - Nome		    
+    - Cognome	    	   
+    - Foto		   
+    - Email		    
+    - Password	         
+    - Ente		  
     - Articoli
+    - Status
 
       Articolo		     Valutazione
     #pid		    #id
@@ -19,17 +20,12 @@ Entita':
     - Stato                 - Articolo
 
 Relazioni:
-Opzionale: un autore puo' non aver scritto articoli Obbligatoria: un articolo deve essere scritto da almeno un autore
-Autore <----> Articolo       MOLTI A MOLTI   Un autore puo' scrivere piu' articoli, un articolo puo' avere piu' autori
+Opzionale: un utente puo' non aver scritto articoli 
+Obbligatoria: un articolo deve essere scritto da almeno un utente o gestito 
+Utente <----> Articolo       MOLTI A MOLTI   Un autore puo' scrivere piu' articoli, un articolo puo' avere piu' autori
 
-Opzionale: un autore puo' non aver effettuato valutazioni Obbligatoria: una valutazione deve essere fatta da almeno un autore
-Autore <----> Valutazione MOLTI A MOLTI Un autore puo' effettuare piu' valutazioni, una valutazione puo' avere piu' autori
-
-Opzionale: possono non esserci articoli da gestire Obbligatoria: un articolo deve essere gestito da almeno un autore
-Organizzatore <----> Articolo  MOLTI A MOLTI Un organizzatore puo' gestire piu' articoli, un articolo puo' essere gestito da piu' organizzatori
-
-Opzionale: possono non esserci valutazioni da assegnare Obbligatoria: una valutazione deve essere assegnata da almeno un organizzatore 
-Organizzatore <----> Valutazione UNO A MOLTI Un organizzatore puo' assegnare piu' valutazioni, una valutazione puo' essere assegnata da un solo organizzatore
+Opzionale: un autore puo' non aver effettuato valutazioni Obbligatoria: una valutazione deve essere fatta da un autore o assegnata da un organizzatore
+Utente <----> Valutazione MOLTI A UNO Un autore puo' effettuare piu' valutazioni, una valutazione puo' avere piu' autori
 
 Opzionale: possono non esserci articoli da valutare, o valutazioni per un articolo
 Articolo <----> Valutazione UNO A MOLTI Un articolo puo' avere piu' valutazioni, una valutazione riguarda un solo articolo
