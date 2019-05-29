@@ -25,7 +25,7 @@ Obbligatoria: un articolo deve essere scritto da almeno un utente o gestito
 Utente <----> Articolo       MOLTI A MOLTI   Un autore puo' scrivere piu' articoli, un articolo puo' avere piu' autori
 
 Opzionale: un autore puo' non aver effettuato valutazioni Obbligatoria: una valutazione deve essere fatta da un autore o assegnata da un organizzatore
-Utente <----> Valutazione MOLTI A UNO Un autore puo' effettuare piu' valutazioni, una valutazione puo' avere piu' autori
+Utente <----> Valutazione UNO A MOLTI Un autore puo' effettuare piu' valutazioni, una valutazione puo' avere piu' autori
 
 Opzionale: possono non esserci articoli da valutare, o valutazioni per un articolo
 Articolo <----> Valutazione UNO A MOLTI Un articolo puo' avere piu' valutazioni, una valutazione riguarda un solo articolo

@@ -30,32 +30,27 @@ insert into articolo values(default, 'Il SevletContainer', 'Servlet', '2019-05-0
 insert into articolo values(default, 'HTML 6', 'HTML', '2019-02-18', 'inserire testo qui', 'IN VALUTAZIONE');
 
 create table valutazione(
-    id_valutazione serial primary key
+    id_valutazione serial primary key,
     comm_autori varchar(250),
     comm_org varchar(250),
     voto int,
-    decisione varchar(30),
+    decisione varchar(30),    
+    id_utente bigint unsigned,
     id_articolo bigint unsigned 
-    foreign key id_articolo references articolo(pid) on update cascade on delete cascade,
-    id_org bigint unsigned references organizzatore(id_organizzatore)
-);
-insert into valutazione values(default, 'prova', 'prova', 4, );
-in
-create table autori_articoli(
-    autore_id bigint unsigned references autore(id_autore) on update cascade on delete cascade,
-    articolo_id bigint unsigned references articolo(pid) on update cascade on delete cascade,
-    PRIMARY KEY(autore_id, articolo_id)
 );
 
-create table autori_valutazioni(
-    autore_id bigint unsigned references autore(id_autore) on update cascade on delete cascade,
-    valutazione_id bigint unsigned references valutazione(id_valutazione) on update cascade on delete cascade,
-    PRIMARY KEY (autore_id, valutazione_id)
+alter table valutazione add foreign key id_utente(id_utente) 
+ references utente(id) on update cascade on delete cascade;
+alter table valutazione add foreign key id_articolo(id_articolo) 
+ references articolo(pid) on update cascade on delete cascade;
+
+create table utenti_articoli(
+    utente_id bigint unsigned, 
+    articolo_id bigint unsigned,
+    PRIMARY KEY(utente_id, articolo_id)
 );
 
-create table organizzatori_articoli(
-    organizzatore_id bigint unsigned references organizzatore(id_organizzatore) on update cascade on delete cascade,
-    articolo_id bigint unsigned references articolo(pid) on update cascade on delete cascade,
-    PRIMARY KEY(organizzatore_id, articolo_id)
-);
-
+alter table utenti_articoli add foreign key utente_id(utente_id) 
+ references utente(id) on update cascade on delete cascade;
+alter table utenti_articoli add foreign key articolo_id(articolo_id) 
+ references articolo(pid) on update cascade on delete cascade;
