@@ -39,7 +39,8 @@ public class DbManager {
     public Connection getDbConnection(){
         String db = "jdbc:mysql://localhost:8889/fpw19_DbRegaliSara?zeroDateTimeBehavior=convertToNull";
         try{
-        Connection conn = DriverManager.getConnection(db, "fpw19_regalisara", "freePeerReview");
+            Connection conn = DriverManager.getConnection(db, "fpw19_RegaliSara", "freePeerReview");
+            return conn;
         }catch(SQLException ex){
             Logger.getLogger(DbManager.class.getName()).log(Level.SEVERE, null, ex);
         }

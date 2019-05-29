@@ -92,7 +92,7 @@ public class UtentiFactory {
             Boolean loggedIn;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from utente where email = ? and password = ?";
+            String sql = "select * from utente where email = ? and pw = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, email);
@@ -110,7 +110,7 @@ public class UtentiFactory {
                 utente.setCognome(set.getString("cognome"));
                 utente.setImmagine(new URL(set.getString("foto")));
                 utente.setEmail(set.getString("email"));
-                utente.setPassword(set.getString("password"));
+                utente.setPassword(set.getString("pw"));
                 utente.setStatus(set.getString("status"));
                 utente.setEnte(new URL(set.getString("ente")));
                 
@@ -137,7 +137,7 @@ public class UtentiFactory {
             Boolean loggedIn;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from utenti where id = ?";
+            String sql = "select * from utente where id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, id);
@@ -154,7 +154,7 @@ public class UtentiFactory {
                 utente.setCognome(set.getString("cognome"));
                 utente.setImmagine(new URL(set.getString("foto")));
                 utente.setEmail(set.getString("email"));
-                utente.setPassword(set.getString("password"));
+                utente.setPassword(set.getString("pw"));
                 utente.setStatus(set.getString("status"));
                 utente.setEnte(new URL(set.getString("ente")));
                 
