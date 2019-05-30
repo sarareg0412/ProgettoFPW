@@ -8,9 +8,9 @@ create table utente(
     status varchar (100)
 );
 
-insert into utente values(default, 'Gianni', 'Bianchi', 'https://www.itsmarcopolo.it/wp-content/uploads/2017/08/sagoma-profilo.jpeg', 'gianni.bianchi@gmail.com','gianni', 'organizzatore');
-insert into utente values(default, 'Sara', 'Regali', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'sara98.regali@gmail.com','sara', 'autore');
-insert into utente values(default, 'Mario', 'Rossi', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'mario.rossi@gmail.com','mario', 'autore');
+insert into utente values(default, 'Gianni', 'Bianchi', 'https://www.itsmarcopolo.it/wp-content/uploads/2017/08/sagoma-profilo.jpeg', 'gianni.bianchi@gmail.com','gianni', 'Organizzatore');
+insert into utente values(default, 'Sara', 'Regali', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'sara98.regali@gmail.com','sara', 'Autore');
+insert into utente values(default, 'Mario', 'Rossi', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'mario.rossi@gmail.com','mario', 'Autore');
 
 create table articolo(
     pid serial primary key,

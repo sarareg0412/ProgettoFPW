@@ -170,35 +170,6 @@ public class UtentiFactory {
 
         return null;
     }
-
-    /**
-        try {
-            String autore = "DELETE FROM autori WHERE id_autore = ?";
-
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-
-            conn.commit();
-            conn.setAutoCommit(true); //Per completezza
-            stmt.close();
-            conn.close();
-            
-        } catch (SQLException e) {
-            Logger.getLogger(AutoreFactory.class.getName()).log(Level.SEVERE, null, e);
-            if (conn != null) {
-                try {
-                    conn.rollback();
-                } catch (SQLException ex) {
-                    Logger.getLogger(AutoreFactory.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            return false;
-
-        }
-        return null;
-
-    }
-     */
     
     public Boolean deleteUtente(int id) {
         Connection conn = null;
@@ -207,21 +178,38 @@ public class UtentiFactory {
             conn = DbManager.getInstance().getDbConnection();
             conn.setAutoCommit(false);
 
+            String sql = "select articolo_id from utenti_articoli where utente_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet set = stmt.executeQuery(sql);
+            
+            stmt.setInt(1, id);
+            
+            List<Integer> articoli = new ArrayList<>();
+            
+            while (set.next()) {
+                articoli.add(set.getInt("articolo_id"));
+            }
+            
+            for(int i=0; i<articoli.size(); i++){
+                String art = "delete from articolo where pid = ?";
+                stmt.setInt(1,articoli.get(i).intValue());
+                stmt.executeUpdate();
+            }
+            
             String articolo = "delete from utenti_articoli where utente_id = ?";
-            PreparedStatement stmt = conn.prepareStatement(articolo);
             
             stmt.setInt(1, id);
             stmt.executeUpdate();
             
             String valutazioni = "delete from valutazione where id_utente = ?";
-            
             stmt.setInt(1, id);
+            
             stmt.executeUpdate();
             
             String utente = "delete from utenti where id= ?";
             stmt.setInt(1, id);
             stmt.executeUpdate();
-
+            
             conn.commit();
             conn.setAutoCommit(true); 
             stmt.close();
