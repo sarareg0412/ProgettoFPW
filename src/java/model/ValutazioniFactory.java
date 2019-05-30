@@ -38,13 +38,13 @@ public class ValutazioniFactory {
         Utenti gianni = UtentiFactory.getInstance().getUserById(2);
         Utenti mario = UtentiFactory.getInstance().getUserById(3);
         
-        Articoli a1 = ArticoliFactory.getInstance().getArticleByPid("1");
-        Articoli a2 = ArticoliFactory.getInstance().getArticleByPid("2");
-        Articoli a3 = ArticoliFactory.getInstance().getArticleByPid("3");
-        Articoli a4 = ArticoliFactory.getInstance().getArticleByPid("4");
-        Articoli a5 = ArticoliFactory.getInstance().getArticleByPid("5");
-        Articoli a6 = ArticoliFactory.getInstance().getArticleByPid("6");
-        Articoli a7 = ArticoliFactory.getInstance().getArticleByPid("7");
+        Articoli a1 = ArticoliFactory.getInstance().getArticleByPid(1);
+        Articoli a2 = ArticoliFactory.getInstance().getArticleByPid(2);
+        Articoli a3 = ArticoliFactory.getInstance().getArticleByPid(3);
+        Articoli a4 = ArticoliFactory.getInstance().getArticleByPid(4);
+        Articoli a5 = ArticoliFactory.getInstance().getArticleByPid(5);
+        Articoli a6 = ArticoliFactory.getInstance().getArticleByPid(6);
+        Articoli a7 = ArticoliFactory.getInstance().getArticleByPid(7);
         
         Valutazioni v1 = new Valutazioni();
         v1.getValutatori().add(mario);

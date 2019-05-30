@@ -49,13 +49,14 @@ public class MyPapers extends HttpServlet {
             int autoreId = (int) session.getAttribute("utenteId");
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
             request.setAttribute("user", user);
+            //Setto gli articoli scritti dall'utente
+            List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+            request.setAttribute("articoli", articoli);
+            
             //Setto le valutazioni fatte da quell'utente
             List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
             request.setAttribute("valutazioni", valutazioni);
             
-            //Setto gli articoli scritti dall'utente
-            List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
-            request.setAttribute("articoli", articoli);
             
             //A questo punto reindirizzo alla jsp
             request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);

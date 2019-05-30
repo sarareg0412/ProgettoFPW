@@ -21,7 +21,7 @@ public class Articoli implements Comparable<Articoli> {
     private Date data;         //Formato aaaa-mm-gg
     private String testo;               //Stringa contenente il testo
     private String stato;               //Aperto, in valutazione, accettato, rifiutato 
-    private String pid;                 //Pid articolo
+    private int pid;                 //Pid articolo
     private URL immagine;
     
     public Articoli(){      //Creo le liste
@@ -101,14 +101,14 @@ public class Articoli implements Comparable<Articoli> {
     /**
      * @return the pid
      */
-    public String getPid() {
+    public int getPid() {
         return pid;
     }
 
     /**
      * @param pid the pid to set
      */
-    public void setPid(String pid) {
+    public void setPid(int pid) {
         this.pid = pid;
     }
 

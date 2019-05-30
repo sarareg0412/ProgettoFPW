@@ -1,6 +1,6 @@
-Entita':
-      Utente		     			
-    #id		    	    	
+Entita':                   
+      Utente		     Categorie 			
+    #id		    	    #Nome	
     - Nome		    
     - Cognome	    	   
     - Foto		   
@@ -30,3 +30,6 @@ Utente <----> Valutazione UNO A MOLTI Un autore puo' effettuare piu' valutazioni
 
 Opzionale: possono non esserci articoli da valutare, o valutazioni per un articolo
 Articolo <----> Valutazione UNO A MOLTI Un articolo puo' avere piu' valutazioni, una valutazione riguarda un solo articolo
+
+Obbligatoria: un articolo deve far parte di almeno una categoria
+Articolo<---->Categorie MOLTI A MOLTI Un articolo puo' far parte di più categorie, una categoria può contenere più articoli

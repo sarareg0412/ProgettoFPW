@@ -7,10 +7,18 @@ package model;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,154 +45,94 @@ public class ArticoliFactory {
         return singleton;
     }
 
-    /* METODI D'ISTANZA */
+    /* METODI D'ISTANZA 
+     List<Utenti> users = new ArrayList<>();
+        
+        try {
+            Connection conn = DbManager.getInstance().getDbConnection();
+            Statement stmt = conn.createStatement();
+
+            String sql = "select * from utente";
+            ResultSet set = stmt.executeQuery(sql);
+
+            while (set.next()) {
+                Utenti utente = new Utenti();
+                
+                utente.setId(set.getInt("id"));
+                utente.setNome(set.getString("nome"));
+                utente.setCognome(set.getString("cognome"));
+                utente.setImmagine(new URL(set.getString("foto")));
+                utente.setEmail(set.getString("email"));
+                utente.setPassword(set.getString("password"));
+                utente.setStatus(set.getString("status"));
+                utente.setEnte(new URL(set.getString("ente")));
+                users.add(utente);
+            }
+        
+            stmt.close();
+            conn.close();
+        
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+        
+        return users;*/
     /**
+     * 
+            while (set.next()) {
+                Utenti utente = new Utenti();
+                
+                utente.setId(set.getInt("id"));
+                utente.setNome(set.getString("nome"));
+                utente.setCognome(set.getString("cognome"));
+                utente.setImmagine(new URL(set.getString("foto")));
+                utente.setEmail(set.getString("email"));
+                utente.setPassword(set.getString("password"));
+                utente.setStatus(set.getString("status"));
+                utente.setEnte(new URL(set.getString("ente")));
+                users.add(utente);
+            }
      * Ritorna la lista degli articoli creati
      */
     public List<Articoli> getArticles() throws MalformedURLException {
         List<Articoli> articles = new ArrayList<>();
         long a = 2019;
         Date date = new Date(a);
-        String s1, s2, s3;
-        s1 = "CSS";
-        s2 = "HTML";
-        s3 = "Servlet";
 
-        Utenti sara = UtentiFactory.getInstance().getUserById(1);
-        Utenti gianni = UtentiFactory.getInstance().getUserById(2);
-        Utenti mario = UtentiFactory.getInstance().getUserById(3);
-        URL foto = new URL("https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg");
-        
-        Articoli a1 = new Articoli();
-        a1.setTitolo("La SQL injection");
-        a1.getCategorie().add(s1);
-        a1.getCategorie().add(s2);
-        a1.setData(date.valueOf("2019-04-10"));
-        a1.setTesto("La Sql injection è una pratica che consente...");
-        a1.setStato("APERTO");
-        a1.getAutori().add(sara);
-        a1.setPid("1");
-        a1.setImmagine(foto);
-        articles.add(a1);
+        try {
+            Connection conn = DbManager.getInstance().getDbConnection();
+            Statement stmt = conn.createStatement();
 
-        Articoli a2 = new Articoli();
-        a2.setTitolo("Le Servlet");
+            String sql = "select articolo.* from articolo join utenti_articoli on utenti_articoli.articolo_id = articolo.pid join utente on utente.id = utenti_articoli.utente_id";
 
-        a2.getCategorie().add(s1);
-        a2.getCategorie().add(s3);
-        a2.setData(date.valueOf("2019-01-08"));
-        a2.setTesto("Le Servlet consentono di...");
-        a2.setStato("APERTO");
-        a2.getAutori().add(sara);
-        a2.getAutori().add(mario);
-        a2.setPid("2");
-        a2.setImmagine(foto);
-        articles.add(a2);
+            ResultSet set = stmt.executeQuery(sql);
 
-        Articoli a3 = new Articoli();
-        a3.setTitolo("Il DataBase");
-        s1 = "JSP";
-        a3.getCategorie().add(s1);
-        a3.setData(date.valueOf("2019-03-18"));
-        a3.setTesto("Il DataBase è...");
-        a3.setStato("APERTO");
-        a3.getAutori().add(sara);
-        a3.setPid("3");
-        a3.setImmagine(foto);
-        articles.add(a3);
+            while (set.next()) {
+                Articoli articolo = new Articoli();
 
-        Articoli a4 = new Articoli();
-        a4.setTitolo("Le Classi Java");
-        a4.getAutori().add(sara);
-        a4.getAutori().add(mario);
-        a4.getCategorie().add(s1);
-        a4.getCategorie().add(s2);
-        a4.setData(date.valueOf("2019-05-24"));
-        a4.setTesto("La Servlet vengono utilizzate nella programmazione web...");
-        a4.setStato("RIFIUTATO");
-        a4.setPid("4");
-        a4.setImmagine(foto);
-        articles.add(a4);
+                articolo.setPid(set.getInt("pid"));
+                articolo.setTitolo(set.getString("titolo"));
+                articolo.setData(set.getDate("data_creazione"));
+                articolo.setImmagine(new URL(set.getString("immagine")));
+                articolo.setTesto(set.getString("testo"));
+                articolo.setStato(set.getString("stato"));
+                String[] categorie = set.getString("categorie").split(" ");
+                articolo.setCategorie(Arrays.asList(categorie));
+                articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("utente_id")));
+                articles.add(articolo);
 
-        Articoli a5 = new Articoli();
-        a5.setTitolo("Il tag br");
-        a5.getAutori().add(mario);
-        a5.getCategorie().add(s1);
-        a5.getCategorie().add(s3);
-        a5.setData(date.valueOf("2019-05-01"));
-        a5.setTesto("Il tag br viene utilizzato nel linguaggio html...");
-        a5.setStato("IN VALUTAZIONE");
-        a5.setPid("5");
-        a5.setImmagine(foto);
-        articles.add(a5);
-
-        Articoli a6 = new Articoli();
-        a6.setTitolo("Il ServletContainer");
-        s2 = "Servlet";
-        a6.getCategorie().add(s2);
-        a6.setData(date.valueOf("2019-05-02"));
-        a6.setTesto("Il Servlet Container è...");
-        a6.setStato("RIFIUTATO");
-        a6.getAutori().add(sara);
-        a6.setPid("6");
-        a6.setImmagine(foto);
-        articles.add(a6);
-
-        Articoli a7 = new Articoli();
-        a7.setTitolo("HTML 6");
-        s1 = "HTML";
-        a7.getCategorie().add(s1);
-        a7.setData(date.valueOf("2019-02-18"));
-        a7.setTesto("HTML 6...");
-        a7.setStato("IN VALUTAZIONE");
-        a7.getAutori().add(mario);
-        a7.setPid("7");
-        a7.setImmagine(foto);
-        articles.add(a7);
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
 
         Collections.sort(articles);     //Ordina la lista secondo il compareTo() degli articoli
-
         return articles;
     }
 
-    /**
-     * Ritorna un articolo in base al titolo
-     *
-     * @param titolo
-     */
-    
-    public Articoli getArticleByTitle(String titolo) throws MalformedURLException {
-        List<Articoli> articles = this.getArticles();
-
-        for (Articoli u : articles) {
-            if (u.getTitolo().equals(titolo)) {
-                return u;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @return lista di articoli che matchano la categoria inserita
-     */
-    public List<Articoli> getArticlesByCategory(String categoria) throws MalformedURLException {
-
-        List<Articoli> articles = this.getArticles();
-        List<Articoli> lista = new ArrayList<>();    //Lista da restituire
-
-        /* Per ogni articolo, controllo se contiene la categoria 
-        inserita,e lo aggiungo alla lista da restituire */
-        for (Articoli u : articles) {
-
-            if (u.getCategorie().contains(categoria)) {
-                lista.add(u);
-            }
-        }
-
-        return lista;
-    }
-
+ 
     /**
      * @return lista di articoli che matchano l'autore inserito
      */
@@ -204,62 +152,43 @@ public class ArticoliFactory {
         return lista;
     }
 
-    /**
-     * @param data
-     * @return lista di articoli che matchano la data inserita
-     */
-    public List<Articoli> getArticlesByDate(Date data) throws MalformedURLException {
+    public Articoli getArticleByPid(int pid) throws MalformedURLException {
+        try {
+            Boolean esiste_articolo;
 
-        List<Articoli> articles = this.getArticles();
-        List<Articoli> lista = null;    //Lista da restituire
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "select articolo.* from articolo join utenti_articoli on utenti_articoli.articolo_id = articolo.pid join utente on utente.id = utenti_articoli.utente_id";
+            PreparedStatement stmt = conn.prepareStatement(sql);
 
-        /* Per ogni articolo, controllo se contiene la data 
-        inserita,e lo aggiungo alla lista da restituire */
-        for (Articoli u : articles) {
-            Date s = u.getData();
+            stmt.setInt(1, pid);
 
-            if (s.equals(data)) {
-                lista.add(u);
+            ResultSet set = stmt.executeQuery();
+
+            esiste_articolo = set.next();
+
+            if (esiste_articolo == true) {
+                Articoli articolo = new Articoli();
+                long a = 12345;
+                Date data = new Date(a);
+
+                articolo.setPid(set.getInt("id"));
+                articolo.setTitolo(set.getString("titolo"));
+                articolo.setData(data.valueOf(set.getString("data")));
+                articolo.setImmagine(new URL(set.getString("foto")));
+                articolo.setTesto(set.getString("testo"));
+                articolo.setStato(set.getString("stato"));
+                String[] categorie = set.getString("categorie").split(" ");
+                articolo.setCategorie(Arrays.asList(categorie));
+                stmt.close();
+                conn.close();
+                return articolo;
+            } else {
+                return null;
             }
-
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
-        return lista;
-    }
-    
-    /**
-     * @param stato
-     * @return lista di articoli che matchano lo stato inserito
-     */
-    public List<Articoli> getArticlesByStatus(String stato) throws MalformedURLException {
-
-        List<Articoli> articles = this.getArticles();
-        List<Articoli> lista = null;    //Lista da restituire
-
-        /* Per ogni articolo, controllo se ha lo stato
-        inserito,e lo aggiungo alla lista da restituire */
-        for (Articoli u : articles) {
-            String s = u.getStato();
-
-            if (s.equals(stato)) {
-                lista.add(u);
-            }
-
-        }
-
-        return lista;
-    }
-
-    public Articoli getArticleByPid(String pid) throws MalformedURLException {
-        List<Articoli> articles = this.getArticles();
-
-        for (Articoli u : articles) {
-            String s = u.getPid();
-
-            if (s.equals(pid)) {
-                return u;
-            }
-        }
         return null;
     }
 }

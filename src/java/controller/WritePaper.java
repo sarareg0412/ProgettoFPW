@@ -45,15 +45,14 @@ public class WritePaper extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("utenteId") != null) {//Utente già autenticato
-            
             //Se non viene passato un pid alla risposta, o se il pid non è valido, 
             // o se un utente cerca di accedere a un articolo che non ha scritto, 
             // o se si cerca di accedere a un atricolo che non ha lo stato "APERTO", si viene rimandati alla jsp errore
             if (request.getParameter("pid") == null 
-                    || ArticoliFactory.getInstance().getArticleByPid(request.getParameter("pid")) == null
-                    || ArticoliFactory.getInstance().getArticleByPid(request.getParameter("pid")).
+                    || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))) == null
+                    || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).
                             getAutori().contains(UtentiFactory.getInstance().getUserById((int)session.getAttribute("utenteId"))) == false
-                    || ArticoliFactory.getInstance().getArticleByPid(request.getParameter("pid")).getStato().equals("APERTO") == false) {  
+                    || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).getStato().equals("APERTO") == false) {  
                 
                 request.getRequestDispatcher("./M1/errore.jsp").forward(request, response);
             } else {
@@ -70,7 +69,7 @@ public class WritePaper extends HttpServlet {
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
                 request.setAttribute("valutazioni", valutazioni);
 
-                String n = request.getParameter("pid");
+                int n = Integer.parseInt(request.getParameter("pid"));
                 Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
                 List<Utenti> autori = articoloScelto.getAutori();
                 request.setAttribute("autori", autori);
