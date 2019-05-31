@@ -7,6 +7,7 @@ package model;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -46,52 +47,6 @@ public class ArticoliFactory {
     }
 
     /* METODI D'ISTANZA 
-     List<Utenti> users = new ArrayList<>();
-        
-        try {
-            Connection conn = DbManager.getInstance().getDbConnection();
-            Statement stmt = conn.createStatement();
-
-            String sql = "select * from utente";
-            ResultSet set = stmt.executeQuery(sql);
-
-            while (set.next()) {
-                Utenti utente = new Utenti();
-                
-                utente.setId(set.getInt("id"));
-                utente.setNome(set.getString("nome"));
-                utente.setCognome(set.getString("cognome"));
-                utente.setImmagine(new URL(set.getString("foto")));
-                utente.setEmail(set.getString("email"));
-                utente.setPassword(set.getString("password"));
-                utente.setStatus(set.getString("status"));
-                utente.setEnte(new URL(set.getString("ente")));
-                users.add(utente);
-            }
-        
-            stmt.close();
-            conn.close();
-        
-        } catch (SQLException exc) {
-            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
-        }
-        
-        return users;*/
-    /**
-     * 
-            while (set.next()) {
-                Utenti utente = new Utenti();
-                
-                utente.setId(set.getInt("id"));
-                utente.setNome(set.getString("nome"));
-                utente.setCognome(set.getString("cognome"));
-                utente.setImmagine(new URL(set.getString("foto")));
-                utente.setEmail(set.getString("email"));
-                utente.setPassword(set.getString("password"));
-                utente.setStatus(set.getString("status"));
-                utente.setEnte(new URL(set.getString("ente")));
-                users.add(utente);
-            }
      * Ritorna la lista degli articoli creati
      */
     public List<Articoli> getArticles() throws MalformedURLException {
@@ -103,7 +58,8 @@ public class ArticoliFactory {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select articolo.* from articolo join utenti_articoli on utenti_articoli.articolo_id = articolo.pid join utente on utente.id = utenti_articoli.utente_id";
+           String sql = "select articolo.*, utenti_articoli.*, utente.id from utente inner join (articolo inner join utenti_articoli on articolo.pid = utenti_articoli.articolo_id) "
+                   + "on utente.id = utenti_articoli.utente_id";
 
             ResultSet set = stmt.executeQuery(sql);
 
@@ -118,7 +74,8 @@ public class ArticoliFactory {
                 articolo.setStato(set.getString("stato"));
                 String[] categorie = set.getString("categorie").split(" ");
                 articolo.setCategorie(Arrays.asList(categorie));
-                articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("utente_id")));
+                int prova = set.getInt("id");
+                //articolo.getAutori().add(user);
                 articles.add(articolo);
 
             }

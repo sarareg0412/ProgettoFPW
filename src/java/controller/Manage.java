@@ -50,11 +50,13 @@ public class Manage extends HttpServlet {
             
             if(user.getStatus().equals("Autore")){  //L'utente Autore non può entrare in questa pagina, 
                                                     //ma setto comunque gli attributi fondamentali per la richiesta
-                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
-                request.setAttribute("articoli", articoli);         //Articoli dell'utente
+                
             
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
                 request.setAttribute("valutazioni", valutazioni);   //Valutazioni dell'utente
+                
+                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+                request.setAttribute("articoli", articoli);         //Articoli dell'utente
             }else{
                 //Cerco tutti gli articoli nel sistema e li setto
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioni();

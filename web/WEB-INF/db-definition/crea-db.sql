@@ -26,9 +26,9 @@ create table articolo(
 insert into articolo values(default, 'SQL injection', 'CSS HTML', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg' ,'2019-04-10', 'inserire testo qui', 'APERTO');
 insert into articolo values(default, 'Le Sevlet', 'CSS Servlet', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg','2019-01-08', 'inserire testo qui', 'APERTO');
 insert into articolo values(default, 'Il DataBase', 'JSP', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg','2019-03-18', 'inserire testo qui', 'APERTO');
-insert into articolo values(default, 'Le Classi Java', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg','JSP HTML', '2019-05-24', 'inserire testo qui', 'RIFIUTATO');
-insert into articolo values(default, 'Il tag brt', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg' ,'JSP HTML', '2019-05-01', 'inserire testo qui', 'IN VALUTAZIONE');
-insert into articolo values(default, 'Il SevletContainer', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg' ,'Servlet', '2019-05-02', 'inserire testo qui', 'RIFIUTATO');
+insert into articolo values(default, 'Le Classi Java', 'JSP HTML','https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-05-24', 'inserire testo qui', 'RIFIUTATO');
+insert into articolo values(default, 'Il tag brt', 'JSP HTML', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-05-01', 'inserire testo qui', 'IN VALUTAZIONE');
+insert into articolo values(default, 'Il SevletContainer', 'Servlet', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg' , '2019-05-02', 'inserire testo qui', 'RIFIUTATO');
 insert into articolo values(default, 'HTML 6', 'HTML', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg' ,'2019-02-18', 'inserire testo qui', 'IN VALUTAZIONE');
 
 create table valutazione(
@@ -75,25 +75,3 @@ insert into utenti_articoli values(3, 4 );
 insert into utenti_articoli values(3, 5 );
 insert into utenti_articoli values(2, 6 );
 insert into utenti_articoli values(3, 6 );
-
-create table articoli_categorie(
-    articolo_id bigint unsigned,
-    categoria_id bigint unsigned,
-    PRIMARY KEY( articolo_id, categoria_id)
-);
-alter table articoli_categorie add foreign key categoria_id(categoria_id) 
- references categorie(id) on update cascade on delete cascade;
-alter table articoli_categorie add foreign key articolo_id(articolo_id) 
- references articolo(pid) on update cascade on delete cascade;
-
-insert into articoli_categorie values(1, 1 );
-insert into articoli_categorie values(1, 2);
-insert into articoli_categorie values(2, 1);
-insert into articoli_categorie values(2, 5);
-insert into articoli_categorie values(3, 5);
-insert into articoli_categorie values(4, 3);
-insert into articoli_categorie values(4, 2);
-insert into articoli_categorie values(5, 3);
-insert into articoli_categorie values(5, 2);
-insert into articoli_categorie values(6, 6);
-insert into articoli_categorie values(7, 6);
