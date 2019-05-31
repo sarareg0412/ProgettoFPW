@@ -74,4 +74,4 @@ insert into utenti_articoli values(2, 4 );
 insert into utenti_articoli values(3, 4 );
 insert into utenti_articoli values(3, 5 );
 insert into utenti_articoli values(2, 6 );
-insert into utenti_articoli values(3, 6 );
+insert into utenti_articoli values(3, 7 );

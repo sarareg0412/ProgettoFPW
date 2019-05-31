@@ -58,25 +58,35 @@ public class ArticoliFactory {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-           String sql = "select articolo.*, utenti_articoli.*, utente.id from utente inner join (articolo inner join utenti_articoli on articolo.pid = utenti_articoli.articolo_id) "
-                   + "on utente.id = utenti_articoli.utente_id";
+            String sql = "select articolo.*, utenti_articoli.*, utente.id from utente inner join (articolo inner join utenti_articoli on articolo.pid = utenti_articoli.articolo_id) "
+                    + "on utente.id = utenti_articoli.utente_id";
 
             ResultSet set = stmt.executeQuery(sql);
 
             while (set.next()) {
-                Articoli articolo = new Articoli();
+                boolean flag = false;
+                for (Articoli art : articles) {
+                    /*Per ogni articolo, se c'è già l'articolo creato, si aggiunge il nuovo utente*/
+                    if (art.getPid() == set.getInt("pid")) {
+                        art.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("id")));
+                        flag = true;    //C'è già l'articolo nella colonna scelta
+                    }
+                }
 
-                articolo.setPid(set.getInt("pid"));
-                articolo.setTitolo(set.getString("titolo"));
-                articolo.setData(set.getDate("data_creazione"));
-                articolo.setImmagine(new URL(set.getString("immagine")));
-                articolo.setTesto(set.getString("testo"));
-                articolo.setStato(set.getString("stato"));
-                String[] categorie = set.getString("categorie").split(" ");
-                articolo.setCategorie(Arrays.asList(categorie));
-                int prova = set.getInt("id");
-                //articolo.getAutori().add(user);
-                articles.add(articolo);
+                if (flag == false) {
+                    Articoli articolo = new Articoli();
+
+                    articolo.setPid(set.getInt("pid"));
+                    articolo.setTitolo(set.getString("titolo"));
+                    articolo.setData(set.getDate("data_creazione"));
+                    articolo.setImmagine(new URL(set.getString("immagine")));
+                    articolo.setTesto(set.getString("testo"));
+                    articolo.setStato(set.getString("stato"));
+                    String[] categorie = set.getString("categorie").split(" ");
+                    articolo.setCategorie(Arrays.asList(categorie));
+                    articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("id")));
+                    articles.add(articolo);
+                }
 
             }
             stmt.close();
@@ -89,23 +99,19 @@ public class ArticoliFactory {
         return articles;
     }
 
- 
     /**
      * @return lista di articoli che matchano l'autore inserito
      */
-    public List<Articoli> getArticlesByAuthor(Utenti autore) throws MalformedURLException {
+    public List<Articoli> getArticlesByAuthor(int id) throws MalformedURLException {
 
-        List<Articoli> articles = this.getArticles();
-        List<Articoli> lista = new ArrayList<>();    //Lista da restituire
-
-        /* Per ogni articolo, controllo se contiene l'autore
-        inserito,e lo aggiungo alla lista da restituire */
-        for (Articoli u : articles) {
-            if (u.getAutori().contains(autore)) {
-                lista.add(u);
-            }
+        List<Articoli> articoli = ArticoliFactory.getInstance().getArticles();    //Lista da restituire
+        List<Articoli> lista = new ArrayList<>();
+        
+        for(Articoli art: articoli){
+            if(art.getAutori().contains(UtentiFactory.getInstance().getUserById(id)))
+                lista.add(art);
         }
-
+        
         return lista;
     }
 
@@ -114,7 +120,8 @@ public class ArticoliFactory {
             Boolean esiste_articolo;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select articolo.* from articolo join utenti_articoli on utenti_articoli.articolo_id = articolo.pid join utente on utente.id = utenti_articoli.utente_id";
+            String sql = "select articolo.*, utenti_articoli.*, utente.id from utente inner join (articolo inner join utenti_articoli on articolo.pid = utenti_articoli.articolo_id) "
+                    + "on utente.id = utenti_articoli.utente_id where pid = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, pid);
@@ -127,15 +134,20 @@ public class ArticoliFactory {
                 Articoli articolo = new Articoli();
                 long a = 12345;
                 Date data = new Date(a);
-
-                articolo.setPid(set.getInt("id"));
+                articolo.setPid(set.getInt("pid"));
                 articolo.setTitolo(set.getString("titolo"));
-                articolo.setData(data.valueOf(set.getString("data")));
-                articolo.setImmagine(new URL(set.getString("foto")));
+                articolo.setData(set.getDate("data_creazione"));
+                articolo.setImmagine(new URL(set.getString("immagine")));
                 articolo.setTesto(set.getString("testo"));
                 articolo.setStato(set.getString("stato"));
                 String[] categorie = set.getString("categorie").split(" ");
                 articolo.setCategorie(Arrays.asList(categorie));
+                articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("id")));
+
+                while (set.next()) {  //L'articolo ha più autori
+                    articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("id")));
+                }
+                
                 stmt.close();
                 conn.close();
                 return articolo;

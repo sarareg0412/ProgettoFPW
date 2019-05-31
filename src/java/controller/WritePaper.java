@@ -62,7 +62,7 @@ public class WritePaper extends HttpServlet {
                 request.setAttribute("user", user);
                 
                 //Setto gli articoli dell'utente
-                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
                 request.setAttribute("articoli", articoli);
                 
                 //Setto le valutazioni dell'utente

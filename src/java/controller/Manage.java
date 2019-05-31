@@ -55,7 +55,7 @@ public class Manage extends HttpServlet {
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
                 request.setAttribute("valutazioni", valutazioni);   //Valutazioni dell'utente
                 
-                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
                 request.setAttribute("articoli", articoli);         //Articoli dell'utente
             }else{
                 //Cerco tutti gli articoli nel sistema e li setto

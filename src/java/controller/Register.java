@@ -53,7 +53,7 @@ public class Register extends HttpServlet {
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
             
             //Setto gli articoli dell'utente
-            List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user);
+            List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
             request.setAttribute("articoli", articoli);
             
             //Setto le valutazioni dell'utente
