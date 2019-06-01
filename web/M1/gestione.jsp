@@ -61,7 +61,7 @@
                                         <td><a href="">Scegli valutatori</a></td> 
                                     </c:if>
                                     <c:if test="${u.getDecisione() != 'Attesa Valutazioni'}">
-                                        <td>${u.getVoto().toString()} </td> 
+                                        <td>${u.getNValutazioni(u.getArticolo().getPid())} </td> 
                                     </c:if>
                                     
                                     <c:choose>

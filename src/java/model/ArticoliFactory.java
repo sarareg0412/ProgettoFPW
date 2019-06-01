@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author Sara
@@ -105,9 +107,9 @@ public class ArticoliFactory {
     public List<Articoli> getArticlesByAuthor(int id) throws MalformedURLException {
 
         List<Articoli> lista = new ArrayList<>();
-        
+
         try {
-            
+
             Connection conn = DbManager.getInstance().getDbConnection();
             String sql = "select * from utenti_articoli where utente_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -116,11 +118,11 @@ public class ArticoliFactory {
 
             ResultSet set = stmt.executeQuery();
 
-            while (set.next()){
+            while (set.next()) {
                 Articoli articolo = ArticoliFactory.getInstance().getArticleByPid(set.getInt("articolo_id"));
                 lista.add(articolo);
             }
-            
+
             stmt.close();
             conn.close();
         } catch (SQLException exc) {
@@ -162,7 +164,7 @@ public class ArticoliFactory {
                 while (set.next()) {  //L'articolo ha più autori
                     articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("id")));
                 }
-                
+
                 stmt.close();
                 conn.close();
                 return articolo;
@@ -174,5 +176,44 @@ public class ArticoliFactory {
         }
 
         return null;
+    }
+
+    public void updateArticle(int pid, HttpServletRequest request) {
+        try {
+            Boolean esiste_articolo;
+            long a = 1234;
+            Date data = new Date(a);
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "update articolo set titolo = ?, categorie = ?, immagine = ?, "
+                    + "data_creazione = ?, testo = ? where pid = ?";
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, request.getParameter("titolo"));
+            String[] categorie = request.getParameterValues("category");
+            String categ_nuove = categorie[0];
+
+            for (String s : categorie) {
+                categ_nuove += s+" ";
+            }
+            categ_nuove=categ_nuove.substring(0, categ_nuove.length()-1);            stmt.setString(2,categ_nuove);
+            stmt.setString(3, request.getParameter("immagine"));
+            stmt.setDate(4, data.valueOf(request.getParameter("start")));
+            stmt.setString(5, request.getParameter("testo"));
+            
+            stmt.setInt(7, pid);
+
+            ResultSet set = stmt.executeQuery();
+
+            esiste_articolo = set.next();
+
+            if (esiste_articolo == true) {
+
+                stmt.close();
+                conn.close();
+            }
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
     }
 }

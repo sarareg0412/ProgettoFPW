@@ -59,7 +59,7 @@ public class Manage extends HttpServlet {
                 request.setAttribute("articoli", articoli);         //Articoli dell'utente
             }else{
                 //Cerco tutti gli articoli nel sistema e li setto
-                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioni();
+                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniSenzaRipetizioni();
                 request.setAttribute("valutazionitot", valutazioni);
             }
             //Riporto alla jsp gestion

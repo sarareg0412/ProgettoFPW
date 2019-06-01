@@ -178,7 +178,42 @@ public class ValutazioniFactory {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
         
+        Collections.sort(lista);
         return lista;
     }
     
+    public List<Valutazioni> getValutazioniSenzaRipetizioni() throws MalformedURLException{
+    List<Valutazioni> valutazioni = new ArrayList<>();
+        try {
+            Connection conn = DbManager.getInstance().getDbConnection();
+            Statement stmt = conn.createStatement();
+
+            String sql = "select * from valutazione";
+            
+            ResultSet set = stmt.executeQuery(sql);
+            
+            while (set.next()) {
+                boolean flag = false;
+                for (Valutazioni val : valutazioni) {
+                    /*Per ogni valutazione, se c'è già l'articolo valutato, si salta la valutazione*/
+                    if (val.getArticolo().getPid() == set.getInt("id_articolo")) {
+                        flag = true;    //C'è già l'articolo nella colonna scelta
+                    }
+                }
+                if(flag == false){
+                    valutazioni.add(ValutazioniFactory.getInstance().getValutazioneByVid(set.getInt("id_valutazione")));
+                }
+            }
+        
+            stmt.close();
+            conn.close();
+        }catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+
+        Collections.sort(valutazioni);      //
+        return valutazioni;
+    
+    
+    }
 }

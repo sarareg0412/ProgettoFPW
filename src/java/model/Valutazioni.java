@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,5 +125,9 @@ public class Valutazioni implements Comparable<Valutazioni>{
      */
     public void setCommento_organizzatore(String commento_organizzatore) {
         this.commento_organizzatore = commento_organizzatore;
+    }
+    
+    public int getNValutazioni(int pid) throws MalformedURLException{
+        return ValutazioniFactory.getInstance().getValutazioniByArticle(pid).size();
     }
 }

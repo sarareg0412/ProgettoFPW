@@ -80,23 +80,7 @@ public class WritePaper extends HttpServlet {
                 if (request.getParameter("modifica") != null) {
                     request.setAttribute("modif", true);
 
-                    //Salvo le nuove info inserite
-                    String titolo = request.getParameter("titolo");
-                    String testo = request.getParameter("testo"); 
-                    long a = 20190412;
-                    Date data = new Date(a); ; //Le 3 celle contengono le cifre della data di creazione articolo
-                    URL url = new URL(request.getParameter("immagine"));
-                    String[] categorie = request.getParameterValues("category");
-                    List<String> categ_nuove = new ArrayList<>();
-                    
-                    for (String s: categorie){
-                        categ_nuove.add(s);
-                    }
-                    articoloScelto.setCategorie(categ_nuove);
-                    articoloScelto.setTitolo(titolo);
-                    articoloScelto.setTesto(testo);
-                    articoloScelto.setData(data.valueOf(request.getParameter("start")));
-                    articoloScelto.setImmagine(url);
+                    ArticoliFactory.getInstance().updateArticle(n, request);
                 }
                 //Setto l'articolo scelto e invio alla jsp
                 request.setAttribute("scelto", articoloScelto);
