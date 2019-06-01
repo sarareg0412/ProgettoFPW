@@ -57,7 +57,7 @@ public class Register extends HttpServlet {
             request.setAttribute("articoli", articoli);
             
             //Setto le valutazioni dell'utente
-            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
+            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
             request.setAttribute("valutazioni", valutazioni);
             
             //Se è stato premuto il pulsante salva setto tutti i nuovi parametri dell'utente

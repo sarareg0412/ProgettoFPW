@@ -52,7 +52,7 @@ public class Manage extends HttpServlet {
                                                     //ma setto comunque gli attributi fondamentali per la richiesta
                 
             
-                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
+                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                 request.setAttribute("valutazioni", valutazioni);   //Valutazioni dell'utente
                 
                 List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());

@@ -54,7 +54,7 @@ public class MyPapers extends HttpServlet {
             request.setAttribute("articoli", articoli);
             
             //Setto le valutazioni fatte da quell'utente
-            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
+            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
             request.setAttribute("valutazioni", valutazioni);
             
             

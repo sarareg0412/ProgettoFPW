@@ -104,14 +104,29 @@ public class ArticoliFactory {
      */
     public List<Articoli> getArticlesByAuthor(int id) throws MalformedURLException {
 
-        List<Articoli> articoli = ArticoliFactory.getInstance().getArticles();    //Lista da restituire
         List<Articoli> lista = new ArrayList<>();
         
-        for(Articoli art: articoli){
-            if(art.getAutori().contains(UtentiFactory.getInstance().getUserById(id)))
-                lista.add(art);
+        try {
+            
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "select * from utenti_articoli where utente_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, id);
+
+            ResultSet set = stmt.executeQuery();
+
+            while (set.next()){
+                Articoli articolo = ArticoliFactory.getInstance().getArticleByPid(set.getInt("articolo_id"));
+                lista.add(articolo);
+            }
+            
+            stmt.close();
+            conn.close();
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
-        
+        Collections.sort(lista);     //Ordina la lista secondo il compareTo() degli articoli
         return lista;
     }
 

@@ -66,7 +66,7 @@ public class WritePaper extends HttpServlet {
                 request.setAttribute("articoli", articoli);
                 
                 //Setto le valutazioni dell'utente
-                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user);
+                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                 request.setAttribute("valutazioni", valutazioni);
 
                 int n = Integer.parseInt(request.getParameter("pid"));

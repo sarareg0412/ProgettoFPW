@@ -77,23 +77,77 @@ public class ValutazioniFactory {
         return valutazioni;
     }
 
+    public Valutazioni getValutazioneByVid(int vid) throws MalformedURLException{
+    try {
+            Boolean esiste_val;
+
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "select * from valutazione where id_valutazione = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, vid);
+
+            ResultSet set = stmt.executeQuery();
+
+            esiste_val = set.next(); 
+
+            if (esiste_val == true) {
+                Valutazioni valutazione = new Valutazioni();
+                
+                valutazione.setVid(set.getInt("id_valutazione"));
+                valutazione.setCommento_autore(set.getString("comm_autori"));
+                valutazione.setCommento_organizzatore(set.getString("comm_org"));
+                valutazione.setVoto(set.getInt("voto"));
+                valutazione.setDecisione(set.getString("decisione"));
+                Utenti user = UtentiFactory.getInstance().getUserById(set.getInt("id_utente"));
+                valutazione.setValutatore(user);
+                Articoli art = ArticoliFactory.getInstance().getArticleByPid(set.getInt("id_articolo"));
+                valutazione.setArticolo(art);
+                
+                stmt.close();
+                conn.close();
+                return valutazione;
+            } else {
+                return null;
+            }
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+
+        return null;
     
+    
+    }
     
     /**
      * Ritorna una lista di valutazioni in base all'autore
      *
      * @param titolo
      */
-    public List<Valutazioni> getValutazioniByArticle(Articoli articolo ) throws MalformedURLException {
-        List<Valutazioni> valutazioni = this.getValutazioni();
+    public List<Valutazioni> getValutazioniByArticle(int pid ) throws MalformedURLException {
         List<Valutazioni> lista = new ArrayList<>();
-        
-        for (Valutazioni u : valutazioni) {
-            if (u.getArticolo().equals(articolo)) {
-                lista.add(u);
-            }
-        }
+        try {
+            
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "select * from valutazione where id_articolo = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
 
+            stmt.setInt(1, pid);
+
+            ResultSet set = stmt.executeQuery();
+
+            while (set.next()){
+                Valutazioni valutazione = ValutazioniFactory.getInstance().getValutazioneByVid(set.getInt("id_valutazione"));
+                lista.add(valutazione);
+            }
+            
+            stmt.close();
+            conn.close();
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+        
+        Collections.sort(lista);     //Ordina la lista secondo il compareTo() degli articoli
         return lista;
     }
  /**
@@ -101,16 +155,29 @@ public class ValutazioniFactory {
      *
      * @param titolo
      */
-    public List<Valutazioni> getValutazioniByValutatore(Utenti valutatore ) throws MalformedURLException {
-        List<Valutazioni> valutazioni = this.getValutazioni();
+    public List<Valutazioni> getValutazioniByValutatore(int id ) throws MalformedURLException {
         List<Valutazioni> lista = new ArrayList<>();
-        
-        for (Valutazioni u : valutazioni) {
-            if (u.getValutatore().equals(valutatore)) {
-                lista.add(u);
-            }
-        }
+        try {
+            
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "select * from valutazione where id_utente = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
 
+            stmt.setInt(1, id);
+
+            ResultSet set = stmt.executeQuery();
+
+            while (set.next()){
+                Valutazioni valutazione = ValutazioniFactory.getInstance().getValutazioneByVid(set.getInt("id_valutazione"));
+                lista.add(valutazione);
+            }
+            
+            stmt.close();
+            conn.close();
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+        
         return lista;
     }
     
