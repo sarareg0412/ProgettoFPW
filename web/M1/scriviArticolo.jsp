@@ -51,22 +51,17 @@
                             <label class="col-3" for="corto">Autori:</label>
 
                             <section  id="nomi" class="col-7">
-                                <c:forEach items="${autori}" var="u">
+                                <c:forEach items="${scelto.getAutori()}" var="u">
                                     <p>${u.getNome()} ${u.getCognome()}</p>
                                 </c:forEach>
-                                <select name="nome">
-                                    <option value="nome1">Anna Rossi</option>
-                                    <option value="nome2">Marco Neri</option>
-                                    <option value="nome3">Marta Verdi</option>
-                                </select>
+                                <input id="nuovo_autore" class="col-10" type="text" name="nome_autore" />
                             </section>
-
+                            
                         </section>
 
                         <section id="inserisci_categoria" >
                             <label class="col-3" for="category">Categoria:</label>
                             <section id="categorie" class="col-7" >
-
                                 
                                     <input type="checkbox" name="category" value="CSS" <c:if test="${scelto.getCategorie().contains('CSS')}"> checked  </c:if>>CSS
 
