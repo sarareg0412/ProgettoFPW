@@ -253,7 +253,7 @@ public class ArticoliFactory {
             Boolean crea_articolo;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "insert into articolo values (default, 'Inserisci titolo', default, 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO')";
+            String sql = "insert into articolo values (default, 'Inserisci titolo', '', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO')";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             int i = stmt.executeUpdate();
