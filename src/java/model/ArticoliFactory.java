@@ -212,12 +212,19 @@ public class ArticoliFactory {
                 art.setStato(request.getParameter("stato"));
                 art.setCategorie(Arrays.asList(categ_nuove));
                 String[] nome_cognome = request.getParameter("nome_autore").split(" ");
-                if (!nome_cognome.equals("")) {
-                    if (!art.getAutori().contains(UtentiFactory.getInstance().getUserByNS(nome_cognome[0], nome_cognome[1]))) {
-                        art = ArticoliFactory.getInstance().updateAutori(nome_cognome[0], nome_cognome[1], pid);
-                    }
+                if (nome_cognome.length > 1) {
+                    Utenti user = UtentiFactory.getInstance().getUserByNS(nome_cognome[0], nome_cognome[1]);
+                    /*Nel primo caso si sta creando un nuovo articolo; nel secondo si controlla se quello che esiste già abbia l'autore inserito*/
+                        if (ArticoliFactory.getInstance().getArticleByPid(pid) == null || !ArticoliFactory.getInstance().getArticleByPid(pid).getAutori().contains(user)) {
+                            art = ArticoliFactory.getInstance().updateAutori(nome_cognome[0], nome_cognome[1], pid);
+                        } else {
+                            art = ArticoliFactory.getInstance().getArticleByPid(pid);
+                        }
+                    
+                } else {
+                    art = ArticoliFactory.getInstance().getArticleByPid(pid);
                 }
-                
+
                 stmt.close();
                 conn.close();
                 return art;
@@ -230,6 +237,7 @@ public class ArticoliFactory {
         return null;
     }
 
+
     public Articoli updateAutori(String nome, String cognome, int pid) throws MalformedURLException {
         try {
 
@@ -238,15 +246,14 @@ public class ArticoliFactory {
             PreparedStatement stmt = conn.prepareStatement(sql);
             int id = UtentiFactory.getInstance().getPidByNS(nome, cognome);
             if (id != 0) {
-                stmt.setInt(1, id);
+                stmt.setInt(1, UtentiFactory.getInstance().getPidByNS(nome, cognome));
                 stmt.setInt(2, pid);
 
                 int res = stmt.executeUpdate();
 
                 if (res > 0) {  //modificata almeno una riga
+                    //Facendo questo, automaticamente viene eseguita la query precedente, con il nuovo utente aggiunto
                     Articoli articolo = ArticoliFactory.getInstance().getArticleByPid(pid);
-                    Utenti user = UtentiFactory.getInstance().getUserById(id);
-                    articolo.getAutori().add(user);
                     stmt.close();
                     conn.close();
                     return articolo;

@@ -79,7 +79,12 @@ public class WritePaper extends HttpServlet {
                     n = articoloScelto.getPid();
                 } else {
                     n = Integer.parseInt(request.getParameter("pid"));
+                    /* Questo metodo restituisce null solo se l'articolo passato non ha autori, questo accade solo se
+                       si è scelto l'ultimo articolo creato*/
                     articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
+                    if(articoloScelto == null){
+                        articoloScelto = ArticoliFactory.getInstance().getNuovoArticolo();
+                    }
                 }
                 
                 if (request.getParameter("modifica") == null) {

@@ -57,7 +57,6 @@ public class MyPapers extends HttpServlet {
             List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
             request.setAttribute("valutazioni", valutazioni);
             
-            
             //A questo punto reindirizzo alla jsp
             request.getRequestDispatcher("./M1/articoli.jsp").forward(request,response);
         
