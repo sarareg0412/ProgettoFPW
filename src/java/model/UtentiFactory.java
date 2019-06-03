@@ -127,6 +127,37 @@ public class UtentiFactory {
         return null;
     }
 
+    public Utenti getUserByNS(String nome, String cognome) throws MalformedURLException {
+
+        try {
+            Boolean loggedIn;
+
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "select * from utente where nome = ? and cognome = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, nome);
+            stmt.setString(2, cognome);
+
+            ResultSet set = stmt.executeQuery();
+
+            loggedIn = set.next();  //C'è almeno una riga?
+
+            if (loggedIn == true) {
+                Utenti utente = UtentiFactory.getInstance().getUserById(set.getInt("id"));
+
+                stmt.close();
+                conn.close();
+                return utente;
+            } else {
+                return null;
+            }
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+
+        return null;
+    }
     /**
      * Ritorna un utente in base al suo id
      *

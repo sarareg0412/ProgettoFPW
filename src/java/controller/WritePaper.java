@@ -48,14 +48,20 @@ public class WritePaper extends HttpServlet {
             //Se non viene passato un pid alla risposta, o se il pid non è valido, 
             // o se un utente cerca di accedere a un articolo che non ha scritto, 
             // o se si cerca di accedere a un atricolo che non ha lo stato "APERTO", si viene rimandati alla jsp errore
-            if (request.getParameter("pid") == null
-                    || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))) == null
-                    || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).
-                            getAutori().contains(UtentiFactory.getInstance().getUserById((int) session.getAttribute("utenteId"))) == false
-                    || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).getStato().equals("APERTO") == false) {
+            boolean entra = true;
+            if (request.getParameter("nuovo") == null) {
+                int p = Integer.parseInt(request.getParameter("pid"));
+                if (request.getParameter("pid") == null
+                        //|| ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))) == null
+                        //|| ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).
+                        //        getAutori().contains(UtentiFactory.getInstance().getUserById((int) session.getAttribute("utenteId"))) == false
+                        //|| ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).getStato().equals("APERTO") == false
+                        ) {
 
-                request.getRequestDispatcher("./M1/errore.jsp").forward(request, response);
-            } else {
+                    request.getRequestDispatcher("./M1/errore.jsp").forward(request, response);
+                }
+            }
+            if (entra = true) {
                 //Setto l'utente
                 int autoreId = (int) session.getAttribute("utenteId");
                 Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
@@ -65,10 +71,17 @@ public class WritePaper extends HttpServlet {
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                 //Setto gli articoli dell'utente
                 List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
-
+                Articoli articoloScelto = null;
+                int n = 0;
                 //Setto l'articolo scelto dall'utente
-                int n = Integer.parseInt(request.getParameter("pid"));
-                Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
+                if (request.getParameter("nuovo") != null) {    //Stiamo creando un nuovo articolo
+                    articoloScelto = ArticoliFactory.getInstance().getNuovoArticolo();
+                    n = articoloScelto.getPid();
+                } else {
+                    n = Integer.parseInt(request.getParameter("pid"));
+                    articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
+                }
+                
                 if (request.getParameter("modifica") == null) {
                     request.setAttribute("modif", false);
                 }

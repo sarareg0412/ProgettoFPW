@@ -137,8 +137,7 @@ public class ArticoliFactory {
             Boolean esiste_articolo;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select articolo.*, utente_articolo.*, utente.id from utente inner join (articolo inner join utente_articolo on articolo.pid = utente_articolo.articolo_id) "
-                    + "on utente.id = utente_articolo.utente_id where pid = ?";
+            String sql = "select * from articolo join utente_articolo on articolo.pid = utente_articolo.articolo_id where pid = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, pid);
@@ -159,10 +158,10 @@ public class ArticoliFactory {
                 articolo.setStato(set.getString("stato"));
                 String[] categorie = set.getString("categorie").split(" ");
                 articolo.setCategorie(Arrays.asList(categorie));
-                articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("id")));
+                articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("utente_id")));
 
                 while (set.next()) {  //L'articolo ha più autori
-                    articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("id")));
+                    articolo.getAutori().add(UtentiFactory.getInstance().getUserById(set.getInt("utente_id")));
                 }
 
                 stmt.close();
@@ -204,8 +203,21 @@ public class ArticoliFactory {
             int res = stmt.executeUpdate();
 
             if (res > 0) {  //modificata almeno una riga
+                Articoli art = new Articoli();
+                art.setPid(pid);
+                art.setTitolo(request.getParameter("titolo"));
+                art.setData(data.valueOf(request.getParameter("start")));
+                art.setImmagine(new URL(request.getParameter("immagine")));
+                art.setTesto(request.getParameter("testo"));
+                art.setStato(request.getParameter("stato"));
+                art.setCategorie(Arrays.asList(categ_nuove));
                 String[] nome_cognome = request.getParameter("nome_autore").split(" ");
-                Articoli art = ArticoliFactory.getInstance().updateAutori(nome_cognome[0], nome_cognome[1], pid);
+                if (!nome_cognome.equals("")) {
+                    if (!art.getAutori().contains(UtentiFactory.getInstance().getUserByNS(nome_cognome[0], nome_cognome[1]))) {
+                        art = ArticoliFactory.getInstance().updateAutori(nome_cognome[0], nome_cognome[1], pid);
+                    }
+                }
+                
                 stmt.close();
                 conn.close();
                 return art;
@@ -253,14 +265,14 @@ public class ArticoliFactory {
             Boolean crea_articolo;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "insert into articolo values (default, 'Inserisci titolo', '', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO')";
+            String sql = "insert into articolo values (default, 'Inserisci titolo', '', '', '2019-01-01', 'Inserire testo qui', 'APERTO')";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             int i = stmt.executeUpdate();
 
             if (i > 0) {
                 int pid = ArticoliFactory.getInstance().getPidByNome("Inserisci titolo");
-                Articoli articolo = ArticoliFactory.getInstance().getNuovoArticolo(pid);
+                Articoli articolo = ArticoliFactory.getInstance().getNuovoArticolo();
                 stmt.close();
                 conn.close();
                 return articolo;
@@ -272,15 +284,13 @@ public class ArticoliFactory {
         return null;
     }
 
-    public Articoli getNuovoArticolo(int pid) throws MalformedURLException {
+    public Articoli getNuovoArticolo() throws MalformedURLException {
         try {
             Boolean esiste_articolo;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from articolo where pid = ?";
+            String sql = "select max(pid) as pid_nuovo from articolo";
             PreparedStatement stmt = conn.prepareStatement(sql);
-
-            stmt.setInt(1, pid);
 
             ResultSet set = stmt.executeQuery();
 
@@ -290,14 +300,12 @@ public class ArticoliFactory {
                 Articoli articolo = new Articoli();
                 long a = 12345;
                 Date data = new Date(a);
-                articolo.setPid(set.getInt("pid"));
-                articolo.setTitolo(set.getString("titolo"));
-                articolo.setData(set.getDate("data_creazione"));
-                articolo.setImmagine(new URL(set.getString("immagine")));
-                articolo.setTesto(set.getString("testo"));
-                articolo.setStato(set.getString("stato"));
-                String[] categorie = set.getString("categorie").split(" ");
-                articolo.setCategorie(Arrays.asList(categorie));
+                articolo.setPid(set.getInt("pid_nuovo"));
+                articolo.setTitolo("Inserisci titolo");
+                articolo.setData(data.valueOf("2019-01-01"));
+                articolo.setImmagine(null);
+                articolo.setTesto("Inserisci testo qui");
+                articolo.setStato("APERTO");
 
                 stmt.close();
                 conn.close();
