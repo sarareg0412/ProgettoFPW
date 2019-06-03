@@ -76,9 +76,9 @@
                             </c:forEach>
 
                         </table>
-
-                        <form action="" method="post">
-                            <button type="submit">Nuovo Articolo</button>
+                        
+                        <form action="nuovoArticolo.html" method="post">
+                            <button name="nuovo" type="submit">Nuovo Articolo</button>
                         </form>
                     </section>
                 </c:if>

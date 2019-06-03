@@ -48,42 +48,43 @@ public class WritePaper extends HttpServlet {
             //Se non viene passato un pid alla risposta, o se il pid non è valido, 
             // o se un utente cerca di accedere a un articolo che non ha scritto, 
             // o se si cerca di accedere a un atricolo che non ha lo stato "APERTO", si viene rimandati alla jsp errore
-            if (request.getParameter("pid") == null 
+            if (request.getParameter("pid") == null
                     || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))) == null
                     || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).
-                            getAutori().contains(UtentiFactory.getInstance().getUserById((int)session.getAttribute("utenteId"))) == false
-                    || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).getStato().equals("APERTO") == false) {  
-                
+                            getAutori().contains(UtentiFactory.getInstance().getUserById((int) session.getAttribute("utenteId"))) == false
+                    || ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).getStato().equals("APERTO") == false) {
+
                 request.getRequestDispatcher("./M1/errore.jsp").forward(request, response);
             } else {
                 //Setto l'utente
                 int autoreId = (int) session.getAttribute("utenteId");
                 Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
                 request.setAttribute("user", user);
-                
-                //Setto gli articoli dell'utente
-                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
-                request.setAttribute("articoli", articoli);
-                
+
                 //Setto le valutazioni dell'utente
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
-                request.setAttribute("valutazioni", valutazioni);
+                //Setto gli articoli dell'utente
+                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
 
+                //Setto l'articolo scelto dall'utente
                 int n = Integer.parseInt(request.getParameter("pid"));
                 Articoli articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
-                List<Utenti> autori = articoloScelto.getAutori();
-                request.setAttribute("autori", autori);
-                
                 if (request.getParameter("modifica") == null) {
                     request.setAttribute("modif", false);
                 }
-                if (request.getParameter("modifica") != null) {
+                if (request.getParameter("modifica") != null) { //Modifico i parametri da passare alla request
                     request.setAttribute("modif", true);
-
-                    ArticoliFactory.getInstance().updateArticle(n, request);
+                    articoloScelto = ArticoliFactory.getInstance().updateArticle(request, n);
+                    articoli = ArticoliFactory.getInstance().getArticlesByAuthor(n);
+                    valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                 }
-                //Setto l'articolo scelto e invio alla jsp
+
                 request.setAttribute("scelto", articoloScelto);
+
+                //Setto l'articolo scelto e gli altri parametri, e invio alla jsp
+                request.setAttribute("articoli", articoli);
+
+                request.setAttribute("valutazioni", valutazioni);
                 request.getRequestDispatcher("./M1/scriviArticolo.jsp").forward(request, response);
 
             }

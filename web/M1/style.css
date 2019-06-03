@@ -56,7 +56,6 @@ h2.indice {
 
 /* ID per il box contenente il titolo */
 #sfondo_header > #titolo {
-    background-color: #24415E;
     height: 70px;
     position: absolute;
 }
@@ -331,8 +330,13 @@ section#cancel, button#save, button#save_articolo, .corto, input#id_pass, input#
     margin-left: 15px;
     margin-bottom: 10px; 
 }
+#nuovo_autore{
+    width: 73%;
+    height: 28px;
+    margin-bottom: 10px; 
+}
 section#inserisci_autori{
-    height: 50px;
+    height: 70px;
     
 }
 

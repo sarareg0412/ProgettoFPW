@@ -55,23 +55,23 @@ insert into valutazione values(default, 'fatto male', 'fatto malissimo', 2, 'Rif
 insert into valutazione values(default, default, default, default, 'Attesa Valutazioni',1, 3);
 insert into valutazione values(default, default, default, default, 'Attesa Valutazioni',1, 4);
 
-create table utenti_articoli(
+create table utente_articolo(
     utente_id bigint unsigned, 
     articolo_id bigint unsigned,
     PRIMARY KEY(utente_id, articolo_id)
 );
 
-alter table utenti_articoli add foreign key utente_id(utente_id) 
+alter table utente_articolo add foreign key utente_id(utente_id) 
  references utente(id) on update cascade on delete cascade;
-alter table utenti_articoli add foreign key articolo_id(articolo_id) 
+alter table utente_articolo add foreign key articolo_id(articolo_id) 
  references articolo(pid) on update cascade on delete cascade;
 
-insert into utenti_articoli values(2, 1 );
-insert into utenti_articoli values(2, 2 );
-insert into utenti_articoli values(3, 2 );
-insert into utenti_articoli values(2, 3 );
-insert into utenti_articoli values(2, 4 );
-insert into utenti_articoli values(3, 4 );
-insert into utenti_articoli values(3, 5 );
-insert into utenti_articoli values(2, 6 );
-insert into utenti_articoli values(3, 7 );
+insert into utente_articolo values(2, 1 );
+insert into utente_articolo values(2, 2 );
+insert into utente_articolo values(3, 2 );
+insert into utente_articolo values(2, 3 );
+insert into utente_articolo values(2, 4 );
+insert into utente_articolo values(3, 4 );
+insert into utente_articolo values(3, 5 );
+insert into utente_articolo values(2, 6 );
+insert into utente_articolo values(3, 7 );
