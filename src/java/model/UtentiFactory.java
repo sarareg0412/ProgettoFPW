@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -158,6 +159,7 @@ public class UtentiFactory {
 
         return null;
     }
+
     /**
      * Ritorna un utente in base al suo id
      *
@@ -286,15 +288,50 @@ public class UtentiFactory {
 
         return 0;
     }
-    
-    public List<Utenti> searchUtenti(String toSearch) throws MalformedURLException{
+
+    public List<Utenti> searchUtenti(String toSearch) throws MalformedURLException {
         List<Utenti> listToReturn = new ArrayList<>();
-        
-        for(Utenti u: getUsers()){
-            if(u.getNome().contains(toSearch))
+
+        for (Utenti u : getUsers()) {
+            if (u.getNome().contains(toSearch)) {
                 listToReturn.add(u);
+            }
         }
-        
+
         return listToReturn;
+    }
+
+    public Utenti updateUtente(HttpServletRequest request, int id) throws MalformedURLException {
+        try {
+            Boolean esiste_utente;
+
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "update utente set nome = ?, cognome = ?, foto = ?, ente = ?, email = ?, pw = ? where id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, request.getParameter("nome"));
+            stmt.setString(2, request.getParameter("cognome"));
+            stmt.setString(3, request.getParameter("immagine"));
+            stmt.setString(4, request.getParameter("ente"));
+            stmt.setString(5, request.getParameter("email"));
+            stmt.setString(6, request.getParameter("password"));
+            stmt.setInt(7, id);
+
+            int res = stmt.executeUpdate();
+
+            if (res > 0) {  //modificata almeno una riga
+                //Modifica automaticamente tutti i campi
+                Utenti user = UtentiFactory.getInstance().getUserById(id);
+                
+                stmt.close();
+                conn.close();
+                return user;
+            } else {
+                return null;
+            }
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+        return null;
     }
 }

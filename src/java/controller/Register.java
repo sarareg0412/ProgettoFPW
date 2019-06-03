@@ -62,18 +62,7 @@ public class Register extends HttpServlet {
             
             //Se è stato premuto il pulsante salva setto tutti i nuovi parametri dell'utente
             if (request.getParameter("modifica") != null) {
-                String nome = request.getParameter("nome");
-                String cognome = request.getParameter("cognome");
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");
-                URL ente = new URL(request.getParameter("ente"));
-                URL foto = new URL(request.getParameter("immagine"));
-                user.setNome(nome);
-                user.setCognome(cognome);
-                user.setEmail(email);
-                user.setPassword(password);
-                user.setEnte(ente);
-                user.setImmagine(foto);
+               user = UtentiFactory.getInstance().updateUtente(request, autoreId);
 
             }
             //Setto l'utente
