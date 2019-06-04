@@ -106,9 +106,11 @@ button {
     cursor: pointer;
 }
 
-button:active {
+button:active , button:hover{
     background-color: #906C37;
-    color: #24415E;
+    color: #2B4659; /*#24415E;*/
+    font-style: italic;
+    font-weight: bold;
     border: none;
 }
 
@@ -324,11 +326,19 @@ form#salva_articolo{
 }
 
 /* Molti campi di input hanno le stesse grandezze*/
-section#cancel, button#save, button#save_articolo, .corto, input#id_pass, input#start, input#foto_scelta, input#email {
+button#save, button#save_articolo, .corto, input#id_pass, input#start, input#foto_scelta, input#email {
     width: 50%;
     height: 28px;
     margin-left: 15px;
     margin-bottom: 10px; 
+}
+
+button#cancel{
+    width: 24%;
+    height: 28px;
+    margin-left: 275px;
+    margin-bottom: 10px; 
+    background-color: #C63313;
 }
 #nuovo_autore{
     width: 73%;
@@ -396,9 +406,6 @@ h1.col-3{
 }
 
 /* Link per cancellare il profilo*/
-section#cancel {
-    text-align: right;
-}
 
 h1.error{
   margin-top: 0px;  

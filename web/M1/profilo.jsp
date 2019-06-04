@@ -57,7 +57,7 @@
                     <section id="inserisci_immagine" class="col-10">
                         <label class="col-3" for="immagine">Foto:</label>
                         <input class="col-7 corto" type="text" name="immagine" value="${user.getImmagine()}" />
-                        
+
                     </section>
 
                     <section id="inserisci_email" class="col-10">
@@ -87,15 +87,10 @@
                         <button class="col-7" type="submit" name="modifica" id="save">Registrazione</button>
                     </c:if>
 
+                    <input type="hidden"><br/>
+                    <button class="col-7" type="submit" name="cancella" id="cancel">Cancella il tuo profilo</button>
+                
                 </form>
-
-                <section class="col-3 nascosta">
-                    <p>Non deve essere visualizzato</p>
-                </section>
-
-                <section class="col-7" id="cancel">
-                    <a   href="">Cancella il tuo profilo</a>
-                </section>
             </section>
         </main>
 

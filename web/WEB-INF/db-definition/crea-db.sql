@@ -12,6 +12,7 @@ create table utente(
 insert into utente values(default, 'Gianni', 'Bianchi', 'https://www.itsmarcopolo.it/wp-content/uploads/2017/08/sagoma-profilo.jpeg', 'https://www.unica.it/unica/','gianni.bianchi@gmail.com','gianni', 'Organizzatore');
 insert into utente values(default, 'Sara', 'Regali', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'https://www.unica.it/unica/', 'sara98.regali@gmail.com','sara', 'Autore');
 insert into utente values(default, 'Mario', 'Rossi', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'https://www.unica.it/unica/','mario.rossi@gmail.com','mario', 'Autore');
+insert into utente values(default, 'Anna', 'Maria', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'https://www.unica.it/unica/','anna.maria@gmail.com','anna', 'Autore');
 
 create table articolo(
     pid serial primary key,

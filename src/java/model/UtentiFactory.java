@@ -204,65 +204,7 @@ public class UtentiFactory {
         return null;
     }
 
-    public Boolean deleteUtente(int id) {
-        Connection conn = null;
-
-        try {
-            conn = DbManager.getInstance().getDbConnection();
-            conn.setAutoCommit(false);
-
-            String sql = "select articolo_id from utente_articolo where utente_id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet set = stmt.executeQuery(sql);
-
-            stmt.setInt(1, id);
-
-            List<Integer> articoli = new ArrayList<>();
-
-            while (set.next()) {
-                articoli.add(set.getInt("articolo_id"));
-            }
-
-            for (int i = 0; i < articoli.size(); i++) {
-                String art = "delete from articolo where pid = ?";
-                stmt.setInt(1, articoli.get(i).intValue());
-                stmt.executeUpdate();
-            }
-
-            String articolo = "delete from utente_articolo where utente_id = ?";
-
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-
-            String valutazioni = "delete from valutazione where id_utente = ?";
-            stmt.setInt(1, id);
-
-            stmt.executeUpdate();
-
-            String utente = "delete from utenti where id= ?";
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-
-            conn.commit();
-            conn.setAutoCommit(true);
-            stmt.close();
-            conn.close();
-
-        } catch (SQLException exc) {
-            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
-            if (conn != null) {
-                try {
-                    conn.rollback();
-                } catch (SQLException ec) {
-                    Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, ec);
-                }
-            }
-            return false;
-        }
-
-        return false;
-    }
-
+    
     public int getPidByNS(String nome, String cognome) {
         try {
             Boolean loggedIn;
@@ -334,4 +276,67 @@ public class UtentiFactory {
         }
         return null;
     }
+    public Boolean deleteUtente(int id) {
+        Connection conn = null;
+
+        try {
+            conn = DbManager.getInstance().getDbConnection();
+            conn.setAutoCommit(false);
+
+            String sql = "select articolo_id from utente_articolo where utente_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            
+            ResultSet set = stmt.executeQuery();
+            List<Integer> articoli = new ArrayList<>();
+
+            while (set.next()) {
+                articoli.add(set.getInt("articolo_id"));
+            }
+
+            for (int i = 0; i < articoli.size(); i++) {
+                String art = "delete from articolo where pid = ?";
+                PreparedStatement articolo = conn.prepareStatement(art);
+                articolo.setInt(1, articoli.get(i));
+                articolo.executeUpdate();
+            }
+
+            String utente_id = "delete from utente_articolo where utente_id = ?";
+            PreparedStatement id_utente = conn.prepareStatement(utente_id);
+            id_utente.setInt(1, id);
+            id_utente.executeUpdate();
+
+            String valutazioni = "delete from valutazione where id_utente = ?";
+            PreparedStatement val = conn.prepareStatement(valutazioni);
+            id_utente.setInt(1, id);
+
+            id_utente.executeUpdate();
+
+            String utente = "delete from utente where id = ?";
+            PreparedStatement user = conn.prepareStatement(utente);
+            user.setInt(1, id);
+            user.executeUpdate();
+
+            conn.commit();
+            conn.setAutoCommit(true);
+            stmt.close();
+            id_utente.close();
+            user.close();
+            conn.close();
+
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ec) {
+                    Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, ec);
+                }
+            }
+            return false;
+        }
+
+        return false;
+    }
+
 }

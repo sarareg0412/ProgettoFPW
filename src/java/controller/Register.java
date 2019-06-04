@@ -43,7 +43,7 @@ public class Register extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         //Setto la sessione
         HttpSession session = request.getSession();
 
@@ -51,24 +51,32 @@ public class Register extends HttpServlet {
             //Setto l'utente
             int autoreId = (int) session.getAttribute("utenteId");
             Utenti user = UtentiFactory.getInstance().getUserById(autoreId);
-            
-            //Setto gli articoli dell'utente
-            List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
-            request.setAttribute("articoli", articoli);
-            
-            //Setto le valutazioni dell'utente
-            List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
-            request.setAttribute("valutazioni", valutazioni);
-            
-            //Se è stato premuto il pulsante salva setto tutti i nuovi parametri dell'utente
-            if (request.getParameter("modifica") != null) {
-               user = UtentiFactory.getInstance().updateUtente(request, autoreId);
-
+            boolean cancellazione = false;
+            if (request.getParameter("cancella") != null) {
+                cancellazione = UtentiFactory.getInstance().deleteUtente(autoreId);
+                 request.getRequestDispatcher("/logout.html?logout=true").forward(request, response);
             }
-            //Setto l'utente
-            request.setAttribute("user", user);
-            //Chiamo la jsp
-            request.getRequestDispatcher("./M1/profilo.jsp").forward(request, response);
+            
+            if(request.getParameter("cancella") == null || cancellazione==false){
+
+                //Setto gli articoli dell'utente
+                List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
+                request.setAttribute("articoli", articoli);
+
+                //Setto le valutazioni dell'utente
+                List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
+                request.setAttribute("valutazioni", valutazioni);
+
+                //Se è stato premuto il pulsante salva setto tutti i nuovi parametri dell'utente
+                if (request.getParameter("modifica") != null) {
+                    user = UtentiFactory.getInstance().updateUtente(request, autoreId);
+
+                }
+                //Setto l'utente
+                request.setAttribute("user", user);
+                //Chiamo la jsp
+                request.getRequestDispatcher("./M1/profilo.jsp").forward(request, response);
+            }
         } else {
             //Chiamo comunque la jsp
             request.getRequestDispatcher("./M1/profilo.jsp").forward(request, response);
@@ -103,7 +111,7 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
     /**
      * Returns a short description of the servlet.
