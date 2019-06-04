@@ -32,7 +32,7 @@ insert into articolo values(default, 'Il tag brt', 'JSP HTML', 'https://studio99
 insert into articolo values(default, 'Il SevletContainer', 'Servlet', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg' , '2019-05-02', 'inserire testo qui', 'RIFIUTATO');
 insert into articolo values(default, 'HTML 6', 'HTML', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg' ,'2019-02-18', 'inserire testo qui', 'IN VALUTAZIONE');
 
-create table valutazione(
+create table valutazioni(
     id_valutazione serial primary key,
     comm_autori varchar(250),
     comm_org varchar(250),
@@ -42,19 +42,19 @@ create table valutazione(
     id_articolo bigint unsigned 
 );
 
-alter table valutazione add foreign key id_utente(id_utente) 
+alter table valutazioni add foreign key id_utente(id_utente) 
  references utente(id) on update cascade on delete cascade;
-alter table valutazione add foreign key id_articolo(id_articolo) 
+alter table valutazioni add foreign key id_articolo(id_articolo) 
  references articolo(pid) on update cascade on delete cascade;
 
-insert into valutazione values(default, 'fatto bene', 'fatto male', 4, 'Decidi', 2, 1);
-insert into valutazione values(default, 'fatto bene', 'fatto male', 4, 'Decidi', 3, 1);
-insert into valutazione values(default, 'fatto male', 'fatto malissimo', 2, 'Decidi', 2, 2);
-insert into valutazione values(default, 'fatto bene', 'fatto benino', 3, 'Accettato', 2, 5);
-insert into valutazione values(default, 'fatto male', 'fatto malissimo', 0, 'Rifiutato', 2, 6);
-insert into valutazione values(default, 'fatto male', 'fatto malissimo', 2, 'Rifiutato', 2, 7);
-insert into valutazione values(default, default, default, default, 'Attesa Valutazioni',1, 3);
-insert into valutazione values(default, default, default, default, 'Attesa Valutazioni',1, 4);
+insert into valutazioni values(default, 'fatto bene', 'fatto male', 4, 'Decidi', 2, 1);
+insert into valutazioni values(default, 'fatto bene', 'fatto male', 4, 'Decidi', 3, 1);
+insert into valutazioni values(default, 'fatto male', 'fatto malissimo', 2, 'Decidi', 2, 2);
+insert into valutazioni values(default, 'fatto bene', 'fatto benino', 3, 'Accettato', 2, 5);
+insert into valutazioni values(default, 'fatto male', 'fatto malissimo', 0, 'Rifiutato', 2, 6);
+insert into valutazioni values(default, 'fatto male', 'fatto malissimo', 2, 'Rifiutato', 2, 7);
+insert into valutazioni values(default, default, default, default, 'Attesa Valutazioni',1, 3);
+insert into valutazioni values(default, default, default, default, 'Attesa Valutazioni',1, 4);
 
 create table utente_articolo(
     utente_id bigint unsigned, 

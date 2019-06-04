@@ -306,7 +306,7 @@ public class UtentiFactory {
             id_utente.setInt(1, id);
             id_utente.executeUpdate();
 
-            String valutazioni = "delete from valutazione where id_utente = ?";
+            String valutazioni = "delete from valutazioni where id_utente = ?";
             PreparedStatement val = conn.prepareStatement(valutazioni);
             id_utente.setInt(1, id);
 

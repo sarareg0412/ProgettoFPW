@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Questa jsp contiene il codice dell'header s-->
 
-<!DOCTYPE html>
 <header id="sfondo_header" class="col-10">
     <div id="titolo" class="col-2">
         <h1 class="titolo">Free Peer revieW</h1>

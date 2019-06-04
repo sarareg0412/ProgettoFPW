@@ -46,9 +46,9 @@ public class ValutazioniFactory {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select valutazione.*, utente.id, articolo.pid from valutazione"
-                    + " inner join utente on valutazione.id_utente = utente.id"
-                    + " inner join articolo on valutazione.id_articolo = articolo.pid";
+            String sql = "select valutazioni.*, utente.id, articolo.pid from valutazioni"
+                    + " inner join utente on valutazioni.id_utente = utente.id"
+                    + " inner join articolo on valutazioni.id_articolo = articolo.pid";
             ResultSet set = stmt.executeQuery(sql);
             
             while (set.next()) {
@@ -82,7 +82,7 @@ public class ValutazioniFactory {
             Boolean esiste_val;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazione where id_valutazione = ?";
+            String sql = "select * from valutazioni where id_valutazione = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, vid);
@@ -129,7 +129,7 @@ public class ValutazioniFactory {
         try {
             
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazione where id_articolo = ?";
+            String sql = "select * from valutazioni where id_articolo = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, pid);
@@ -160,7 +160,7 @@ public class ValutazioniFactory {
         try {
             
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazione where id_utente = ?";
+            String sql = "select * from valutazioni where id_utente = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, id);
@@ -188,7 +188,7 @@ public class ValutazioniFactory {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select * from valutazione";
+            String sql = "select * from valutazioni";
             
             ResultSet set = stmt.executeQuery(sql);
             
