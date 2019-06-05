@@ -70,7 +70,6 @@ public class Register extends HttpServlet {
                 //Se è stato premuto il pulsante salva setto tutti i nuovi parametri dell'utente
                 if (request.getParameter("modifica") != null) {
                     user = UtentiFactory.getInstance().updateUtente(request, autoreId);
-
                 }
                 //Setto l'utente
                 request.setAttribute("user", user);
