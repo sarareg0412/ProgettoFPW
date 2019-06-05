@@ -18,7 +18,7 @@
         <meta name="description" content="Pagina di Login prima Milestone">
         <!--<base href="M1/">-->
     </head>
-    
+
     <body>
         <header id="sfondo_header">
             <div id="titolo" class="col-2">
@@ -27,24 +27,24 @@
         </header>
         <main>
             <section id="login">
-                
+
                 <form action="login.html" method="post">
                     <label for="id_username">Username: </label>
-                    <input type="text" name="userName" id="id_username" value="Inserisci username"/>
-                    <br/> 
+                    <input class="col-10" type="text" name="userName" id="id_username" value="Inserisci username"/>
 
-                    <label for="id_password">Password: </label>
+                    <label class="col-10" for="id_password">Password: </label>
                     <input type="password" name="password" id="id_password" value="oscurato"/>
-                    
-                    <br/>
-                    <button type="submit" name="login">Login</button>
-                    <br/>
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember" />Ricordami
-                    </label>
-                   
-                    <p class="val">Vai alla pagina di <a href="valutazione.html">valutazioni</a></p>
-                   
+
+                    <button class="col-10" type="submit" name="login">Login</button>
+                    <section class="col-3">
+                        <input  type="checkbox" checked="checked" name="remember" />
+                        <label class="ricordami">Ricordami</label>
+                    </section>
+
+
+
+                    <p class="val col-6">Vai alla pagina di <a href="valutazione.html">valutazioni</a></p>
+
                 </form>
             </section>
         </main>

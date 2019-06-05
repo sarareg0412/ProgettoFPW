@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model;
+
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,12 +18,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Sara
  */
 public class ValutazioniFactory {
-     /**
+
+    /**
      * Unica istanza che può restituire le valutazioni
      */
     private static ValutazioniFactory singleton;
@@ -50,10 +53,10 @@ public class ValutazioniFactory {
                     + " inner join utente on valutazioni.id_utente = utente.id"
                     + " inner join articolo on valutazioni.id_articolo = articolo.pid";
             ResultSet set = stmt.executeQuery(sql);
-            
+
             while (set.next()) {
                 Valutazioni val = new Valutazioni();
-                
+
                 val.setVid(set.getInt("id_valutazione"));
                 val.setCommento_autore(set.getString("comm_autori"));
                 val.setCommento_organizzatore(set.getString("comm_org"));
@@ -63,13 +66,13 @@ public class ValutazioniFactory {
                 val.setValutatore(user);
                 Articoli art = ArticoliFactory.getInstance().getArticleByPid(set.getInt("pid"));
                 val.setArticolo(art);
-                
+
                 valutazioni.add(val);
             }
-        
+
             stmt.close();
             conn.close();
-        }catch (SQLException exc) {
+        } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
@@ -77,8 +80,8 @@ public class ValutazioniFactory {
         return valutazioni;
     }
 
-    public Valutazioni getValutazioneByVid(int vid) throws MalformedURLException{
-    try {
+    public Valutazioni getValutazioneByVid(int vid) throws MalformedURLException {
+        try {
             Boolean esiste_val;
 
             Connection conn = DbManager.getInstance().getDbConnection();
@@ -89,11 +92,11 @@ public class ValutazioniFactory {
 
             ResultSet set = stmt.executeQuery();
 
-            esiste_val = set.next(); 
+            esiste_val = set.next();
 
             if (esiste_val == true) {
                 Valutazioni valutazione = new Valutazioni();
-                
+
                 valutazione.setVid(set.getInt("id_valutazione"));
                 valutazione.setCommento_autore(set.getString("comm_autori"));
                 valutazione.setCommento_organizzatore(set.getString("comm_org"));
@@ -103,7 +106,7 @@ public class ValutazioniFactory {
                 valutazione.setValutatore(user);
                 Articoli art = ArticoliFactory.getInstance().getArticleByPid(set.getInt("id_articolo"));
                 valutazione.setArticolo(art);
-                
+
                 stmt.close();
                 conn.close();
                 return valutazione;
@@ -115,19 +118,18 @@ public class ValutazioniFactory {
         }
 
         return null;
-    
-    
+
     }
-    
+
     /**
      * Ritorna una lista di valutazioni in base all'autore
      *
      * @param titolo
      */
-    public List<Valutazioni> getValutazioniByArticle(int pid ) throws MalformedURLException {
+    public List<Valutazioni> getValutazioniByArticle(int pid) throws MalformedURLException {
         List<Valutazioni> lista = new ArrayList<>();
         try {
-            
+
             Connection conn = DbManager.getInstance().getDbConnection();
             String sql = "select * from valutazioni where id_articolo = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -136,29 +138,30 @@ public class ValutazioniFactory {
 
             ResultSet set = stmt.executeQuery();
 
-            while (set.next()){
+            while (set.next()) {
                 Valutazioni valutazione = ValutazioniFactory.getInstance().getValutazioneByVid(set.getInt("id_valutazione"));
                 lista.add(valutazione);
             }
-            
+
             stmt.close();
             conn.close();
         } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
-        
+
         Collections.sort(lista);     //Ordina la lista secondo il compareTo() degli articoli
         return lista;
     }
- /**
+
+    /**
      * Ritorna una lista di valutazioni in base al valutatore
      *
      * @param titolo
      */
-    public List<Valutazioni> getValutazioniByValutatore(int id ) throws MalformedURLException {
+    public List<Valutazioni> getValutazioniByValutatore(int id) throws MalformedURLException {
         List<Valutazioni> lista = new ArrayList<>();
         try {
-            
+
             Connection conn = DbManager.getInstance().getDbConnection();
             String sql = "select * from valutazioni where id_utente = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -167,31 +170,31 @@ public class ValutazioniFactory {
 
             ResultSet set = stmt.executeQuery();
 
-            while (set.next()){
+            while (set.next()) {
                 Valutazioni valutazione = ValutazioniFactory.getInstance().getValutazioneByVid(set.getInt("id_valutazione"));
                 lista.add(valutazione);
             }
-            
+
             stmt.close();
             conn.close();
         } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
-        
+
         Collections.sort(lista);
         return lista;
     }
-    
-    public List<Valutazioni> getValutazioniSenzaRipetizioni() throws MalformedURLException{
-    List<Valutazioni> valutazioni = new ArrayList<>();
+
+    public List<Valutazioni> getValutazioniSenzaRipetizioni() throws MalformedURLException {
+        List<Valutazioni> valutazioni = new ArrayList<>();
         try {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
             String sql = "select * from valutazioni";
-            
+
             ResultSet set = stmt.executeQuery(sql);
-            
+
             while (set.next()) {
                 boolean flag = false;
                 for (Valutazioni val : valutazioni) {
@@ -200,20 +203,47 @@ public class ValutazioniFactory {
                         flag = true;    //C'è già l'articolo nella colonna scelta
                     }
                 }
-                if(flag == false){
+                if (flag == false) {
                     valutazioni.add(ValutazioniFactory.getInstance().getValutazioneByVid(set.getInt("id_valutazione")));
                 }
             }
-        
+
             stmt.close();
             conn.close();
-        }catch (SQLException exc) {
+        } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
         Collections.sort(valutazioni);      //
         return valutazioni;
-    
-    
+
+    }
+
+    public Valutazioni getValutazioneByPI(int pid, int id) throws MalformedURLException {
+        Valutazioni valutazione = null;
+        try {
+
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "select * from valutazioni where id_articolo = ? and id_utente = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, pid);
+            stmt.setInt(2, id);
+
+            ResultSet set = stmt.executeQuery();
+
+            while (set.next()) {
+                valutazione = ValutazioniFactory.getInstance().getValutazioneByVid(set.getInt("id_valutazione"));
+            }
+
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+
+        return valutazione;
+
     }
 }

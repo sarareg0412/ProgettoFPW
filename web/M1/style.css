@@ -62,7 +62,6 @@ h2.indice {
 
 /* Nome del sito */
 h1.titolo {
-    background-color: #24415E;
     color: #fff;  
     font-size: 18px;
     padding: 10px;
@@ -116,11 +115,16 @@ button:hover{
 }
 
 
-.val {
-    margin-top: 1px;
+.val {  /*link vai alle valutazioni*/
+    margin-top: 0px;
     float: right;
+    text-align: right;
+    font-size: 14px;
 }
-
+.ricordami{
+    font-size: 14px;
+    text-align: left;
+}
 /*puntatore sopra il link*/
 a:link, a:visited {
     color: #906C37;
@@ -173,7 +177,7 @@ nav#sfondo_menu > ul#menu_pagine > li > a:hover {
 
 /* Barra laterale*/
 aside#barra_laterale {
-    height: 843px;
+    height: 600px;
     color: #24415E;
     background-color: #FFF4B9;
     padding-left: 10px;
@@ -197,7 +201,7 @@ main::after {
     content: "";
     clear: both;
     display: table;
-    
+
 }
 
 /* Sezione contenente il resto del content */
@@ -218,7 +222,9 @@ section#sfondo_descrizioni > h1{
 section#sfondo_descrizioni > section#sottotitoli {
     font-size: 16px;
 }
-
+.valutazione{
+    text-align: center;
+}
 #immagine{
     padding: 10px;
 }
@@ -320,9 +326,11 @@ section#inserisci_titolo, #inserisci_nome, #inserisci_cognome, #inserisci_passwo
 /* Scelta del nome */
 section#nomi, #categorie{
     padding-left: 15px;   
-    
-}
 
+}
+i{
+    height: 30px;
+}
 form#salva_articolo{
     height: 630px;
     margin-top: 10px;
@@ -350,7 +358,7 @@ button#cancel{
 }
 section#inserisci_autori{
     height: 70px;
-    
+
 }
 
 /* Paragrafi che contengono i nomi già inseriti*/
@@ -411,5 +419,5 @@ h1.col-3{
 /* Link per cancellare il profilo*/
 
 h1.error{
-  margin-top: 0px;  
+    margin-top: 0px;  
 }

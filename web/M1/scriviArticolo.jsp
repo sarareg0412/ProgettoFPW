@@ -13,6 +13,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="./M1/style.css" media="screen">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
         <meta name="author" content="Sara Regali">
         <meta name="keywords" content="FPW, Milestone1, HTML, CSS, Java">
         <meta name="description" content="Pagina per scriverere un articolo; prima Milestone">
@@ -54,16 +56,20 @@
                                 <c:forEach items="${scelto.getAutori()}" var="u">
                                     <p>${u.getNome()} ${u.getCognome()}</p>
                                 </c:forEach>
-                                <input id="nuovo_autore" class="col-10" type="text" name="nome_autore" />
+
+                                <input id="nuovo_autore" class="col-8" type="text" name="nome_autore" />
+                                <i class="far fa-plus-square"></i>
+
+
                             </section>
-                            
+
                         </section>
 
                         <section id="inserisci_categoria" >
                             <label class="col-3" for="category">Categoria:</label>
                             <section id="categorie" class="col-7" >
-                                
-                                    <input type="checkbox" name="category" value="CSS" <c:if test="${scelto.getCategorie().contains('CSS')}"> checked  </c:if>>CSS
+
+                                <input type="checkbox" name="category" value="CSS" <c:if test="${scelto.getCategorie().contains('CSS')}"> checked  </c:if>>CSS
 
                                     <input type="checkbox" name="category" value="HTML"  <c:if test="${scelto.getCategorie().contains('HTML')}" > checked </c:if>>HTML
 
@@ -72,19 +78,19 @@
                                     </br>
 
                                     <input type="checkbox" name="category" value="AJAX" <c:if test="${scelto.getCategorie().contains('AJAX')}"> checked </c:if> >AJAX
-                                    
+
                                     <input type="checkbox" name="category" value="JavaScript" <c:if test="${scelto.getCategorie().contains('JavaScript')}"> checked </c:if> >JavaScript
 
                                     <input type="checkbox" name="category" value="Servlet" <c:if test="${scelto.getCategorie().contains('Servlet')}"> checked </c:if> >Servlet
-                                    
-                              
 
+
+
+                                </section>
                             </section>
-                        </section>
 
-                        <section id="inserisci_immagine">
-                            <label class="col-3" for="immagine">Foto:</label>
-                            <input class="col-7 corto" type="text" name="immagine" value="${scelto.getImmagine()}" />
+                            <section id="inserisci_immagine">
+                                <label class="col-3" for="immagine">Foto:</label>
+                                <input class="col-7 corto" type="text" name="immagine" value="${scelto.getImmagine()}" />
                         </section>
                         <section id="inserisci_data">
                             <label class="col-3" for="start">Data:</label>
