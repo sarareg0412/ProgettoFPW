@@ -104,9 +104,10 @@ button {
     margin-bottom: 10px;
     color: #fff;
     cursor: pointer;
+    border-radius: 7px;
 }
 
-button:active , button:hover{
+button:hover{
     background-color: #906C37;
     color: #2B4659; /*#24415E;*/
     font-style: italic;
@@ -166,6 +167,8 @@ nav#sfondo_menu > ul#menu_pagine > li > a {
 nav#sfondo_menu > ul#menu_pagine > li > a:hover {
     background-color: white;
     color: #24415E;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 /* Barra laterale*/

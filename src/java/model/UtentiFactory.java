@@ -323,7 +323,7 @@ public class UtentiFactory {
             id_utente.close();
             user.close();
             conn.close();
-
+            return true;
         } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
             if (conn != null) {
@@ -336,7 +336,6 @@ public class UtentiFactory {
             return false;
         }
 
-        return false;
     }
 
 }

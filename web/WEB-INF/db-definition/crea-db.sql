@@ -2,7 +2,7 @@ create table utente(
     id serial primary key,
     nome varchar(100),
     cognome varchar(100),
-    foto varchar(100),
+    foto varchar(500),
     ente varchar(150),
     email varchar(100),
     pw varchar(100),
