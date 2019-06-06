@@ -93,7 +93,7 @@ public class WritePaper extends HttpServlet {
                 if (request.getParameter("modifica") != null) { //Modifico i parametri da passare alla request
                     request.setAttribute("modif", true);
                     articoloScelto = ArticoliFactory.getInstance().updateArticle(request, n);
-                    articoli = ArticoliFactory.getInstance().getArticlesByAuthor(n);
+                    articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
                     valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                 }
 
