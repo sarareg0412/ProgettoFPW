@@ -56,11 +56,11 @@
                             <section  id="nomi" class="col-7">
                                 <ul id="lista_autori">
                                     <c:forEach items="${scelto.getAutori()}" var="u">
-                                        <li >${u.getNome()} ${u.getCognome()}</li>
+                                        <li >${u.getNome()}, ${u.getCognome()} (${u.getId()})</li>
                                     </c:forEach>
                                 </ul>
                                 <input id="nuovo_autore" class="col-8" type="text" name="author" />
-                                <button id="plus" name="addAuthor">
+                                <button id="plus" name="addAuthor" type="submit">
                                     <img src="./M1/images/plus.jpg" height="28" width="28"/>
                                 </button>
 

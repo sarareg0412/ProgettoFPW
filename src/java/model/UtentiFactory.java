@@ -231,17 +231,6 @@ public class UtentiFactory {
         return 0;
     }
 
-    public List<Utenti> searchUtenti(String toSearch) throws MalformedURLException {
-        List<Utenti> listToReturn = new ArrayList<>();
-
-        for (Utenti u : getUsers()) {
-            if (u.getNome().contains(toSearch)) {
-                listToReturn.add(u);
-            }
-        }
-
-        return listToReturn;
-    }
 
     public Utenti updateUtente(HttpServletRequest request, int id) throws MalformedURLException {
         try {

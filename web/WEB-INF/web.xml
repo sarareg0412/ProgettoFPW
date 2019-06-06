@@ -40,6 +40,10 @@
         <servlet-name>Valutazione</servlet-name>
         <servlet-class>controller.Valutazione</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SuggestAuthors</servlet-name>
+        <servlet-class>controller.SuggestAuthors</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login.html</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>Valutazione</servlet-name>
         <url-pattern>/valutazione.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SuggestAuthors</servlet-name>
+        <url-pattern>/suggest.json</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
