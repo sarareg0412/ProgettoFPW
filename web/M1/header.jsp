@@ -5,7 +5,8 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!-- Questa jsp contiene il codice dell'header s-->
+
+<!-- Questa jsp contiene il codice dell'header -->
 
 <header id="sfondo_header" class="col-10">
     <div id="titolo" class="col-2">

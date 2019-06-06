@@ -20,7 +20,7 @@
         <meta name="author" content="Sara Regali">
         <meta name="keywords" content="FPW, Milestone1, HTML, CSS, Java">
         <meta name="description" content="Pagina contenente gli articoli; prima Milestone">            
-
+        
     </head>
     <body>
         <!-- Header incluso qui -->

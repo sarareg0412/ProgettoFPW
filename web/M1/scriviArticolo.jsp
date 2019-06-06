@@ -19,6 +19,7 @@
         <meta name="keywords" content="FPW, Milestone1, HTML, CSS, Java">
         <meta name="description" content="Pagina per scriverere un articolo; prima Milestone">
 
+        <script src="./js/jquery.js"></script> 
     </head>
     <body>
         <!-- Header incluso qui -->
@@ -53,12 +54,15 @@
                             <label class="col-3" for="corto">Autori:</label>
 
                             <section  id="nomi" class="col-7">
-                                <c:forEach items="${scelto.getAutori()}" var="u">
-                                    <p>${u.getNome()} ${u.getCognome()}</p>
-                                </c:forEach>
-
-                                <input id="nuovo_autore" class="col-8" type="text" name="nome_autore" />
-                                <i class="far fa-plus-square"></i>
+                                <ul id="lista_autori">
+                                    <c:forEach items="${scelto.getAutori()}" var="u">
+                                        <li >${u.getNome()} ${u.getCognome()}</li>
+                                    </c:forEach>
+                                </ul>
+                                <input id="nuovo_autore" class="col-8" type="text" name="author" />
+                                <button id="plus" name="addAuthor">
+                                    <img src="./M1/images/plus.jpg" height="28" width="28"/>
+                                </button>
 
 
                             </section>

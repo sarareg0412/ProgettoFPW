@@ -211,7 +211,7 @@ public class ArticoliFactory {
                 art.setTesto(request.getParameter("testo"));
                 art.setStato(request.getParameter("stato"));
                 art.setCategorie(Arrays.asList(categ_nuove));
-                String[] nome_cognome = request.getParameter("nome_autore").split(" ");
+                String[] nome_cognome = request.getParameter("author").split(" ");
                 if (nome_cognome.length > 1) {
                     Utenti user = UtentiFactory.getInstance().getUserByNS(nome_cognome[0], nome_cognome[1]);
                     /*Nel primo caso si sta creando un nuovo articolo; nel secondo si controlla se quello che esiste già abbia l'autore inserito*/

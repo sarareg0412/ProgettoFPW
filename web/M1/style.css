@@ -177,7 +177,7 @@ nav#sfondo_menu > ul#menu_pagine > li > a:hover {
 
 /* Barra laterale*/
 aside#barra_laterale {
-    height: 600px;
+    height: 750px;
     color: #24415E;
     background-color: #FFF4B9;
     padding-left: 10px;
@@ -328,6 +328,17 @@ section#nomi, #categorie{
     padding-left: 15px;   
 
 }
+
+ul#lista_autori{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-left: 0px;
+    list-style-type: none;
+    font-size: 17px;
+}
+ul#lista_autori > li{
+    margin-bottom: 5px;
+}
 i{
     height: 30px;
 }
@@ -360,7 +371,13 @@ section#inserisci_autori{
     height: 70px;
 
 }
-
+#plus{
+    margin: 0px 5px;
+    padding: 0px;
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+}
 /* Paragrafi che contengono i nomi già inseriti*/
 section#nomi > p {
     margin-top: 2px;     

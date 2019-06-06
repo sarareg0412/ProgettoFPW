@@ -50,7 +50,6 @@ public class WritePaper extends HttpServlet {
             // o se si cerca di accedere a un atricolo che non ha lo stato "APERTO", si viene rimandati alla jsp errore
             boolean entra = true;
             if (request.getParameter("nuovo") == null) {
-                int p = Integer.parseInt(request.getParameter("pid"));
                 if (request.getParameter("pid") == null
                         //|| ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))) == null
                         //|| ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).
