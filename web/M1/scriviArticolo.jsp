@@ -24,7 +24,7 @@
     <body>
         <!-- Header incluso qui -->
         <jsp:include page="header.jsp"/>
-
+        <script src="./js/suggest.js"></script>
         <main>
             <jsp:include page="aside.jsp"/>
 

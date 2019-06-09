@@ -32,10 +32,7 @@
         <servlet-name>NewArticle</servlet-name>
         <servlet-class>controller.NewArticle</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>SearchAJAX</servlet-name>
-        <servlet-class>controller.SearchAJAX</servlet-class>
-    </servlet>
+
     <servlet>
         <servlet-name>Valutazione</servlet-name>
         <servlet-class>controller.Valutazione</servlet-class>
@@ -76,10 +73,7 @@
         <servlet-name>NewArticle</servlet-name>
         <url-pattern>/nuovoArticolo.html</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchAJAX</servlet-name>
-        <url-pattern>/SearchAJAX</url-pattern>
-    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>Valutazione</servlet-name>
         <url-pattern>/valutazione.html</url-pattern>

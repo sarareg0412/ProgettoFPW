@@ -22,6 +22,7 @@ import model.Utenti;
 import model.UtentiFactory;
 import model.Valutazioni;
 import model.ValutazioniFactory;
+import utils.AuthorTokenizer;
 
 /**
  *
@@ -76,6 +77,7 @@ public class WritePaper extends HttpServlet {
                 if (request.getParameter("nuovo") != null) {    //Stiamo creando un nuovo articolo
                     articoloScelto = ArticoliFactory.getInstance().getNuovoArticolo();
                     n = articoloScelto.getPid();
+                    AuthorTokenizer autore = new AuthorTokenizer(request.getParameter("author"));
                 } else {
                     n = Integer.parseInt(request.getParameter("pid"));
                     /* Questo metodo restituisce null solo se l'articolo passato non ha autori, questo accade solo se
@@ -96,7 +98,7 @@ public class WritePaper extends HttpServlet {
                     valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                     
                 }
-
+                    
                 request.setAttribute("scelto", articoloScelto);
 
                 //Setto l'articolo scelto e gli altri parametri, e invio alla jsp

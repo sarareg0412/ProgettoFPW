@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import utils.AuthorTokenizer;
 
 /**
  *
@@ -211,16 +212,12 @@ public class ArticoliFactory {
                 art.setTesto(request.getParameter("testo"));
                 art.setStato(request.getParameter("stato"));
                 art.setCategorie(Arrays.asList(categ_nuove));
-                String[] nome_cognome = request.getParameter("author").split(" ");
-                if (nome_cognome.length > 1) {
-                    Utenti user = UtentiFactory.getInstance().getUserByNS(nome_cognome[0], nome_cognome[1]);
-                    /*Nel primo caso si sta creando un nuovo articolo; nel secondo si controlla se quello che esiste già abbia l'autore inserito*/
-                        if (ArticoliFactory.getInstance().getArticleByPid(pid) == null || !ArticoliFactory.getInstance().getArticleByPid(pid).getAutori().contains(user)) {
-                            art = ArticoliFactory.getInstance().updateAutori(nome_cognome[0], nome_cognome[1], pid);
-                        } else {
-                            art = ArticoliFactory.getInstance().getArticleByPid(pid);
-                        }
-                    
+                AuthorTokenizer autore = new AuthorTokenizer(request.getParameter("author"));
+
+                Utenti user = UtentiFactory.getInstance().getUserByNS(autore.getName(), autore.getSurname());
+                /*Nel primo caso si sta creando un nuovo articolo; nel secondo si controlla se quello che esiste già abbia l'autore inserito*/
+                if (ArticoliFactory.getInstance().getArticleByPid(pid) == null || !ArticoliFactory.getInstance().getArticleByPid(pid).getAutori().contains(user)) {
+                    art = ArticoliFactory.getInstance().updateAutori(autore.getName(), autore.getSurname(), pid);
                 } else {
                     art = ArticoliFactory.getInstance().getArticleByPid(pid);
                 }
@@ -236,7 +233,6 @@ public class ArticoliFactory {
         }
         return null;
     }
-
 
     public Articoli updateAutori(String nome, String cognome, int pid) throws MalformedURLException {
         try {

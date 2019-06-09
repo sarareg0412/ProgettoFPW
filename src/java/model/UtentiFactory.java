@@ -20,6 +20,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import utils.AuthorTokenizer;
 
 /**
  *
@@ -204,7 +205,6 @@ public class UtentiFactory {
         return null;
     }
 
-    
     public int getPidByNS(String nome, String cognome) {
         try {
             Boolean loggedIn;
@@ -231,7 +231,6 @@ public class UtentiFactory {
         return 0;
     }
 
-
     public Utenti updateUtente(HttpServletRequest request, int id) throws MalformedURLException {
         try {
             Boolean esiste_utente;
@@ -253,7 +252,7 @@ public class UtentiFactory {
             if (res > 0) {  //modificata almeno una riga
                 //Modifica automaticamente tutti i campi
                 Utenti user = UtentiFactory.getInstance().getUserById(id);
-                
+
                 stmt.close();
                 conn.close();
                 return user;
@@ -265,6 +264,7 @@ public class UtentiFactory {
         }
         return null;
     }
+
     public Boolean deleteUtente(int id) {
         Connection conn = null;
 
@@ -275,7 +275,7 @@ public class UtentiFactory {
             String sql = "select articolo_id from utente_articolo where utente_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
-            
+
             ResultSet set = stmt.executeQuery();
             List<Integer> articoli = new ArrayList<>();
 
@@ -327,4 +327,31 @@ public class UtentiFactory {
 
     }
 
+    public List<AuthorTokenizer> searchUtenti(String toSearch) {
+        List<AuthorTokenizer> users = new ArrayList<>();
+
+        try {
+            Connection conn = DbManager.getInstance().getDbConnection();
+            Statement stmt = conn.createStatement();
+
+            String sql = "select * from utente";
+            ResultSet set = stmt.executeQuery(sql);
+
+            while (set.next()) {
+                AuthorTokenizer utente = new AuthorTokenizer(set.getString("nome"), set.getString("cognome"), set.getInt("id"));
+                if (utente.getName().contains(toSearch) || utente.getSurname().contains(toSearch)) {
+                    users.add(utente);
+                }
+            }
+
+            stmt.close();
+            conn.close();
+
+        } catch (SQLException exc) {
+            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+
+        return users;
+        
+    }
 }
