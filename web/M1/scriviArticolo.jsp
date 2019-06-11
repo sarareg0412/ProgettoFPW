@@ -67,11 +67,9 @@
                                         <img src="./M1/images/plus.jpg" height="28" width="28"/>
                                     </button>
                                 </div>
-                                <div id="div-autori">
-                                    <ul id="lista_utenti">
-                                        <c:forEach items="${utenti}" var="u">
-                                            <li >${u.getNome()}, ${u.getCognome()} (${u.getId()})</li>
-                                            </c:forEach>
+                                <div>
+                                    <ul id="div-autori">
+                                        
                                     </ul>
                                 </div>
                             </section>

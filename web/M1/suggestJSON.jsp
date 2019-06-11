@@ -11,6 +11,8 @@
     <c:forEach var="autore" items="${autoriList}">
         <json:object>
             <json:property name="nome" value="${autore.getNome()}"/>
+            <json:property name="cognome" value="${autore.getCognome()}"/>
+            <json:property name="id" value="${autore.getId()}"/>
         </json:object>
     </c:forEach>
 </json:array>

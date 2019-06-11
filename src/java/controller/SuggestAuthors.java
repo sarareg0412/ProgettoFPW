@@ -49,7 +49,7 @@ public class SuggestAuthors extends HttpServlet {
                     response.setContentType("application/json");
                     response.setHeader("Expires","Sat, 6 May 1995.12:00:00 GMT");
                     response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-                    request.getRequestDispatcher("suggestJSON.jsp").forward(request, response);
+                    request.getRequestDispatcher("./M1/suggestJSON.jsp").forward(request, response);
                 }
 
             }

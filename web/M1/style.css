@@ -335,8 +335,11 @@ ul#lista_autori{
 ul#lista_autori > li{
     margin-bottom: 5px;
 }
-i{
-    height: 30px;
+
+ul#div-autori{
+    margin: 10px;
+    padding-left: 0px;
+    
 }
 form#salva_articolo{
     height: 630px;

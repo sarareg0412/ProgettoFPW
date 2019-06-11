@@ -6,9 +6,8 @@
 
 function createElement(autore){
 
-    var nome = $("<h2>").html(autore.nome);
-    
-    return $("<div>").attr("class", "autori-div").append(nome);
+    var nome = $("<li>").html(autore.nome+", "+autore.cognome+" ("+autore.id+")");
+    return $("<a>").attr("class", "div-autori").append(nome);
     
 }
 
@@ -34,7 +33,7 @@ $(document).ready(function() { //Quando è pronto il DOM
     $("#author").keyup(function(event){ //Viene scritto qualcosa nella textarea "author"
       
        $.ajax({
-          url: "SuggestAuthors", 
+          url: "suggest.json", 
           data: {cmd: "search",
                  toSearch: event.target.value
           },
