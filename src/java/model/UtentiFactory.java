@@ -327,19 +327,19 @@ public class UtentiFactory {
 
     }
 
-    public List<AuthorTokenizer> searchUtenti(String toSearch) {
-        List<AuthorTokenizer> users = new ArrayList<>();
+    public List<Utenti> searchUtenti(String toSearch) throws MalformedURLException {
+        List<Utenti> users = new ArrayList<>();
 
         try {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select * from utente";
+            String sql = "select * from utente where utente.status='Autore'";
             ResultSet set = stmt.executeQuery(sql);
 
             while (set.next()) {
-                AuthorTokenizer utente = new AuthorTokenizer(set.getString("nome"), set.getString("cognome"), set.getInt("id"));
-                if (utente.getName().contains(toSearch) || utente.getSurname().contains(toSearch)) {
+                Utenti utente = UtentiFactory.getInstance().getUserById(set.getInt("id"));
+                if (utente.getNome().contains(toSearch) || utente.getCognome().contains(toSearch)) {
                     users.add(utente);
                 }
             }

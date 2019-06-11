@@ -10,7 +10,7 @@
 <json:array>
     <c:forEach var="autore" items="${autoriList}">
         <json:object>
-            <json:property name="autore" value="${autore.toString()}"/>
+            <json:property name="nome" value="${autore.getNome()}"/>
         </json:object>
     </c:forEach>
 </json:array>

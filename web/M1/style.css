@@ -291,10 +291,6 @@ td, th{
     color: white;
 }
 
-#righe_pari {
-    background-color: #EEEEEE;
-}
-
 /* Classe per le icone nella tabella */
 i[class~="far"]:hover{
     opacity: 0.7;
@@ -362,7 +358,7 @@ button#cancel{
     margin-bottom: 10px; 
     background-color: #C63313;
 }
-#nuovo_autore{
+#author{
     width: 73%;
     height: 28px;
     margin-bottom: 10px; 

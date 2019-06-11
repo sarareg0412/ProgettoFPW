@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Utenti;
 import model.UtentiFactory;
 import utils.AuthorTokenizer;
 
@@ -34,19 +35,22 @@ public class SuggestAuthors extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String command = request.getParameter("cmd");
-        
+
         if (command != null) {
             if (command.equals("search")) {
 
                 String toSearch = request.getParameter("toSearch");
 
-                List<AuthorTokenizer> autori = UtentiFactory.getInstance().searchUtenti(toSearch);
+                if (!toSearch.equals("")) {
+                    List<Utenti> autori = UtentiFactory.getInstance().searchUtenti(toSearch);
 
-                request.setAttribute("autoriList", autori);
+                    request.setAttribute("autoriList", autori);
 
-                response.setContentType("application/json");
-
-                request.getRequestDispatcher("suggestJSON.jsp").forward(request, response);
+                    response.setContentType("application/json");
+                    response.setHeader("Expires","Sat, 6 May 1995.12:00:00 GMT");
+                    response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+                    request.getRequestDispatcher("suggestJSON.jsp").forward(request, response);
+                }
 
             }
         }

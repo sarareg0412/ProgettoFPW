@@ -1,6 +1,6 @@
 Entita':                   
-      Utente		     Categorie 			
-    #id		    	    #Nome	
+      Utente		    	
+    #id		    	   
     - Nome		    
     - Cognome	    	   
     - Foto		   
