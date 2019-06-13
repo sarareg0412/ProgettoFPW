@@ -18,13 +18,14 @@
         <meta name="author" content="Sara Regali">
         <meta name="keywords" content="FPW, Milestone1, HTML, CSS, Java">
         <meta name="description" content="Pagina per scriverere un articolo; prima Milestone">
-
+       
         <script src="./js/jquery.js"></script> 
     </head>
     <body>
         <!-- Header incluso qui -->
         <jsp:include page="header.jsp"/>
-        <script src="./js/suggest.js"></script>
+ <script src="./js/suggest.js"></script>
+
         <main>
             <jsp:include page="aside.jsp"/>
 

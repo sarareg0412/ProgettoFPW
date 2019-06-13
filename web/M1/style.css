@@ -367,8 +367,8 @@ button#cancel{
     margin-bottom: 10px; 
 }
 section#inserisci_autori{
-    height: 70px;
-
+    min-height: 70px;
+        max-height: 180px;
 }
 #plus{
     margin: 0px 5px;

@@ -154,7 +154,9 @@ public class ArticoliFactory {
                 articolo.setPid(set.getInt("pid"));
                 articolo.setTitolo(set.getString("titolo"));
                 articolo.setData(set.getDate("data_creazione"));
+
                 articolo.setImmagine(new URL(set.getString("immagine")));
+
                 articolo.setTesto(set.getString("testo"));
                 articolo.setStato(set.getString("stato"));
                 String[] categorie = set.getString("categorie").split(" ");
@@ -204,23 +206,8 @@ public class ArticoliFactory {
             int res = stmt.executeUpdate();
 
             if (res > 0) {  //modificata almeno una riga
-                Articoli art = new Articoli();
-                art.setPid(pid);
-                art.setTitolo(request.getParameter("titolo"));
-                art.setData(data.valueOf(request.getParameter("start")));
-                art.setImmagine(new URL(request.getParameter("immagine")));
-                art.setTesto(request.getParameter("testo"));
-                art.setStato(request.getParameter("stato"));
-                art.setCategorie(Arrays.asList(categ_nuove));
-                AuthorTokenizer autore = new AuthorTokenizer(request.getParameter("author"));
 
-                Utenti user = UtentiFactory.getInstance().getUserByNS(autore.getName(), autore.getSurname());
-                /*Nel primo caso si sta creando un nuovo articolo; nel secondo si controlla se quello che esiste già abbia l'autore inserito*/
-                if (ArticoliFactory.getInstance().getArticleByPid(pid) == null || !ArticoliFactory.getInstance().getArticleByPid(pid).getAutori().contains(user)) {
-                    art = ArticoliFactory.getInstance().updateAutori(autore.getName(), autore.getSurname(), pid);
-                } else {
-                    art = ArticoliFactory.getInstance().getArticleByPid(pid);
-                }
+                Articoli art = ArticoliFactory.getInstance().getArticleByPid(pid);
 
                 stmt.close();
                 conn.close();
@@ -241,6 +228,7 @@ public class ArticoliFactory {
             String sql = "insert into utente_articolo values (?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             int id = UtentiFactory.getInstance().getPidByNS(nome, cognome);
+
             if (id != 0) {
                 stmt.setInt(1, UtentiFactory.getInstance().getPidByNS(nome, cognome));
                 stmt.setInt(2, pid);
@@ -249,7 +237,13 @@ public class ArticoliFactory {
 
                 if (res > 0) {  //modificata almeno una riga
                     //Facendo questo, automaticamente viene eseguita la query precedente, con il nuovo utente aggiunto
-                    Articoli articolo = ArticoliFactory.getInstance().getArticleByPid(pid);
+                    Articoli articolo = null;
+                    if (ArticoliFactory.getInstance().getArticleByPid(pid) == null) {  //Sto modificando un nuovo articolo
+                        articolo = ArticoliFactory.getInstance().getNuovoArticolo();
+                        articolo.getAutori().add(UtentiFactory.getInstance().getUserById(id));
+                    } else {
+                        articolo = ArticoliFactory.getInstance().getArticleByPid(pid);
+                    }
                     stmt.close();
                     conn.close();
                     return articolo;
@@ -306,7 +300,7 @@ public class ArticoliFactory {
                 articolo.setPid(set.getInt("pid_nuovo"));
                 articolo.setTitolo("Inserisci titolo");
                 articolo.setData(data.valueOf("2019-01-01"));
-                articolo.setImmagine(null);
+                articolo.setImmagine(new URL("https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg"));
                 articolo.setTesto("Inserisci testo qui");
                 articolo.setStato("APERTO");
 

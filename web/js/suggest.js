@@ -6,12 +6,12 @@
 
 function createElement(autore) {
 
-    var nome = $("<li>").html(autore.nome + ", " + autore.cognome + " (" + autore.id + ")").attr("class", "autore");
+    var nome = $("<a>").html(autore.nome + ", " + autore.cognome + " (" + autore.id + ")").attr("class", "autore");
     nome.attr("id",autore.nome + ", " + autore.cognome + " (" + autore.id + ")" );
     nome.click(function (event) {
-        $("#author").text($(this).attr("id"));
+        $("#author").val($(this).html());
     });
-    return $("<a>").append(nome);
+    return $("<li>").append(nome);
 
 }
 

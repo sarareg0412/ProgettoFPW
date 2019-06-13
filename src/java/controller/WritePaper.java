@@ -51,13 +51,7 @@ public class WritePaper extends HttpServlet {
             // o se si cerca di accedere a un atricolo che non ha lo stato "APERTO", si viene rimandati alla jsp errore
             boolean entra = true;
             if (request.getParameter("nuovo") == null) {
-                if (request.getParameter("pid") == null
-                        //|| ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))) == null
-                        //|| ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).
-                        //        getAutori().contains(UtentiFactory.getInstance().getUserById((int) session.getAttribute("utenteId"))) == false
-                        //|| ArticoliFactory.getInstance().getArticleByPid(Integer.parseInt(request.getParameter("pid"))).getStato().equals("APERTO") == false
-                        ) {
-
+                if (request.getParameter("pid") == null) {
                     request.getRequestDispatcher("./M1/errore.jsp").forward(request, response);
                 }
             }
@@ -77,17 +71,27 @@ public class WritePaper extends HttpServlet {
                 if (request.getParameter("nuovo") != null) {    //Stiamo creando un nuovo articolo
                     articoloScelto = ArticoliFactory.getInstance().getNuovoArticolo();
                     n = articoloScelto.getPid();
-                    AuthorTokenizer autore = new AuthorTokenizer(request.getParameter("author"));
+
                 } else {
                     n = Integer.parseInt(request.getParameter("pid"));
                     /* Questo metodo restituisce null solo se l'articolo passato non ha autori, questo accade solo se
                        si è scelto l'ultimo articolo creato*/
-                    articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
-                    if(articoloScelto == null){
+                    if (ArticoliFactory.getInstance().getNuovoArticolo().getPid() == n && ArticoliFactory.getInstance().getArticleByPid(n) == null ) {
                         articoloScelto = ArticoliFactory.getInstance().getNuovoArticolo();
+                    } else {
+                        articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
                     }
+
                 }
                 
+                if (request.getParameter("author") != null) {
+                    AuthorTokenizer autore = new AuthorTokenizer(request.getParameter("author"));
+                    if (autore.getName() != null) {
+                        articoloScelto = ArticoliFactory.getInstance().updateAutori(autore.getName(), autore.getSurname(), n);
+                        articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
+                        valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
+                    }
+                }
                 if (request.getParameter("modifica") == null) {
                     request.setAttribute("modif", false);
                 }
@@ -96,9 +100,9 @@ public class WritePaper extends HttpServlet {
                     articoloScelto = ArticoliFactory.getInstance().updateArticle(request, n);
                     articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
                     valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
-                    
+
                 }
-                    
+
                 request.setAttribute("scelto", articoloScelto);
 
                 //Setto l'articolo scelto e gli altri parametri, e invio alla jsp
