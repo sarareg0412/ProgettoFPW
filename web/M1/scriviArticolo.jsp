@@ -118,7 +118,7 @@
                             <p>Non deve essere visualizzato</p>
                         </section>
 
-                        <input type="hidden" name="pid" value="${scelto.getPid()}">
+                        <input type="hidden" id="pid_articolo" name="pid" value="${scelto.getPid()}">
                         <button class="col-7" type="submit" name="modifica" id="save_articolo">Salva</button>
                     </form>
                 </section>

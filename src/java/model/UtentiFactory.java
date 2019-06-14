@@ -327,16 +327,18 @@ public class UtentiFactory {
 
     }
 
-    public List<Utenti> searchUtenti(String toSearch) throws MalformedURLException {
+    public List<Utenti> searchUtenti(String toSearch, int pid) throws MalformedURLException {
         List<Utenti> users = new ArrayList<>();
 
         try {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select * from utente where utente.status='Autore'";
-            ResultSet set = stmt.executeQuery(sql);
-
+            String sql = "select * from utente where utente.status='Autore' and utente.id not in (select utente_id from utente_articolo where articolo_id = ?)";
+            PreparedStatement stmnt = conn.prepareStatement(sql);
+            stmnt.setInt(1, pid);
+            ResultSet set = stmnt.executeQuery();
+            
             while (set.next()) {
                 Utenti utente = UtentiFactory.getInstance().getUserById(set.getInt("id"));
                 if (utente.getNome().contains(toSearch) || utente.getCognome().contains(toSearch)) {

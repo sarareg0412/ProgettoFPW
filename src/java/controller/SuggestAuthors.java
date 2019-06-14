@@ -35,14 +35,15 @@ public class SuggestAuthors extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String command = request.getParameter("cmd");
-
+        int i = Integer.parseInt(request.getParameter("i"));
+        
         if (command != null) {
             if (command.equals("search")) {
 
                 String toSearch = request.getParameter("toSearch");
 
                 if (!toSearch.equals("")) {
-                    List<Utenti> autori = UtentiFactory.getInstance().searchUtenti(toSearch);
+                    List<Utenti> autori = UtentiFactory.getInstance().searchUtenti(toSearch, i);
 
                     request.setAttribute("autoriList", autori);
 

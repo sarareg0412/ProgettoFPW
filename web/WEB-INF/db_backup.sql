@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 06, 2019 at 11:20 AM
+-- Generation Time: Jun 14, 2019 at 03:52 PM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -43,12 +43,20 @@ CREATE TABLE `articolo` (
 --
 
 INSERT INTO `articolo` (`pid`, `titolo`, `categorie`, `immagine`, `data_creazione`, `testo`, `stato`) VALUES
-(1, 'SQL injection', 'CSS HTML', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-04-10', 'inserire testo qui', 'APERTO'),
-(2, 'Le Sevlet', 'CSS Servlet', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-01-08', 'inserire testo qui', 'APERTO'),
-(3, 'Il Data Base', 'JSP', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-03-18', 'inserire testo qui', 'APERTO'),
+(1, 'La SQL injection', 'CSS HTML', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-04-10', 'inserire testo qui', 'APERTO'),
+(2, 'Le Sevlet', 'CSS AJAX JavaScript Servlet', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-06-13', 'Inserire qui il testo', 'APERTO'),
+(3, 'Il Data Base', 'CSS JSP', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-03-18', 'inserire testo qui', 'APERTO'),
 (4, 'Le Classi Java', 'JSP HTML', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-05-24', 'inserire testo qui', 'RIFIUTATO'),
 (5, 'Il tag brt', 'JSP HTML', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-05-01', 'inserire testo qui', 'IN VALUTAZIONE'),
-(6, 'Il SevletContainer', 'Servlet', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-05-02', 'inserire testo qui', 'RIFIUTATO');
+(6, 'Il SevletContainer', 'Servlet', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-05-02', 'inserire testo qui', 'RIFIUTATO'),
+(35, 'Le variabili Javascript', 'HTML Servlet', 'https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg', '2019-06-14', 'Inserire testo qui', 'APERTO'),
+(36, 'Inserisci titolo', '', 'https://inserirefotoqui.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO'),
+(37, 'Il CSS', 'CSS', 'https://inserirefotoqui.jpg', '2019-06-14', 'Inserire testo qui', 'APERTO'),
+(38, 'Prova', 'CSS Servlet', 'https://inserirefotoqui.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO'),
+(39, 'Inserisci titolo', '', 'https://inserirefotoqui.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO'),
+(40, 'Inserisci titolo', '', 'https://inserirefotoqui.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO'),
+(41, 'Inserisci titolo', '', 'https://inserirefotoqui.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO'),
+(42, 'Inserisci titolo', '', 'https://inserirefotoqui.jpg', '2019-01-01', 'Inserire testo qui', 'APERTO');
 
 -- --------------------------------------------------------
 
@@ -74,7 +82,9 @@ CREATE TABLE `utente` (
 INSERT INTO `utente` (`id`, `nome`, `cognome`, `foto`, `ente`, `email`, `pw`, `status`) VALUES
 (1, 'Gianni', 'Bianchi', 'https://www.itsmarcopolo.it/wp-content/uploads/2017/08/sagoma-profilo.jpeg', 'https://www.unica.it/unica/', 'gianni.bianchi@gmail.com', 'gianni', 'Organizzatore'),
 (2, 'Sara', 'Regali', 'http://www.scienze-naturali.com/wp-content/uploads/2017/04/lilium-elodie-527x527.jpg', 'https://www.unica.it/unica/', 'sara98.regali@gmail.com', 'sara', 'Autore'),
-(3, 'Mario', 'Rossi', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'https://www.unica.it/unica/', 'mario.rossi@gmail.com', 'mario', 'Autore');
+(3, 'Mario', 'Rossi', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'https://www.unica.it/unica/', 'mario.rossi@gmail.com', 'mario', 'Autore'),
+(6, 'Anna', 'Maria', 'https://www.nanopress.it/wp-content/uploads/2018/02/Immagini-profilo-Facebook.jpg', 'https://www.unica.it/unica/', 'anna.maria@gmail.com', 'anna', 'Autore'),
+(7, 'Rosanna', 'Lennon', 'https://www.sheffield.ac.uk/polopoly_fs/1.532567!/image/sun-sky865.jpg', 'https://www.unica.it/unica/', 'rosanna.lennon@gmail.com', 'rosanna', 'Autore');
 
 -- --------------------------------------------------------
 
@@ -93,13 +103,22 @@ CREATE TABLE `utente_articolo` (
 
 INSERT INTO `utente_articolo` (`utente_id`, `articolo_id`) VALUES
 (2, 1),
+(6, 1),
+(7, 1),
 (2, 2),
 (3, 2),
+(7, 2),
 (2, 3),
+(3, 3),
 (2, 4),
 (3, 4),
 (3, 5),
-(2, 6);
+(2, 6),
+(3, 35),
+(7, 35),
+(6, 37),
+(7, 37),
+(7, 38);
 
 -- --------------------------------------------------------
 
@@ -128,7 +147,9 @@ INSERT INTO `valutazioni` (`id_valutazione`, `comm_autori`, `comm_org`, `voto`, 
 (4, 'fatto bene', 'fatto benino', 3, 'Accettato', 2, 5),
 (5, 'fatto male', 'fatto malissimo', 0, 'Rifiutato', 2, 6),
 (7, NULL, NULL, NULL, 'Attesa Valutazioni', 1, 3),
-(8, NULL, NULL, NULL, 'Attesa Valutazioni', 1, 4);
+(8, NULL, NULL, NULL, 'Attesa Valutazioni', 1, 4),
+(14, 'fatto male', 'fatto malissimo', 2, 'Rifiutato', 6, 6),
+(15, 'fatto male', 'fatto malissimo', 2, 'Rifiutato', 7, 6);
 
 --
 -- Indexes for dumped tables
@@ -172,19 +193,19 @@ ALTER TABLE `valutazioni`
 -- AUTO_INCREMENT for table `articolo`
 --
 ALTER TABLE `articolo`
-  MODIFY `pid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `pid` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `valutazioni`
 --
 ALTER TABLE `valutazioni`
-  MODIFY `id_valutazione` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_valutazione` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

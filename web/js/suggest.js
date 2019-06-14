@@ -39,7 +39,8 @@ $(document).ready(function () { //Quando è pronto il DOM
         $.ajax({
             url: "suggest.json",
             data: {cmd: "search",
-                toSearch: event.target.value
+                toSearch: event.target.value,
+                i: $("#pid_articolo").val()
             },
             dataType: 'json',
             success: function (data, state) {
