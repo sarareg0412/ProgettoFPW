@@ -210,6 +210,7 @@ public class ArticoliFactory {
                 Articoli art = new Articoli();
                 art = ArticoliFactory.getInstance().getArticleByPid(pid);
                 if (art == null) {
+                    art = new Articoli();
                     art.setPid(pid);
                     art.setTitolo(request.getParameter("titolo"));
                     art.setCategorie(Arrays.asList(categorie));
