@@ -50,8 +50,7 @@ public class Manage extends HttpServlet {
             
             if(user.getStatus().equals("Autore")){  //L'utente Autore non può entrare in questa pagina, 
                                                     //ma setto comunque gli attributi fondamentali per la richiesta
-                
-            
+                            
                 List<Valutazioni> valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                 request.setAttribute("valutazioni", valutazioni);   //Valutazioni dell'utente
                 

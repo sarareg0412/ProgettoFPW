@@ -171,4 +171,5 @@ public class Articoli implements Comparable<Articoli> {
     public void setImmagine(URL immagine) {
         this.immagine = immagine;
     }
+    
 }

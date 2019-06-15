@@ -73,7 +73,7 @@ public class ValutazioniFactory {
             stmt.close();
             conn.close();
         } catch (SQLException exc) {
-            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
         Collections.sort(valutazioni);      //
@@ -114,7 +114,7 @@ public class ValutazioniFactory {
                 return null;
             }
         } catch (SQLException exc) {
-            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
         return null;
@@ -146,7 +146,7 @@ public class ValutazioniFactory {
             stmt.close();
             conn.close();
         } catch (SQLException exc) {
-            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
         Collections.sort(lista);     //Ordina la lista secondo il compareTo() degli articoli
@@ -178,7 +178,7 @@ public class ValutazioniFactory {
             stmt.close();
             conn.close();
         } catch (SQLException exc) {
-            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
         Collections.sort(lista);
@@ -211,7 +211,7 @@ public class ValutazioniFactory {
             stmt.close();
             conn.close();
         } catch (SQLException exc) {
-            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
         Collections.sort(valutazioni);      //
@@ -240,10 +240,31 @@ public class ValutazioniFactory {
             conn.close();
 
         } catch (SQLException exc) {
-            Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
+            Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
         return valutazione;
 
+    }
+    
+    public void createValutazione(int pid){
+         try {
+            Boolean crea_valutazione;
+
+            Connection conn = DbManager.getInstance().getDbConnection();
+            String sql = "insert into valutazioni values (default, default, default, default, 'Attesa Valutazioni', 1, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1,pid);
+            
+            int i = stmt.executeUpdate();
+
+            if (i > 0) {
+                stmt.close();
+                conn.close();
+            }
+        } catch (SQLException exc) {
+            Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
+        }
+    
     }
 }

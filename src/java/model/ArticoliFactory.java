@@ -267,9 +267,11 @@ public class ArticoliFactory {
 
             int i = stmt.executeUpdate();
 
-            if (i > 0) {
-                int pid = ArticoliFactory.getInstance().getPidByNome("Inserisci titolo");
+            if (i > 0) {                
                 Articoli articolo = ArticoliFactory.getInstance().getNuovoArticolo();
+                int pid = articolo.getPid();
+                ValutazioniFactory.getInstance().createValutazione(pid);
+                
                 stmt.close();
                 conn.close();
                 return articolo;
@@ -300,7 +302,7 @@ public class ArticoliFactory {
                 articolo.setPid(set.getInt("pid_nuovo"));
                 articolo.setTitolo("Inserisci titolo");
                 articolo.setData(data.valueOf("2019-01-01"));
-                articolo.setImmagine(new URL("https://studio99.sm/wp-content/uploads/2018/03/informatica-1030x580.jpg"));
+                articolo.setImmagine(new URL("https://inserirefotoqui.jpg"));
                 articolo.setTesto("Inserisci testo qui");
                 articolo.setStato("APERTO");
 

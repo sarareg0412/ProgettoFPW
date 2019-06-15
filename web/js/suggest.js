@@ -7,7 +7,6 @@
 function createElement(autore) {
 
     var nome = $("<a>").html(autore.nome + ", " + autore.cognome + " (" + autore.id + ")").attr("class", "autore");
-    nome.attr("id",autore.nome + ", " + autore.cognome + " (" + autore.id + ")" );
     nome.click(function (event) {
         $("#author").val($(this).html());
     });
