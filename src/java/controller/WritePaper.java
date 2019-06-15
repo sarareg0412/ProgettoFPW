@@ -84,15 +84,15 @@ public class WritePaper extends HttpServlet {
 
                 }
                 
-                if (request.getParameter("author") != null) {
+                if (request.getParameter("author") != null) {   //Viene comunque passato un parametro quando si preme il bottone salva
                     AuthorTokenizer autore = new AuthorTokenizer(request.getParameter("author"));
-                    if (autore.getName() != null) {
+                    if (autore.getName() != null) {     //Si è premuto il tasto + con un nome dentro
                         articoloScelto = ArticoliFactory.getInstance().updateAutori(autore.getName(), autore.getSurname(), n);
                         articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
                         valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                     }
                 }
-                if (request.getParameter("modifica") == null) {
+                if (request.getParameter("modifica") == null) {     //Non si è premuto il tasto salva
                     request.setAttribute("modif", false);
                 }
                 if (request.getParameter("modifica") != null) { //Modifico i parametri da passare alla request
@@ -100,7 +100,6 @@ public class WritePaper extends HttpServlet {
                     articoloScelto = ArticoliFactory.getInstance().updateArticle(request, n);
                     articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
                     valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
-
                 }
 
                 request.setAttribute("scelto", articoloScelto);

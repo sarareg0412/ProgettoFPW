@@ -58,7 +58,7 @@
                                     <td>${u.getArticolo().getData().toString()} </td>
                                     <td>${u.getArticolo().getTitolo()} </td>
                                     <c:if test="${u.getDecisione() == 'Attesa Valutazioni'}">
-                                        <td><a href="">Scegli valutatori</a></td> 
+                                        <td><a href="gestione.html">Scegli valutatori</a></td> 
                                     </c:if>
                                     <c:if test="${u.getDecisione() != 'Attesa Valutazioni'}">
                                         <td>${u.getNValutazioni(u.getArticolo().getPid())} </td> 

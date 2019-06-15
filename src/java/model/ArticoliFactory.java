@@ -207,8 +207,16 @@ public class ArticoliFactory {
 
             if (res > 0) {  //modificata almeno una riga
 
-                Articoli art = ArticoliFactory.getInstance().getArticleByPid(pid);
-
+                Articoli art = new Articoli();
+                art = ArticoliFactory.getInstance().getArticleByPid(pid);
+                if (art == null) {
+                    art.setPid(pid);
+                    art.setTitolo(request.getParameter("titolo"));
+                    art.setCategorie(Arrays.asList(categorie));
+                    art.setImmagine(new URL(request.getParameter("immagine")));
+                    art.setData(data.valueOf(request.getParameter("start")));
+                    art.setTesto(request.getParameter("testo"));
+                }
                 stmt.close();
                 conn.close();
                 return art;
@@ -267,12 +275,12 @@ public class ArticoliFactory {
 
             int i = stmt.executeUpdate();
 
-            if (i > 0) {                
+            if (i > 0) {
                 Articoli articolo = ArticoliFactory.getInstance().getNuovoArticolo();
                 int pid = articolo.getPid();
                 /*Quando creo un nuovo articolo inserisco nella tabella valutazioni i suoi dati*/
                 ValutazioniFactory.getInstance().createValutazione(pid);
-                
+
                 stmt.close();
                 conn.close();
                 return articolo;

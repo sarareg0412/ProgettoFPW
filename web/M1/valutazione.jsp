@@ -29,26 +29,30 @@
             <section id="resto_pagina" class="col-8">
                 <section id="sfondo_descrizioni">
 
-                    <h1>La SQL Injection</h1>
-                    <h2>Autori: Vari</h2>
+                    <h1>${scelto.getTitolo()}</h1>
+                    <h2 class="col-3" >Autori:</h2>
+                    <ol class="col-7">
+                        <c:forEach items="${scelto.getAutori()}" var="u">
+                            <li >${u.getNome()}, ${u.getCognome()} (${u.getId()})</li>
+                            </c:forEach>
+                    </ol>
 
                 </section>
 
                 <section id="immagine">
-                    <img  title="Foto aticolo" alt="La sql injection" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNKFp2Zg2UpitVBvziMobicmXxaW3iKZkqSnetj6IkKygB728KVg'>
+                    <img  title="Foto aticolo" alt="${scelto.getTitolo()}" src='${scelto.getImmagine()}'>
                 </section> 
                 <section id="sottotitoli" class="col-10 valutazione">
-                    <h3>Categoria: HTML, CSS</h3> 
-                    <h3>Data: 31 Marzo 2018</h3>
+                    <h3 class="col-3">Categoria: </h3> 
+                    <ol class="col-7">
+                        <c:forEach items="${scelto.getCategorie()}" var="u">
+                            <li >${u}</li>
+                            </c:forEach>
+                    </ol>
+                    <h3>Data: ${scelto.getData().toString()} </h3>
                 </section>
                 <section id="contenuto">
-                    <p>
-                        SQL injection è una tecnica di code injection, usata per attaccare applicazioni di gestione dati, 
-                        con la quale vengono inserite delle stringhe di codice SQL malevole all'interno di campi di input 
-                        in modo che queste ultime vengano poi eseguite (ad esempio per fare inviare il contenuto del database all'attaccante).  
-                        SQL è un linguaggio per interrogare e gestire basi di dati mediante l'utilizzo di costrutti di programmazione denominati query. 
-                        Con SQL si leggono, modificano, cancellano dati e si esercitano funzioni gestionali ed amministrative sul sistema dei database. 
-                    </p>
+                    <p> ${scelto.getTesto()}</p>
                 </section>
 
                 <section id="valutazione">
@@ -68,13 +72,16 @@
                             <input type="radio" name="voto5" id="voto-5" value="5">
                         </div>
 
+                        <c:if test="${user.getStatus() == 'Autore'}">
+                            <label for="lungo">Il tuo commento:</label>
+                            <textarea name="lungo" class="lungo"></textarea>
+                        </c:if>
 
-                        <label for="lungo">Se sei un autore inserisci un commento:</label>
-                        <textarea name="lungo" class="lungo"></textarea>
-                        <label for="lungo">Se sei un organizzatore inserisci un commento:</label>
-                        <textarea name="lungo" class="lungo"></textarea>
-
-
+                        <c:if test="${user.getStatus() == 'Organizzatore'}">
+                            <label for="lungo">Commento organizzatore:</label>
+                            <textarea name="lungo" class="lungo"></textarea>
+                        </c:if>
+                            
                         <button type="submit">Invia</button>
                     </form>
                 </section>

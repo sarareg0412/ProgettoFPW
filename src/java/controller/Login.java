@@ -70,10 +70,10 @@ public class Login extends HttpServlet {
             //In base allo status dell'autore lo riporto alle diverse pagine
             if (user.getStatus().equals("Autore")) {
                 // devo riportare alla pagina con l'elenco degli articoli  
-                request.getRequestDispatcher("/articoli.html").forward(request, response);
-            } else { //utente è organizzatore
+                response.sendRedirect("./articoli.html");
+            } else if(user.getStatus().equals("Organizzatore") ){ //utente è organizzatore
                 //Riporto alla pagina di gestione
-                request.getRequestDispatcher("/gestione.html").forward(request, response);
+                response.sendRedirect("./gestione.html");
             }
             
         } else { //utente non autenticato, lo riporto alla pagina di login
