@@ -49,9 +49,9 @@ public class ValutazioniFactory {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select valutazioni.*, utente.id, articolo.pid from valutazioni"
-                    + " inner join utente on valutazioni.id_utente = utente.id"
-                    + " inner join articolo on valutazioni.id_articolo = articolo.pid";
+            String sql = "select valutazione_.*, utente.id, articolo.pid from valutazione_"
+                    + " inner join utente on valutazione_.id_utente = utente.id"
+                    + " inner join articolo on valutazione_.id_articolo = articolo.pid";
             ResultSet set = stmt.executeQuery(sql);
 
             while (set.next()) {
@@ -85,7 +85,7 @@ public class ValutazioniFactory {
             Boolean esiste_val;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazioni where id_valutazione = ?";
+            String sql = "select * from valutazione_ where id_valutazione = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, vid);
@@ -131,7 +131,7 @@ public class ValutazioniFactory {
         try {
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazioni where id_articolo = ?";
+            String sql = "select * from valutazione_ where id_articolo = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, pid);
@@ -163,7 +163,7 @@ public class ValutazioniFactory {
         try {
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazioni where id_utente = ?";
+            String sql = "select * from valutazione_ where id_utente = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, id);
@@ -191,7 +191,7 @@ public class ValutazioniFactory {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select * from valutazioni";
+            String sql = "select * from valutazione_";
 
             ResultSet set = stmt.executeQuery(sql);
 
@@ -224,7 +224,7 @@ public class ValutazioniFactory {
         try {
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazioni where id_articolo = ? and id_utente = ?";
+            String sql = "select * from valutazione_ where id_articolo = ? and id_utente = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, pid);
@@ -252,7 +252,7 @@ public class ValutazioniFactory {
             Boolean crea_valutazione;
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "insert into valutazioni values (default, default, default, default, 'Attesa Valutazioni', 1, ?)";
+            String sql = "insert into valutazione_ values (default, default, default, default, 'Attesa Valutazioni', 1, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1,pid);
             

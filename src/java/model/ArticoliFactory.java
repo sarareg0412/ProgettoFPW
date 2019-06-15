@@ -270,6 +270,7 @@ public class ArticoliFactory {
             if (i > 0) {                
                 Articoli articolo = ArticoliFactory.getInstance().getNuovoArticolo();
                 int pid = articolo.getPid();
+                /*Quando creo un nuovo articolo inserisco nella tabella valutazioni i suoi dati*/
                 ValutazioniFactory.getInstance().createValutazione(pid);
                 
                 stmt.close();
