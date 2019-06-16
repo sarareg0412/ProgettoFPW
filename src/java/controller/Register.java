@@ -54,10 +54,10 @@ public class Register extends HttpServlet {
             boolean cancellazione = false;
             if (request.getParameter("cancella") != null) {
                 cancellazione = UtentiFactory.getInstance().deleteUtente(autoreId);
-                 request.getRequestDispatcher("/logout.html?logout=true").forward(request, response);
+                request.getRequestDispatcher("/logout.html?logout=true").forward(request, response);
             }
-            
-            if(request.getParameter("cancella") == null || cancellazione==false){
+
+            if (request.getParameter("cancella") == null || cancellazione == false) {
 
                 //Setto gli articoli dell'utente
                 List<Articoli> articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
@@ -69,7 +69,13 @@ public class Register extends HttpServlet {
 
                 //Se è stato premuto il pulsante salva setto tutti i nuovi parametri dell'utente
                 if (request.getParameter("modifica") != null) {
-                    user = UtentiFactory.getInstance().updateUtente(request, autoreId);
+                    String nome = request.getParameter("nome");
+                    String cognome = request.getParameter("cognome");
+                    String immagine = request.getParameter("immagine");
+                    String ente = request.getParameter("ente");
+                    String email = request.getParameter("email");
+                    String password = request.getParameter("password");
+                    user = UtentiFactory.getInstance().updateUtente(nome, cognome, immagine, ente, email, password, autoreId);
                 }
                 //Setto l'utente
                 request.setAttribute("user", user);

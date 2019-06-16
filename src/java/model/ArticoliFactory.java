@@ -16,12 +16,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
 import utils.AuthorTokenizer;
 
 /**
@@ -62,7 +60,7 @@ public class ArticoliFactory {
             Statement stmt = conn.createStatement();
 
             String sql = "select articolo.*, utente_articolo.*, utente.id from utente inner join (articolo inner join utente_articolo on articolo.pid = utente_articolo.articolo_id) "
-                    + "on utente.id = utente_articolo.utente_id";
+                    + "on utente.id = utente_articolo.utente_id order by data_creazione desc";
 
             ResultSet set = stmt.executeQuery(sql);
 
@@ -98,7 +96,6 @@ public class ArticoliFactory {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
-        Collections.sort(articles);     //Ordina la lista secondo il compareTo() degli articoli
         return articles;
     }
 
@@ -112,7 +109,7 @@ public class ArticoliFactory {
         try {
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from utente_articolo where utente_id = ?";
+            String sql = "select utente_articolo.*, articolo.data_creazione from utente_articolo join articolo on pid = articolo_id where utente_id = ? order by data_creazione desc;";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, id);
@@ -129,7 +126,7 @@ public class ArticoliFactory {
         } catch (SQLException exc) {
             Logger.getLogger(UtentiFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
-        Collections.sort(lista);     //Ordina la lista secondo il compareTo() degli articoli
+
         return lista;
     }
 
@@ -180,27 +177,27 @@ public class ArticoliFactory {
         return null;
     }
 
-    public Articoli updateArticle(HttpServletRequest request, int pid) throws MalformedURLException {
+    public Articoli updateArticle(String titolo, String[] categorie, String immagine, String data, String testo, int pid) throws MalformedURLException {
         try {
             Boolean esiste_articolo;
             long a = 1234;
-            Date data = new Date(a);
+            Date d = new Date(a);
             Connection conn = DbManager.getInstance().getDbConnection();
             String sql = "update articolo set titolo = ?, categorie = ?, immagine = ?, data_creazione = ?, testo = ? where pid = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, request.getParameter("titolo"));
-            String[] categorie = request.getParameterValues("category");
+            stmt.setString(1, titolo);
+            
             String categ_nuove = "";
 
             for (String s : categorie) {
                 categ_nuove += s + " ";
             }
-            categ_nuove = categ_nuove.substring(0, categ_nuove.length() - 1);
+
             stmt.setString(2, categ_nuove);
-            stmt.setString(3, request.getParameter("immagine"));
-            stmt.setDate(4, data.valueOf(request.getParameter("start")));
-            stmt.setString(5, request.getParameter("testo"));
+            stmt.setString(3, immagine);
+            stmt.setDate(4, d.valueOf(data));
+            stmt.setString(5, testo);
             stmt.setInt(6, pid);
 
             int res = stmt.executeUpdate();
@@ -212,11 +209,11 @@ public class ArticoliFactory {
                 if (art == null) {
                     art = new Articoli();
                     art.setPid(pid);
-                    art.setTitolo(request.getParameter("titolo"));
+                    art.setTitolo(titolo);
                     art.setCategorie(Arrays.asList(categorie));
-                    art.setImmagine(new URL(request.getParameter("immagine")));
-                    art.setData(data.valueOf(request.getParameter("start")));
-                    art.setTesto(request.getParameter("testo"));
+                    art.setImmagine(new URL(immagine));
+                    art.setData(d.valueOf(data));
+                    art.setTesto(testo);
                 }
                 stmt.close();
                 conn.close();

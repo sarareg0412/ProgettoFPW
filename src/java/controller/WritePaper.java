@@ -76,14 +76,14 @@ public class WritePaper extends HttpServlet {
                     n = Integer.parseInt(request.getParameter("pid"));
                     /* Questo metodo restituisce null solo se l'articolo passato non ha autori, questo accade solo se
                        si è scelto l'ultimo articolo creato*/
-                    if (ArticoliFactory.getInstance().getArticleByPid(n) == null ) {
+                    if (ArticoliFactory.getInstance().getArticleByPid(n) == null) {
                         articoloScelto = ArticoliFactory.getInstance().getNuovoArticolo();
                     } else {
                         articoloScelto = ArticoliFactory.getInstance().getArticleByPid(n);
                     }
 
                 }
-                
+
                 if (request.getParameter("author") != null) {   //Viene comunque passato un parametro quando si preme il bottone salva
                     AuthorTokenizer autore = new AuthorTokenizer(request.getParameter("author"));
                     if (autore.getName() != null) {     //Si è premuto il tasto + con un nome dentro
@@ -97,7 +97,12 @@ public class WritePaper extends HttpServlet {
                 }
                 if (request.getParameter("modifica") != null) { //Modifico i parametri da passare alla request
                     request.setAttribute("modif", true);
-                    articoloScelto = ArticoliFactory.getInstance().updateArticle(request, n);
+                    String titolo = request.getParameter("titolo");
+                    String[] categorie = request.getParameterValues("category");
+                    String immagine = request.getParameter("immagine");
+                    String data = request.getParameter("start");
+                    String testo = request.getParameter("testo");
+                    articoloScelto = ArticoliFactory.getInstance().updateArticle(titolo,categorie,immagine,data,testo, n);
                     articoli = ArticoliFactory.getInstance().getArticlesByAuthor(user.getId());
                     valutazioni = ValutazioniFactory.getInstance().getValutazioniByValutatore(user.getId());
                 }

@@ -7,7 +7,6 @@ package model;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import java.sql.Connection;
@@ -49,9 +48,9 @@ public class ValutazioniFactory {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select valutazione_.*, utente.id, articolo.pid from valutazione_"
+            String sql = "select valutazione_.*, utente.id, articolo.pid, articolo.data_creazione from valutazione_"
                     + " inner join utente on valutazione_.id_utente = utente.id"
-                    + " inner join articolo on valutazione_.id_articolo = articolo.pid";
+                    + " inner join articolo on valutazione_.id_articolo = articolo.pid order by data_creazione desc";
             ResultSet set = stmt.executeQuery(sql);
 
             while (set.next()) {
@@ -76,7 +75,6 @@ public class ValutazioniFactory {
             Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
-        Collections.sort(valutazioni);      //
         return valutazioni;
     }
 
@@ -125,13 +123,14 @@ public class ValutazioniFactory {
      * Ritorna una lista di valutazioni in base all'autore
      *
      * @param titolo
-     */
+     */ 
+    
     public List<Valutazioni> getValutazioniByArticle(int pid) throws MalformedURLException {
         List<Valutazioni> lista = new ArrayList<>();
         try {
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazione_ where id_articolo = ?";
+            String sql = "select valutazione_.* , articolo.data_creazione from valutazione_ join articolo on articolo.pid = valutazione_.id_articolo  where id_articolo = ? order by data_creazione desc";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, pid);
@@ -149,7 +148,6 @@ public class ValutazioniFactory {
             Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
-        Collections.sort(lista);     //Ordina la lista secondo il compareTo() degli articoli
         return lista;
     }
 
@@ -163,7 +161,7 @@ public class ValutazioniFactory {
         try {
 
             Connection conn = DbManager.getInstance().getDbConnection();
-            String sql = "select * from valutazione_ where id_utente = ?";
+            String sql = "select valutazione_.*, articolo.data_creazione from valutazione_ join articolo on articolo.pid = valutazione_.id_articolo where id_utente = ? order by data_creazione desc";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setInt(1, id);
@@ -180,8 +178,7 @@ public class ValutazioniFactory {
         } catch (SQLException exc) {
             Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
-
-        Collections.sort(lista);
+        
         return lista;
     }
 
@@ -191,7 +188,7 @@ public class ValutazioniFactory {
             Connection conn = DbManager.getInstance().getDbConnection();
             Statement stmt = conn.createStatement();
 
-            String sql = "select * from valutazione_";
+            String sql = "select valutazione_.*, articolo.data_creazione  from valutazione_ join articolo on articolo.pid = valutazione_.id_articolo order by data_creazione desc";
 
             ResultSet set = stmt.executeQuery(sql);
 
@@ -214,7 +211,6 @@ public class ValutazioniFactory {
             Logger.getLogger(ValutazioniFactory.class.getName()).log(Level.SEVERE, null, exc);
         }
 
-        Collections.sort(valutazioni);      //
         return valutazioni;
 
     }

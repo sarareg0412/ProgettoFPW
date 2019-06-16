@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpServletRequest;
 import utils.AuthorTokenizer;
 
 /**
@@ -231,7 +230,7 @@ public class UtentiFactory {
         return 0;
     }
 
-    public Utenti updateUtente(HttpServletRequest request, int id) throws MalformedURLException {
+    public Utenti updateUtente(String nome, String cognome, String immagine, String ente, String email, String password, int id) throws MalformedURLException {
         try {
             Boolean esiste_utente;
 
@@ -239,12 +238,12 @@ public class UtentiFactory {
             String sql = "update utente set nome = ?, cognome = ?, foto = ?, ente = ?, email = ?, pw = ? where id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, request.getParameter("nome"));
-            stmt.setString(2, request.getParameter("cognome"));
-            stmt.setString(3, request.getParameter("immagine"));
-            stmt.setString(4, request.getParameter("ente"));
-            stmt.setString(5, request.getParameter("email"));
-            stmt.setString(6, request.getParameter("password"));
+            stmt.setString(1, nome);
+            stmt.setString(2, cognome);
+            stmt.setString(3, immagine);
+            stmt.setString(4, ente);
+            stmt.setString(5, email);
+            stmt.setString(6, password);
             stmt.setInt(7, id);
 
             int res = stmt.executeUpdate();
@@ -271,7 +270,17 @@ public class UtentiFactory {
         try {
             conn = DbManager.getInstance().getDbConnection();
             conn.setAutoCommit(false);
-
+            
+            String utente_id = "delete from utente_articolo where utente_id = ?";
+            PreparedStatement id_utente = conn.prepareStatement(utente_id);
+            id_utente.setInt(1, id);
+            id_utente.executeUpdate();
+            
+            String valutazioni = "delete from valutazioni where id_utente = ?";
+            PreparedStatement val = conn.prepareStatement(valutazioni);
+            id_utente.setInt(1, id);
+            id_utente.executeUpdate();
+            
             String sql = "select articolo_id from utente_articolo where utente_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -289,17 +298,6 @@ public class UtentiFactory {
                 articolo.setInt(1, articoli.get(i));
                 articolo.executeUpdate();
             }
-
-            String utente_id = "delete from utente_articolo where utente_id = ?";
-            PreparedStatement id_utente = conn.prepareStatement(utente_id);
-            id_utente.setInt(1, id);
-            id_utente.executeUpdate();
-
-            String valutazioni = "delete from valutazioni where id_utente = ?";
-            PreparedStatement val = conn.prepareStatement(valutazioni);
-            id_utente.setInt(1, id);
-
-            id_utente.executeUpdate();
 
             String utente = "delete from utente where id = ?";
             PreparedStatement user = conn.prepareStatement(utente);
